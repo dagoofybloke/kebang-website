@@ -8,70 +8,52 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
-/* ══════════════════════════════════
-   DARK MODE (default)
-══════════════════════════════════ */
 :root {
   --bg:       #0f0402;
   --bg2:      #1a0805;
   --bg3:      #211009;
   --bg4:      #2a1410;
-
   --text:     #f0dfc0;
   --text-sec: #d4bfa0;
   --text-body:#c8b090;
   --muted:    #9a7860;
   --muted2:   #7a5840;
-
   --crimson:  #8c1a0e;
   --fire:     #b82a18;
   --amber:    #c87010;
   --sun:      #e8a020;
-
   --border:   rgba(200,112,16,0.2);
   --border2:  rgba(140,26,14,0.3);
   --card-bg:  rgba(255,255,255,0.02);
-
   --nav-bg:   rgba(15,4,2,0.95);
   --input-bg: #1a0805;
-
   --ff-hero:'Anton',Impact,sans-serif;
   --ff-head:'Oswald',sans-serif;
   --ff-body:'Libre Baskerville',Georgia,serif;
   --ff-mono:'Courier Prime',monospace
 }
 
-/* ══════════════════════════════════
-   LIGHT MODE
-══════════════════════════════════ */
 [data-theme="light"] {
   --bg:       #faf5ed;
   --bg2:      #f3e8d4;
   --bg3:      #ecdcc4;
   --bg4:      #e4d0b4;
-
   --text:     #180703;
   --text-sec: #2a1008;
   --text-body:#3a1c10;
   --muted:    #6a3c24;
   --muted2:   #8a5038;
-
   --crimson:  #8c1a0e;
   --fire:     #b82a18;
   --amber:    #9a6008;
   --sun:      #b87808;
-
   --border:   rgba(140,26,14,0.18);
   --border2:  rgba(140,26,14,0.25);
   --card-bg:  rgba(0,0,0,0.02);
-
   --nav-bg:   rgba(250,245,237,0.97);
   --input-bg: #ecdcc4;
 }
 
-/* ══════════════════════════════════
-   RESET & BASE
-══════════════════════════════════ */
 html{scroll-behavior:smooth}
 body{
   background:var(--bg);
@@ -84,10 +66,6 @@ body{
   transition:background 0.3s,color 0.3s
 }
 
-/* ══════════════════════════════════
-   EGE TEXTILE STRIPES
-══════════════════════════════════ */
-/* Traditional Mising textile — crimson · black · white stripes */
 .ege{height:22px;background:linear-gradient(to bottom,
   #9b1526 0,#9b1526 5px,
   #111 5px,#111 7px,
@@ -117,18 +95,12 @@ body{
   #111 35px,#111 37px,
   #9b1526 37px,#9b1526 44px)}
 
-/* ══════════════════════════════════
-   MEYAP DIAMOND BACKGROUND
-══════════════════════════════════ */
 .meyap{
   background-color:var(--bg2);
   background-image:url("data:image/svg+xml,%3Csvg width='44' height='44' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='22,3 41,22 22,41 3,22' fill='none' stroke='rgba(140,26,14,0.12)' stroke-width='1'/%3E%3Ccircle cx='22' cy='22' r='1.5' fill='rgba(140,26,14,0.08)'/%3E%3C/svg%3E");
   background-size:44px 44px
 }
 
-/* ══════════════════════════════════
-   NAVIGATION
-══════════════════════════════════ */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:200;
   background:var(--nav-bg);
@@ -159,7 +131,6 @@ nav{
 }
 .nav-links a:hover{color:var(--amber)}
 
-/* Theme toggle button */
 .theme-toggle{
   width:38px;height:38px;
   background:transparent;
@@ -186,9 +157,6 @@ nav{
 }
 .nav-discord:hover{background:var(--fire)}
 
-/* ══════════════════════════════════
-   HERO
-══════════════════════════════════ */
 .hero{
   position:relative;min-height:100vh;
   background:linear-gradient(160deg,#200806 0%,#150503 55%,#0f0402 100%);
@@ -259,7 +227,6 @@ nav{
 }
 .btn-ghost:hover{border-color:var(--sun);color:var(--sun)}
 
-/* Wings quick-nav strip */
 .wings-strip{
   position:relative;z-index:2;
   background:var(--bg3);
@@ -286,9 +253,6 @@ nav{
   letter-spacing:0.08em;color:var(--text)
 }
 
-/* ══════════════════════════════════
-   TICKER
-══════════════════════════════════ */
 .ticker-wrap{
   background:var(--crimson);
   padding:0.8rem 0;overflow:hidden
@@ -306,9 +270,6 @@ nav{
 .ticker-inner .dot{color:rgba(255,255,255,0.3);padding:0 0.2rem}
 @keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-/* ══════════════════════════════════
-   SHARED SECTION STYLES
-══════════════════════════════════ */
 section{padding:5.5rem 3rem;transition:background 0.3s}
 .sec-eyebrow{
   font-family:var(--ff-mono);font-size:0.64rem;
@@ -330,9 +291,6 @@ section{padding:5.5rem 3rem;transition:background 0.3s}
   max-width:640px;margin-bottom:3rem
 }
 
-/* ══════════════════════════════════
-   ABOUT
-══════════════════════════════════ */
 #about{background:var(--bg2)}
 .about-grid{
   display:grid;grid-template-columns:1.4fr 1fr;
@@ -372,9 +330,6 @@ section{padding:5.5rem 3rem;transition:background 0.3s}
   color:var(--muted);margin-top:0.3rem
 }
 
-/* ══════════════════════════════════
-   WINGS OVERVIEW
-══════════════════════════════════ */
 #wings{background:var(--bg)}
 .wings-grid{
   display:grid;grid-template-columns:repeat(3,1fr);
@@ -414,9 +369,6 @@ section{padding:5.5rem 3rem;transition:background 0.3s}
   border-bottom:1px solid rgba(200,112,16,0.3)
 }
 
-/* ══════════════════════════════════
-   WING DETAIL SECTIONS
-══════════════════════════════════ */
 .wing-section{padding:5.5rem 3rem;transition:background 0.3s}
 .wing-section.political{background:var(--bg2)}
 .wing-section.cultural{background:var(--bg3)}
@@ -446,7 +398,6 @@ section{padding:5.5rem 3rem;transition:background 0.3s}
 }
 .wing-social-link svg{width:14px;height:14px;fill:currentColor;flex-shrink:0}
 
-/* GOALS GRID */
 .goals-grid{
   display:grid;grid-template-columns:repeat(2,1fr);
   gap:2px;background:var(--border2)
@@ -470,7 +421,6 @@ section{padding:5.5rem 3rem;transition:background 0.3s}
   line-height:1.8;font-style:italic
 }
 
-/* Ideology tags */
 .ideology-row{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:2.5rem}
 .ideo-pill{
   font-family:var(--ff-head);font-weight:500;
@@ -480,7 +430,6 @@ section{padding:5.5rem 3rem;transition:background 0.3s}
   border:1px solid var(--border2)
 }
 
-/* WIKI MEMBERS */
 .wiki-members{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3rem}
 .wiki-member{
   border:1px solid var(--border);
@@ -509,7 +458,6 @@ section{padding:5.5rem 3rem;transition:background 0.3s}
 .wiki-member-handle a{color:var(--amber);text-decoration:none}
 .wiki-member-handle a:hover{text-decoration:underline}
 
-/* ARTICLE CARDS */
 .articles-grid{
   display:grid;grid-template-columns:repeat(3,1fr);
   gap:2px;background:var(--border2)
@@ -544,9 +492,6 @@ section{padding:5.5rem 3rem;transition:background 0.3s}
   color:var(--muted)
 }
 
-/* ══════════════════════════════════
-   CONNECT
-══════════════════════════════════ */
 #connect{background:var(--bg)}
 .connect-grid{
   display:grid;grid-template-columns:repeat(2,1fr);
@@ -579,9 +524,6 @@ section{padding:5.5rem 3rem;transition:background 0.3s}
   font-style:italic;line-height:1.75
 }
 
-/* ══════════════════════════════════
-   DISCORD CTA
-══════════════════════════════════ */
 .discord-cta{background:var(--crimson);padding:5rem 3rem}
 .discord-inner{max-width:600px;margin:0 auto;text-align:center}
 .discord-title{
@@ -606,9 +548,6 @@ section{padding:5.5rem 3rem;transition:background 0.3s}
 .btn-discord:hover{background:#f0dfc0}
 .btn-discord svg{width:18px;height:18px;fill:currentColor;flex-shrink:0}
 
-/* ══════════════════════════════════
-   FOOTER
-══════════════════════════════════ */
 footer{
   background:var(--bg);
   padding:3.5rem 3rem 2rem;
@@ -656,9 +595,6 @@ footer{
   font-family:var(--ff-mono);font-size:0.66rem;color:var(--muted)
 }
 
-/* ══════════════════════════════════
-   RESPONSIVE
-══════════════════════════════════ */
 @media(max-width:960px){
   .nav-links{display:none}
   .nav-inner{padding:0.75rem 1.5rem}
@@ -692,15 +628,12 @@ footer{
       <li><a href="#wings">Wings</a></li>
       <li><a href="/politicalwing">Political</a></li>
       <li><a href="/culturalwing">Cultural</a></li>
-      <li><a href="/wikipediawing">Wikipedia</a></li>
+      <li><a href="/researchwing">Research &amp; Docs</a></li>
       <li><a href="#connect">Connect</a></li>
     </ul>
     <div class="nav-right">
-      <!-- Theme toggle -->
       <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">
-        <!-- Moon icon (shown in dark mode) -->
         <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
-        <!-- Sun icon (shown in light mode) -->
         <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
       <a href="https://discord.gg/NkAuYxAGQN" target="_blank" rel="noopener" class="nav-discord">Join Discord</a>
@@ -735,9 +668,9 @@ footer{
       <div class="wing-tab-label">Wing II</div>
       <div class="wing-tab-name">Cultural Wing</div>
     </a>
-    <a href="/wikipediawing" class="wing-tab">
+    <a href="/researchwing" class="wing-tab">
       <div class="wing-tab-label">Wing III</div>
-      <div class="wing-tab-name">Wikipedia Wing</div>
+      <div class="wing-tab-name">Research &amp; Documentation Wing</div>
     </a>
   </div>
 </section>
@@ -770,7 +703,7 @@ footer{
       <p class="sec-sub">A youth-led collective rooted in the traditions of the Mising people, building forward.</p>
       <p>The <strong>Takam Mising Sí:sang Kébang (TMSK)</strong> is a youth organisation dedicated to preserving and advancing the culture, rights, and knowledge of the Mising people of Assam and Arunachal Pradesh, Northeast India.</p>
       <p>We take our name from the <strong>Kébang</strong> — the traditional democratic council of the Mising people — a model of collective decision-making and community governance that has guided our ancestors for generations. We bring that spirit into the digital age.</p>
-      <p>TMSK operates through three active wings: a <strong>Political Wing</strong> that advocates for Mising rights, a <strong>Cultural Wing</strong> that preserves Abotani's heritage and engages Mising youth, and a <strong>Wikipedia Wing</strong> that builds the Mising knowledge base on the world's largest open encyclopedia.</p>
+      <p>TMSK operates through three active wings: a <strong>Political Wing</strong> that advocates for Mising rights, a <strong>Cultural Wing</strong> that preserves Abotani's heritage and engages Mising youth, and a <strong>Research &amp; Documentation Wing</strong> that builds and preserves the Mising knowledge base for future generations.</p>
     </div>
     <div>
       <div class="kebang-box">
@@ -803,11 +736,11 @@ footer{
       <p class="wing-card-desc">Preserving the legacy of Abotani, digitising Mising folktales, and engaging youth to carry our culture forward into the digital world.</p>
       <span class="wing-card-link">Explore Wing →</span>
     </a>
-    <a href="/wikipediawing" class="wing-card">
+    <a href="/researchwing" class="wing-card">
       <div class="wing-card-num">03</div>
       <div class="wing-card-tag">Wing III</div>
-      <div class="wing-card-name">Wikipedia Wing</div>
-      <p class="wing-card-desc">Expanding the Mising presence on English Wikipedia — creating articles on Mising culture, people, history, and geography.</p>
+      <div class="wing-card-name">Research &amp; Documentation Wing</div>
+      <p class="wing-card-desc">Researching, documenting, and preserving Mising culture, people, history, and geography — building an enduring knowledge base for future generations.</p>
       <span class="wing-card-link">Explore Wing →</span>
     </a>
   </div>
@@ -833,11 +766,11 @@ footer{
       <h4>Cultural Wing</h4>
       <p>Heritage, Doying Lunam storytelling, and Mising youth culture</p>
     </a>
-    <a href="/wikipediawing" class="connect-card">
+    <a href="/researchwing" class="connect-card">
       <span class="connect-arrow">→</span>
       <div class="connect-platform">Wing III</div>
-      <h4>Wikipedia Wing</h4>
-      <p>Building the Mising knowledge base on the open web</p>
+      <h4>Research &amp; Documentation Wing</h4>
+      <p>Building and preserving the Mising knowledge base for the open web and future generations</p>
     </a>
     <a href="https://discord.gg/NkAuYxAGQN" target="_blank" rel="noopener" class="connect-card" style="border-color:var(--border2)">
       <span class="connect-arrow">↗</span>
@@ -884,9 +817,9 @@ footer{
     <div class="foot-col">
       <h5>Our Wings</h5>
       <ul>
-        <li><a href="#political">Political Wing</a></li>
-        <li><a href="#cultural">Cultural Wing</a></li>
-        <li><a href="#wikipedia">Wikipedia Wing</a></li>
+        <li><a href="/politicalwing">Political Wing</a></li>
+        <li><a href="/culturalwing">Cultural Wing</a></li>
+        <li><a href="/researchwing">Research &amp; Documentation Wing</a></li>
       </ul>
     </div>
     <div class="foot-col">
@@ -906,7 +839,6 @@ footer{
 </footer>
 
 <script>
-/* ══ THEME TOGGLE ══ */
 (function(){
   var html = document.documentElement;
   var btn  = document.getElementById('themeToggle');
