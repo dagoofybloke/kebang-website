@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Doying Lunam · Folk Stories · Takam Mising Sí:sang Kébang</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0301;--bg2:#140604;--bg3:#1c0a06;--bg4:#261009;
+  --text:#f0dfc0;--text-sec:#d4bfa0;--text-body:#c8b090;
+  --muted:#9a7860;--muted2:#7a5840;
+  --crimson:#8c1a0e;--fire:#b82a18;--amber:#c87010;--sun:#e8a020;
+  --river:#1a4a5e;--river2:#24607a;--river-light:#3a8aaa;
+  --border:rgba(200,112,16,0.18);--border2:rgba(140,26,14,0.28);
+  --border-river:rgba(58,138,170,0.25);
+  --nav-bg:rgba(10,3,1,0.96);
+  --ff-hero:'Anton',Impact,sans-serif;
+  --ff-head:'Oswald',sans-serif;
+  --ff-body:'Libre Baskerville',Georgia,serif;
+  --ff-mono:'Courier Prime',monospace
+}
+[data-theme="light"]{
+  --bg:#faf5ed;--bg2:#f3e8d4;--bg3:#ecdcc4;--bg4:#e4d0b4;
+  --text:#180703;--text-sec:#2a1008;--text-body:#3a1c10;
+  --muted:#6a3c24;
+  --crimson:#8c1a0e;--fire:#b82a18;--amber:#9a6008;--sun:#b87808;
+  --river:#1a4a5e;--river2:#24607a;--river-light:#2a7090;
+  --border:rgba(140,26,14,0.18);--border2:rgba(140,26,14,0.25);
+  --border-river:rgba(26,74,94,0.2);
+  --nav-bg:rgba(250,245,237,0.97)
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--ff-body);font-weight:400;line-height:1.7;overflow-x:hidden;transition:background 0.3s,color 0.3s}
+
+/* EGE */
+.ege{height:16px;background:linear-gradient(to bottom,#8c1a0e 0,#8c1a0e 2px,#0a0301 2px,#0a0301 4px,#6a1008 4px,#6a1008 6px,#0a0301 6px,#0a0301 7px,#c87010 7px,#c87010 8px,#0a0301 8px,#0a0301 9px,#8c1a0e 9px,#8c1a0e 12px,#0a0301 12px,#0a0301 13px,#c87010 13px,#c87010 14px,#0a0301 14px,#0a0301 15px,#8c1a0e 15px,#8c1a0e 16px)}
+.ege-lg{height:26px;background:linear-gradient(to bottom,#8c1a0e 0,#8c1a0e 3px,#0a0301 3px,#0a0301 5px,#b82a18 5px,#b82a18 8px,#0a0301 8px,#0a0301 9px,#c87010 9px,#c87010 10px,#e8a020 10px,#e8a020 11px,#c87010 11px,#c87010 12px,#0a0301 12px,#0a0301 13px,#8c1a0e 13px,#8c1a0e 17px,#0a0301 17px,#0a0301 19px,#c87010 19px,#c87010 20px,#0a0301 20px,#0a0301 21px,#b82a18 21px,#b82a18 24px,#0a0301 24px,#0a0301 25px,#8c1a0e 25px,#8c1a0e 26px)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--nav-bg);backdrop-filter:blur(14px);border-bottom:1px solid var(--border2);transition:background 0.3s}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:0.75rem 2.5rem;gap:1rem}
+.nav-brand{text-decoration:none;display:flex;flex-direction:column}
+.nav-brand-tmsk{font-family:var(--ff-head);font-weight:700;font-size:1.15rem;color:var(--crimson);letter-spacing:0.1em}
+.nav-brand-full{font-family:var(--ff-mono);font-size:0.56rem;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.nav-links{display:flex;gap:1.6rem;list-style:none}
+.nav-links a{font-family:var(--ff-head);font-size:0.76rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover,.nav-links a.active{color:var(--amber)}
+.theme-toggle{width:38px;height:38px;background:transparent;border:1px solid var(--border2);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:all 0.2s;flex-shrink:0}
+.theme-toggle:hover{border-color:var(--amber);color:var(--amber)}
+.theme-toggle svg{width:16px;height:16px;fill:currentColor}
+.icon-moon{display:block}.icon-sun{display:none}
+[data-theme="light"] .icon-moon{display:none}[data-theme="light"] .icon-sun{display:block}
+.nav-discord{font-family:var(--ff-head);font-weight:600;font-size:0.73rem;letter-spacing:0.12em;text-transform:uppercase;background:var(--crimson);color:#fff;padding:0.5rem 1.2rem;text-decoration:none;transition:background 0.2s;white-space:nowrap}
+.nav-discord:hover{background:var(--fire)}
+
+/* ─── HERO ─── */
+.hero{
+  min-height:80vh;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:9rem 3rem 5rem;
+  position:relative;overflow:hidden;
+  background:#0a0301;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 30% 60%, rgba(26,74,94,0.35) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 30%, rgba(140,26,14,0.2) 0%, transparent 45%),
+    radial-gradient(ellipse at 10% 20%, rgba(80,10,4,0.5) 0%, transparent 50%),
+    linear-gradient(180deg,#100302 0%,#0a0301 100%);
+}
+[data-theme="light"] .hero{background:#4a0a04}
+[data-theme="light"] .hero-bg{background:linear-gradient(160deg,#6a1008 0%,#4a0a04 100%)}
+
+/* water-line shimmer */
+.hero::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
+  background:linear-gradient(to right,transparent,rgba(58,138,170,0.5),rgba(58,138,170,0.8),rgba(58,138,170,0.5),transparent);
+  animation:shimmer 4s ease-in-out infinite
+}
+@keyframes shimmer{0%,100%{opacity:0.4}50%{opacity:1}}
+
+/* wave pattern BG */
+.hero-wave{
+  position:absolute;bottom:0;left:0;right:0;height:40%;
+  background:repeating-linear-gradient(
+    -10deg,
+    transparent,transparent 18px,
+    rgba(58,138,170,0.03) 18px,
+    rgba(58,138,170,0.03) 20px
+  );
+  pointer-events:none
+}
+
+.hero-content{position:relative;z-index:2;max-width:900px}
+.hero-breadcrumb{
+  display:flex;align-items:center;gap:0.6rem;
+  font-family:var(--ff-mono);font-size:0.58rem;letter-spacing:0.16em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:1.8rem
+}
+.hero-breadcrumb a{color:var(--muted);text-decoration:none;transition:color 0.2s}
+.hero-breadcrumb a:hover{color:var(--amber)}
+.hero-breadcrumb span{color:var(--amber)}
+.hero-badge{background:var(--river);padding:0.35rem 0.9rem;font-family:var(--ff-mono);font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.85);display:inline-block;margin-bottom:1rem;border:1px solid var(--border-river)}
+.hero-mising-word{
+  font-family:var(--ff-mono);font-size:0.64rem;letter-spacing:0.22em;
+  text-transform:uppercase;color:var(--river-light);margin-bottom:0.5rem;
+  display:flex;align-items:center;gap:0.8rem
+}
+.hero-mising-word::before{content:'≋';font-size:1rem}
+.hero-title{
+  font-family:var(--ff-hero);
+  font-size:clamp(3rem,8vw,6.5rem);
+  line-height:0.92;
+  text-transform:uppercase;
+  color:#fff;
+  margin-bottom:0.4rem;
+  text-shadow:0 0 60px rgba(58,138,170,0.25),0 0 120px rgba(140,26,14,0.2);
+  animation:fadeUp 0.9s ease both
+}
+.hero-title .river{color:var(--river-light);display:block;animation:fadeUp 0.9s 0.15s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.hero-translation{
+  font-family:var(--ff-body);font-size:0.95rem;font-style:italic;
+  color:rgba(255,255,255,0.45);margin-bottom:1.8rem;
+  animation:fadeUp 0.9s 0.25s ease both
+}
+.hero-desc{
+  font-family:var(--ff-body);font-size:1rem;color:rgba(255,255,255,0.6);
+  max-width:560px;font-style:italic;line-height:1.9;margin-bottom:2.5rem;
+  animation:fadeUp 0.9s 0.35s ease both
+}
+.hero-cta-row{display:flex;gap:0.8rem;flex-wrap:wrap;animation:fadeUp 0.9s 0.45s ease both}
+.cta-stories{
+  font-family:var(--ff-head);font-weight:700;font-size:0.78rem;letter-spacing:0.14em;
+  text-transform:uppercase;background:var(--river);color:#fff;
+  padding:0.9rem 1.8rem;text-decoration:none;transition:background 0.2s;
+  border:2px solid var(--river);
+}
+.cta-stories:hover{background:var(--river2);border-color:var(--river2)}
+.cta-insta{
+  font-family:var(--ff-head);font-weight:600;font-size:0.78rem;letter-spacing:0.14em;
+  text-transform:uppercase;background:transparent;color:var(--amber);
+  padding:0.9rem 1.8rem;text-decoration:none;border:2px solid var(--amber);
+  transition:all 0.2s;display:flex;align-items:center;gap:0.6rem
+}
+.cta-insta:hover{background:rgba(200,112,16,0.08)}
+.cta-insta svg{width:14px;height:14px;fill:currentColor}
+.hero-bottom-bar{
+  position:absolute;bottom:0;left:0;right:0;
+  background:rgba(26,74,94,0.5);backdrop-filter:blur(8px);
+  border-top:1px solid var(--border-river);padding:0.8rem 3rem;
+  display:flex;align-items:center;gap:2rem;overflow:hidden;z-index:3
+}
+.river-ticker{
+  font-family:var(--ff-head);font-weight:600;font-size:0.65rem;letter-spacing:0.18em;
+  text-transform:uppercase;color:rgba(255,255,255,0.7);white-space:nowrap;
+  display:flex;gap:3rem;
+  animation:ticker 30s linear infinite
+}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.ticker-sep{color:rgba(255,255,255,0.25)}
+
+/* ─── ABOUT SECTION ─── */
+#about{padding:5.5rem 3rem;background:var(--bg2)}
+.about-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.about-text{}
+.sec-eyebrow{font-family:var(--ff-mono);font-size:0.64rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber);margin-bottom:0.8rem;display:flex;align-items:center;gap:10px}
+.sec-eyebrow::after{content:'';flex:1;height:1px;background:var(--border)}
+.sec-title{font-family:var(--ff-head);font-weight:700;font-size:clamp(1.8rem,3.5vw,2.6rem);text-transform:uppercase;letter-spacing:0.04em;line-height:1.1;margin-bottom:0.6rem;color:var(--text)}
+.sec-title .hl{color:var(--fire)}
+.sec-sub{font-size:0.92rem;color:var(--text-body);font-style:italic;line-height:1.85;max-width:560px;margin-bottom:2rem}
+.about-body{font-size:0.88rem;color:var(--text-body);line-height:1.9;margin-bottom:1.2rem}
+.about-quote{
+  padding:1.8rem 2rem;border-left:3px solid var(--river);
+  background:rgba(26,74,94,0.1);margin:2rem 0;position:relative
+}
+[data-theme="light"] .about-quote{background:rgba(26,74,94,0.06)}
+.about-quote p{font-family:var(--ff-body);font-size:0.94rem;font-style:italic;color:var(--text-sec);line-height:1.85}
+.about-quote cite{display:block;font-family:var(--ff-mono);font-size:0.56rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-top:0.7rem;font-style:normal}
+.about-sidebar{margin-top:1rem}
+.about-fact{
+  padding:1.5rem;border:1px solid var(--border2);margin-bottom:2px;
+  background:var(--bg3);transition:background 0.2s
+}
+.about-fact:hover{background:var(--bg4)}
+[data-theme="light"] .about-fact{background:var(--bg4)}
+.about-fact-label{font-family:var(--ff-mono);font-size:0.56rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--river-light);margin-bottom:0.4rem}
+.about-fact-value{font-family:var(--ff-head);font-weight:600;font-size:0.95rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-sec)}
+.about-fact-note{font-size:0.8rem;color:var(--text-body);font-style:italic;margin-top:0.2rem}
+
+/* ─── STORIES GRID ─── */
+#stories{padding:5.5rem 3rem;background:var(--bg)}
+.stories-filter{display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:3rem}
+.filter-btn{
+  font-family:var(--ff-head);font-weight:500;font-size:0.7rem;letter-spacing:0.1em;
+  text-transform:uppercase;padding:0.5rem 1.1rem;border:1px solid var(--border2);
+  background:transparent;color:var(--muted);cursor:pointer;transition:all 0.2s;
+}
+.filter-btn:hover{border-color:var(--amber);color:var(--amber)}
+.filter-btn.active{background:var(--crimson);border-color:var(--crimson);color:#fff}
+.stories-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border2)}
+.story-card{
+  background:var(--bg);padding:2.2rem;
+  position:relative;overflow:hidden;
+  transition:background 0.25s;
+  display:flex;flex-direction:column
+}
+.story-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--crimson);transform:scaleX(0);transform-origin:left;
+  transition:transform 0.35s
+}
+.story-card:hover::before{transform:scaleX(1)}
+.story-card:hover{background:var(--bg2)}
+.story-card.river::before{background:var(--river-light)}
+.story-card.origin::before{background:var(--amber)}
+.story-card.spirit::before{background:var(--fire)}
+.story-num{
+  font-family:var(--ff-hero);font-size:3rem;
+  color:rgba(140,26,14,0.1);line-height:1;margin-bottom:0.8rem;
+  letter-spacing:-0.02em
+}
+.story-card.river .story-num{color:rgba(26,74,94,0.15)}
+.story-card.origin .story-num{color:rgba(200,112,16,0.12)}
+.story-category{
+  font-family:var(--ff-mono);font-size:0.54rem;letter-spacing:0.18em;
+  text-transform:uppercase;margin-bottom:0.6rem
+}
+.story-card.ancestor .story-category{color:var(--crimson)}
+.story-card.river .story-category{color:var(--river-light)}
+.story-card.origin .story-category{color:var(--amber)}
+.story-card.spirit .story-category{color:var(--fire)}
+.story-card.celestial .story-category{color:var(--sun)}
+.story-title{
+  font-family:var(--ff-head);font-weight:700;font-size:1.1rem;
+  text-transform:uppercase;letter-spacing:0.06em;
+  color:var(--text);margin-bottom:0.4rem;line-height:1.2
+}
+.story-subtitle{
+  font-family:var(--ff-mono);font-size:0.58rem;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:0.8rem
+}
+.story-excerpt{
+  font-size:0.83rem;color:var(--text-body);font-style:italic;
+  line-height:1.8;flex:1
+}
+.story-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:1.4rem;padding-top:1rem;border-top:1px solid var(--border)
+}
+.story-source{font-family:var(--ff-mono);font-size:0.52rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)}
+.story-tag{font-family:var(--ff-mono);font-size:0.5rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.5rem;border:1px solid var(--border2);color:var(--text-body)}
+
+/* ─── TRADITION SECTION ─── */
+#tradition{
+  padding:5.5rem 3rem;
+  background:var(--bg3);
+  background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 30 Q15 20 30 30 Q45 40 60 30' fill='none' stroke='rgba(26,74,94,0.08)' stroke-width='1'/%3E%3C/svg%3E");
+  background-size:60px 30px
+}
+.tradition-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.tradition-items{margin-top:2rem}
+.tradition-item{
+  display:flex;align-items:flex-start;gap:1.2rem;
+  padding:1.4rem 0;border-bottom:1px solid var(--border)
+}
+.tradition-item:last-child{border-bottom:none}
+.tradition-bullet{
+  width:32px;height:32px;flex-shrink:0;
+  border:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.9rem;margin-top:0.1rem
+}
+.tradition-content{}
+.tradition-name{
+  font-family:var(--ff-head);font-weight:600;font-size:0.92rem;
+  text-transform:uppercase;letter-spacing:0.08em;color:var(--text-sec);margin-bottom:0.3rem
+}
+.tradition-text{font-size:0.84rem;color:var(--text-body);font-style:italic;line-height:1.8}
+.tradition-sidebar{
+  background:var(--bg4);padding:2.5rem;border-left:3px solid var(--river);
+  position:relative
+}
+[data-theme="light"] .tradition-sidebar{background:var(--bg3)}
+.tradition-sidebar-title{
+  font-family:var(--ff-hero);font-size:clamp(1.5rem,2.5vw,2rem);
+  text-transform:uppercase;color:var(--text);margin-bottom:1rem;line-height:1
+}
+.tradition-sidebar-title .accent{color:var(--river-light)}
+.tradition-sidebar-body{font-size:0.86rem;color:var(--text-body);font-style:italic;line-height:1.85;margin-bottom:1.5rem}
+.insta-block{
+  display:flex;align-items:center;gap:1rem;padding:1rem;
+  border:1px solid var(--border-river);background:rgba(26,74,94,0.08);
+  text-decoration:none;transition:background 0.2s
+}
+.insta-block:hover{background:rgba(26,74,94,0.15)}
+.insta-block-icon{width:36px;height:36px;color:var(--amber);display:flex;align-items:center;justify-content:center}
+.insta-block-icon svg{width:18px;height:18px;fill:currentColor}
+.insta-block-text{}
+.insta-block-handle{font-family:var(--ff-head);font-weight:700;font-size:0.88rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--text)}
+.insta-block-label{font-family:var(--ff-mono);font-size:0.54rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber)}
+
+/* ─── CONTRIBUTE CTA ─── */
+.contribute-cta{
+  padding:5.5rem 3rem;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(26,74,94,0.25) 0%, transparent 55%),
+    var(--bg);
+  position:relative;overflow:hidden;text-align:center
+}
+.contribute-inner{max-width:640px;margin:0 auto}
+.contribute-wave{
+  font-size:2rem;color:var(--river-light);display:block;margin-bottom:1rem;
+  animation:wave 3s ease-in-out infinite
+}
+@keyframes wave{0%,100%{transform:scaleX(1)}50%{transform:scaleX(1.2)}}
+.contribute-title{font-family:var(--ff-hero);font-size:clamp(2rem,5vw,3.5rem);text-transform:uppercase;letter-spacing:0.04em;line-height:0.95;color:var(--text);margin-bottom:1rem}
+.contribute-title .hl{color:var(--sun)}
+.contribute-sub{font-size:0.92rem;color:var(--text-body);font-style:italic;max-width:500px;margin:0 auto 2.5rem;line-height:1.9}
+.contribute-cta-row{display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap}
+.btn-insta{
+  display:inline-flex;align-items:center;gap:0.7rem;
+  background:var(--crimson);color:#fff;padding:0.9rem 2rem;
+  font-family:var(--ff-head);font-weight:700;font-size:0.82rem;
+  letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;
+  transition:background 0.2s
+}
+.btn-insta:hover{background:var(--fire)}
+.btn-insta svg{width:16px;height:16px;fill:currentColor;flex-shrink:0}
+.btn-discord{
+  display:inline-flex;align-items:center;gap:0.7rem;
+  background:transparent;color:var(--amber);padding:0.9rem 2rem;
+  font-family:var(--ff-head);font-weight:600;font-size:0.82rem;
+  letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;
+  border:2px solid var(--amber);transition:all 0.2s
+}
+.btn-discord:hover{background:rgba(200,112,16,0.08)}
+.btn-discord svg{width:16px;height:16px;fill:currentColor;flex-shrink:0}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--border2);padding:4rem 3rem 2rem;transition:background 0.3s}
+.foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:4rem;margin-bottom:3rem;border-bottom:1px solid var(--border)}
+.foot-brand-name{font-family:var(--ff-hero);font-size:1.3rem;text-transform:uppercase;color:var(--crimson);letter-spacing:0.04em;margin-bottom:0.2rem}
+.foot-brand-full{font-family:var(--ff-mono);font-size:0.56rem;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;margin-bottom:0.8rem}
+.foot-brand p{font-size:0.82rem;color:var(--text-body);font-style:italic;max-width:210px;line-height:1.75}
+.foot-col h5{font-family:var(--ff-mono);font-size:0.56rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:0.9rem}
+.foot-col ul{list-style:none}
+.foot-col ul li{margin-bottom:0.45rem}
+.foot-col ul li a{font-size:0.82rem;color:var(--text-sec);text-decoration:none;font-family:var(--ff-head);letter-spacing:0.04em;opacity:0.7;transition:opacity 0.2s}
+.foot-col ul li a:hover{opacity:1;color:var(--amber)}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:1.5rem;flex-wrap:wrap;gap:0.5rem}
+.foot-bottom p{font-family:var(--ff-mono);font-size:0.66rem;color:var(--muted)}
+.foot-tag{font-family:var(--ff-head);font-weight:600;font-size:0.64rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--river-light)}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .nav-links{display:none}
+  .nav-inner{padding:0.75rem 1.5rem}
+  .hero,#about,#stories,#tradition,.contribute-cta,footer{padding-left:1.5rem;padding-right:1.5rem}
+  .about-inner,.tradition-inner{grid-template-columns:1fr;gap:3rem}
+  .stories-grid{grid-template-columns:1fr 1fr}
+  .foot-top{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .stories-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">
+      <span class="nav-brand-tmsk">TMSK</span>
+      <span class="nav-brand-full">Takam Mising Sí:sang Kébang</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/politicalwing">Political Wing</a></li>
+      <li><a href="/culturalwing">Cultural & Digital Wing</a></li>
+      <li><a href="/doyinglunam" class="active">Doying Lunam</a></li>
+      <li><a href="/researchwing">Research Wing</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">
+        <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <a href="https://discord.gg/NkAuYxAGQN" target="_blank" rel="noopener" class="nav-discord">Join Discord</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-wave"></div>
+  <div class="hero-content">
+    <div class="hero-breadcrumb">
+      <a href="/">TMSK</a> ›
+      <a href="/culturalwing">Cultural & Digital Wing</a> ›
+      <span>Doying Lunam</span>
+    </div>
+    <span class="hero-badge">Cultural & Digital Wing · Subpage</span>
+    <div class="hero-mising-word">Doying Lunam · The Oral Tradition</div>
+    <h1 class="hero-title">
+      Doying
+      <span class="river">Lunam</span>
+    </h1>
+    <p class="hero-translation">— The art of storytelling in the Mising language</p>
+    <p class="hero-desc">In Mising, <em>Doying Lunam</em> is the living thread that binds us to our ancestors. These are not just tales — they are maps of the Mising world, spoken beside the river, passed down with the rhythm of rain on bamboo.</p>
+    <div class="hero-cta-row">
+      <a href="#stories" class="cta-stories">Read the Stories</a>
+      <a href="https://www.instagram.com/misingfolktales/" target="_blank" rel="noopener" class="cta-insta">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        @misingfolktales
+      </a>
+    </div>
+  </div>
+  <div class="hero-bottom-bar">
+    <div class="river-ticker">
+      <span>≋ ABOTANI</span><span class="ticker-sep">·</span>
+      <span>≋ KARPUNPULI</span><span class="ticker-sep">·</span>
+      <span>≋ ALI AYE LIGANG</span><span class="ticker-sep">·</span>
+      <span>≋ MIBU</span><span class="ticker-sep">·</span>
+      <span>≋ KULLING AND KULLAI</span><span class="ticker-sep">·</span>
+      <span>≋ DOBUR UIE</span><span class="ticker-sep">·</span>
+      <span>≋ ABOTARO</span><span class="ticker-sep">·</span>
+      <span>≋ ABOTANI</span><span class="ticker-sep">·</span>
+      <span>≋ KARPUNPULI</span><span class="ticker-sep">·</span>
+      <span>≋ ALI AYE LIGANG</span><span class="ticker-sep">·</span>
+      <span>≋ MIBU</span><span class="ticker-sep">·</span>
+      <span>≋ KULLING AND KULLAI</span><span class="ticker-sep">·</span>
+      <span>≋ DOBUR UIE</span><span class="ticker-sep">·</span>
+      <span>≋ ABOTARO</span><span class="ticker-sep">·</span>
+    </div>
+  </div>
+</div>
+
+<div class="ege-lg"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-text">
+      <div class="sec-eyebrow">What is Doying Lunam</div>
+      <h2 class="sec-title">The Mising <span class="hl">Oral Tradition</span></h2>
+      <p class="sec-sub">Doying Lunam is the practice of storytelling at the heart of Mising cultural life — the art of passing down wisdom, cosmology, and memory through the spoken word.</p>
+      <p class="about-body">The Mising people of the Brahmaputra plains have, for generations, preserved their history not in stone or paper but in the rhythm of the spoken word. <em>Doying Lunam</em> — the storytelling tradition — encompasses myths of creation, tales of river spirits, ancestor epics, moral fables, and explanations of the natural world.</p>
+      <p class="about-body">Told by elders at dusk, woven into festivals like <em>Dobur Uie</em> and <em>Po:Rag</em>, and carried across the floodplains by the Mising diaspora, these stories form a living archive — one that faces the threat of silence in the age of rapid cultural change.</p>
+      <p class="about-body">This project, led by <strong>@misingfolktales</strong> under the Cultural & Digital Creation Wing of TMSK, aims to bring these stories into the digital age — faithfully, beautifully, and with respect for the communities that carry them.</p>
+    </div>
+    <div class="about-sidebar">
+      <div class="about-fact">
+        <div class="about-fact-label">Language</div>
+        <div class="about-fact-value">Mising </div>
+        <div class="about-fact-note">A Tibeto-Burman language of the Tani group, spoken by the Mising people of Assam and Arunachal Pradesh</div>
+      </div>
+      <div class="about-fact">
+        <div class="about-fact-label">Tradition Type</div>
+        <div class="about-fact-value">Oral Narrative</div>
+        <div class="about-fact-note">Passed down through generations by storytellers — typically elders, priests, and community leaders</div>
+      </div>
+      <div class="about-fact">
+        <div class="about-fact-label">Ancestral Figure</div>
+        <div class="about-fact-value">Abotani</div>
+        <div class="about-fact-note">The mythical first ancestor of the Tani peoples — central to most Mising origin stories and cosmological narratives</div>
+      </div>
+      <div class="about-fact">
+        <div class="about-fact-label">Primary Deities</div>
+        <div class="about-fact-value">Donyi & Po</div>
+        <div class="about-fact-note">Sun (Donyi) and Moon (Polo) — the supreme forces in Mising cosmology, associated with the Donyi-Polo faith</div>
+      </div>
+      <div class="about-fact">
+        <div class="about-fact-label">Project Lead</div>
+        <div class="about-fact-value">@misingfolktales</div>
+        <div class="about-fact-note">Co-founder of the Cultural Wing of TMSK — dedicated to digitising Mising oral traditions</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ege"></div>
+
+<!-- STORIES -->
+<section id="stories">
+  <div class="sec-eyebrow">The Archive</div>
+  <h2 class="sec-title">Folk <span class="hl">Stories</span></h2>
+  <p class="sec-sub">The folk stories of the Mising people — myths of origin, tales of the river, and the wisdom of Abotani. Each story is a thread in the living fabric of our identity.</p>
+
+  <div class="stories-filter">
+    <button class="filter-btn active" onclick="filterStories('all',this)">All Stories</button>
+    <button class="filter-btn" onclick="filterStories('ancestor',this)">Abotaro and Abotani</button>
+    <button class="filter-btn" onclick="filterStories('celestial',this)">Origin of a mibu</button>
+    <button class="filter-btn" onclick="filterStories('river',this)">Karpunpuli</button>
+    <button class="filter-btn" onclick="filterStories('origin',this)">A matrimonial tale</button>
+    <button class="filter-btn" onclick="filterStories('spirit',this)">the dark spot on the moon</button>
+  </div>
+
+  <div class="stories-grid" id="storiesGrid">
+
+    <div class="story-card ancestor" data-cat="ancestor">
+      <div class="story-num">01</div>
+      <div class="story-category">Ancestor Myth · Origin</div>
+      <h3 class="story-title">Abotaro and Abotani</h3>
+      <div class="story-subtitle">The First Ancestor of the Tani Peoples</div>
+      <p class="story-excerpt">In those ancient days, Abotani and Abotaro, sons of the creator Se-dí Me-lo, dwelled in the celestial harmony of Ki-líng Kangge. However, a bitter rivalry soon fractured their peace. Abotaro’s superior skills sparked envy in Abotani, leading to a fateful wager: whoever looked back at the other while working would become subordinate. Abotani failed the test, cementing his lower status. This divine discord eventually drove them from heaven to the Indian plains, establishing the ancestral lineage and distinct customs of the Mising people and their neighbors.</p>
+      <div class="story-footer">
+        <span class="story-source">@misingfolktales</span>
+        <span class="story-tag">Abotani · Tani</span>
+      </div>
+    </div>
+
+    <div class="story-card celestial" data-cat="celestial">
+      <div class="story-num">02</div>
+      <div class="story-category">leader</div>
+      <h3 class="story-title">Origin of a Mibu</h3>
+      <div class="story-subtitle">Religious leader of the people</div>
+      <p class="story-excerpt">In the ancient villages of Arunachal, the Mising people recount the mystical origin of the Mibu, their religious leader. It began when a young boy from the Mili clan vanished, only to reappear during a solemn rite held in his honor. He revealed that he had been spirited away by the Époms, forest spirits dwelling in a massive bo tree. Under their care, he was taught sacred a-bang chants and granted divine insight into the causes and remedies of diseases. This transformative journey bestowed upon him spiritual powers, leading the people to designate him as the first Mibu. To this day, it is believed that Époms continue to choose and mold young boys in the deep forests to carry on this sacred lineage of leadership and healing.</p>
+      <div class="story-footer">
+        <span class="story-source">@misingfolktales</span>
+        <span class="story-tag">Mibu</span>
+      </div>
+    </div>
+
+    <div class="story-card river" data-cat="river">
+      <div class="story-num">03</div>
+      <div class="story-category">Spirits</div>
+      <h3 class="story-title">Karpunpuli</h3>
+      <div class="story-subtitle">Tale of the two sisters</div>
+      <p class="story-excerpt">In olden times, there lived two girls named Karpun and Puli, who were renowned throughout their village for their unmatched beauty and dancing skills. During the winter, they spent their days by the river designing intricate textile motifs, playfully undoing their work and blaming it on mice. They were also adept at catching fish from the sandy riverbeds and gathering sweet tarsin pursin herbs.
+
+As they grew into young women, their fame only increased. Their dancing to the tune of Sumbur sumbur nékova became a central highlight of the community, drawing massive crowds during the Ali a-ye Ligang festival, where everyone gathered to witness their grace and charm.</p>
+      <div class="story-footer">
+        <span class="story-source">@misingfolktales</span>
+        <span class="story-tag">Spirits</span>
+      </div>
+    </div>
+
+    <div class="story-card origin" data-cat="origin">
+      <div class="story-num">04</div>
+      <div class="story-category">Matrimonial</div>
+      <h3 class="story-title">A matrimonial tale</h3>
+      <div class="story-subtitle">Mising folklore about clan matrimonial origins.</div>
+      <p class="story-excerpt">In the old times, a youth named So-bo wandered the lonely banks of the Di-ing until he spotted a maiden across the clear waters. Drawn by her song, he swam the river to meet her, and their informal union founded a lasting bond between the Doley and Pe-gu clans. To this day, their descendants honor this ancestral journey through their architecture; Doleys point their house beams westward, following So-bo’s upstream path, while Pe-gus point theirs eastward, marking the direction from which their clan first arrived.</p>
+      <div class="story-footer">
+        <span class="story-source">@misingfolktales</span>
+        <span class="story-tag">Matrimonial</span>
+      </div>
+    </div>
+
+    <div class="story-card spirit" data-cat="spirit">
+      <div class="story-num">05</div>
+      <div class="story-category">Nature</div>
+      <h3 class="story-title">The Dark Spot On The Moon</h3>
+      <div class="story-subtitle">A Sisterly Rivalry Casts an Eternal Shadow on the Moon</div>
+      <p class="story-excerpt">In the dawn of time, sisters Do-nyi (Sun) and Po-lo (Moon) journeyed home to visit their mother. While Po-lo prepared thoughtful rice cakes, the envious Do-nyi, caught empty-handed, scavenged a foul decoy from the jungle. Upon their arrival, their mother was revolted by Do-nyi’s deceptive gift and hurled the vile packet in rage. The agile Sun ducked, leaving the innocent Moon to take the blow. The filth clung to Po-lo instantly, marking her silver face with the permanent dark spots we see in the night sky today.</p>
+      <div class="story-footer">
+        <span class="story-source">@misingfolktales</span>
+        <span class="story-tag">Nature</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="ege-lg"></div>
+
+<!-- TRADITION -->
+<section id="tradition">
+  <div class="tradition-inner">
+    <div>
+      <div class="sec-eyebrow">Living Tradition</div>
+      <h2 class="sec-title">How Stories Are <span class="hl">Told</span></h2>
+      <p class="sec-sub">Doying Lunam is not just what is told — it is how, when, and by whom. The tradition carries its own rituals, rhythms, and responsibilities.</p>
+      <div class="tradition-items">
+        <div class="tradition-item">
+          <div class="tradition-bullet">🌙</div>
+          <div class="tradition-content">
+            <div class="tradition-name">Told After Dusk</div>
+            <p class="tradition-text">Traditionally, Mising folktales are told in the evening — after the day's work is done and the community gathers. Telling certain stories in daylight is considered inauspicious.</p>
+          </div>
+        </div>
+        <div class="tradition-item">
+          <div class="tradition-bullet">🌾</div>
+          <div class="tradition-content">
+            <div class="tradition-name">Festival Storytelling</div>
+            <p class="tradition-text">During <em>Po:Rag</em>, <em>Dobur Uie</em>, and other festivals, stories are recited as part of ceremony — sometimes by ritual specialists, sometimes by elders to assembled communities.</p>
+          </div>
+        </div>
+        <div class="tradition-item">
+          <div class="tradition-bullet">🎋</div>
+          <div class="tradition-content">
+            <div class="tradition-name">The Role of the Elder</div>
+            <p class="tradition-text">The right to tell certain stories — especially sacred origin myths — belongs to elders and <em>Dobur</em> (ritual leaders). Their authority ensures stories are not distorted from generation to generation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tradition-sidebar">
+      <h3 class="tradition-sidebar-title">Follow the <span class="accent">Stories</span></h3>
+      <p class="tradition-sidebar-body">The <strong>@misingfolktales</strong> project is the lead digital archive for Doying Lunam — bringing these stories to new audiences through Instagram, digital text, and visual storytelling.</p>
+      <a href="https://www.instagram.com/misingfolktales/" target="_blank" rel="noopener" class="insta-block" style="margin-bottom:1rem">
+        <div class="insta-block-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </div>
+        <div class="insta-block-text">
+          <div class="insta-block-handle">@misingfolktales</div>
+          <div class="insta-block-label">Doying Lunam Project · Instagram</div>
+        </div>
+      </a>
+      <a href="/culturalwing" class="insta-block">
+        <div class="insta-block-icon" style="color:var(--crimson)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="insta-block-text">
+          <div class="insta-block-handle">Cultural & Digital Wing</div>
+          <div class="insta-block-label">Back to parent wing · TMSK</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="ege"></div>
+
+<!-- CONTRIBUTE CTA -->
+<div class="contribute-cta">
+  <div class="contribute-inner">
+    <span class="contribute-wave">≋</span>
+    <h2 class="contribute-title">Know a <span class="hl">Story?</span></h2>
+    <p class="contribute-sub">The Doying Lunam archive grows with every story shared. If you know a Mising folktale — from your grandparents, your village, your river — reach out to @misingfolktales. Every voice matters. Every story counts.</p>
+    <div class="contribute-cta-row">
+      <a href="https://www.instagram.com/misingfolktales/" target="_blank" rel="noopener" class="btn-insta">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Share on Instagram
+      </a>
+      <a href="https://discord.gg/NkAuYxAGQN" target="_blank" rel="noopener" class="btn-discord">
+        <svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd">
+          <path d="M20.317 4.492c-1.53-.69-3.17-1.2-4.885-1.49a.075.075 0 0 0-.079.036c-.21.369-.444.85-.608 1.23a18.566 18.566 0 0 0-5.487 0 12.36 12.36 0 0 0-.617-1.23A.077.077 0 0 0 8.562 3c-1.714.29-3.354.8-4.885 1.491a.07.07 0 0 0-.032.027C.533 9.093-.32 13.555.099 17.961a.08.08 0 0 0 .031.055 20.03 20.03 0 0 0 5.993 2.98.078.078 0 0 0 .084-.026 13.83 13.83 0 0 0 1.226-1.963.074.074 0 0 0-.041-.104 13.175 13.175 0 0 1-1.872-.878.075.075 0 0 1-.008-.125c.126-.093.252-.19.372-.287a.075.075 0 0 1 .078-.01c3.927 1.764 8.18 1.764 12.061 0a.075.075 0 0 1 .079.009c.12.098.245.195.372.288a.075.075 0 0 1-.006.125c-.598.344-1.22.635-1.873.877a.075.075 0 0 0-.041.105c.36.687.772 1.341 1.225 1.962a.077.077 0 0 0 .084.028 19.963 19.963 0 0 0 6.002-2.981.076.076 0 0 0 .032-.054c.5-5.094-.838-9.52-3.549-13.442a.06.06 0 0 0-.031-.03zM8.02 15.278c-1.182 0-2.157-1.069-2.157-2.38 0-1.312.956-2.38 2.157-2.38 1.21 0 2.176 1.077 2.157 2.38 0 1.312-.956 2.38-2.157 2.38zm7.975 0c-1.183 0-2.157-1.069-2.157-2.38 0-1.312.955-2.38 2.157-2.38 1.21 0 2.176 1.077 2.157 2.38 0 1.312-.946 2.38-2.157 2.38z"/>
+        </svg>
+        Join Discord
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="ege-lg"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-top">
+    <div class="foot-brand">
+      <div class="foot-brand-name">TMSK</div>
+      <div class="foot-brand-full">Takam Mising Sí:sang Kébang</div>
+      <p>A youth-led collective preserving and advancing the culture, politics, and knowledge of the Mising people of Northeast India.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Organisation</h5>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/#about">About TMSK</a></li>
+        <li><a href="/#wings">Our Wings</a></li>
+        <li><a href="https://discord.gg/NkAuYxAGQN" target="_blank">Discord</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Our Wings & Projects</h5>
+      <ul>
+        <li><a href="/politicalwing">Political Wing</a></li>
+        <li><a href="/culturalwing">Cultural & Digital Creation Wing</a></li>
+        <li><a href="/doyinglunam">Doying Lunam (Folk Stories)</a></li>
+        <li><a href="/researchwing">Research & Documentation Wing</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <p>© 2026 Takam Mising Sí:sang Kébang · All rights reserved</p>
+    <span class="foot-tag">≋ Doying Lunam · Mising Folktales Project</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var html=document.documentElement;
+  var btn=document.getElementById('themeToggle');
+  var saved=localStorage.getItem('tmsk-theme')||'dark';
+  html.setAttribute('data-theme',saved);
+  btn.addEventListener('click',function(){
+    var next=html.getAttribute('data-theme')==='dark'?'light':'dark';
+    html.setAttribute('data-theme',next);
+    localStorage.setItem('tmsk-theme',next);
+  });
+})();
+
+function filterStories(cat, btn) {
+  // Update active button
+  document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active') });
+  btn.classList.add('active');
+  // Show/hide cards
+  document.querySelectorAll('.story-card').forEach(function(card){
+    if(cat === 'all' || card.dataset.cat === cat){
+      card.style.display='flex';
+    } else {
+      card.style.display='none';
+    }
+  });
+  // Fix grid gaps for hidden items
+  var grid = document.getElementById('storiesGrid');
+  var visible = grid.querySelectorAll('.story-card[style="display: flex;"], .story-card:not([style])');
+}
+</script>
+</body>
+</html>
