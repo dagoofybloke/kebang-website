@@ -1,33 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Not Found | TMSK</title>
-    <style>
-        body { 
-            font-family: sans-serif; 
-            text-align: center; 
-            padding: 100px; 
-            background: #121212; 
-            color: white; 
-        }
-        .error-code { font-size: 80px; color: #e8a020; margin: 0; }
-        .btn { 
-            display: inline-block; 
-            margin-top: 20px; 
-            padding: 10px 20px; 
-            background: #e8a020; 
-            color: black; 
-            text-decoration: none; 
-            border-radius: 5px; 
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 | TMSK</title>
+  
+  <meta http-equiv="refresh" content="6;url=index.html">
+
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --sun: #e8a020;
+      --text: #ffffff;
+      --text-dim: rgba(255, 255, 255, 0.6);
+      --ff-mono: 'Space Mono', monospace;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .container {
+      padding: 2rem;
+      max-width: 500px;
+    }
+
+    .error-code {
+      font-family: var(--ff-mono);
+      font-size: clamp(6rem, 15vw, 10rem);
+      font-weight: 800;
+      line-height: 1;
+      margin: 0;
+      color: var(--sun);
+      position: relative;
+      letter-spacing: -0.05em;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      margin-top: -10px;
+      color: var(--text);
+    }
+
+    p {
+      color: var(--text-dim);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      background: var(--sun);
+      color: #000;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-radius: 2px;
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.1);
+    }
+
+    .timer-bar {
+      margin-top: 3rem;
+      width: 100%;
+      height: 2px;
+      background: rgba(255,255,255,0.1);
+      position: relative;
+    }
+
+    .timer-progress {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      background: var(--sun);
+      animation: countdown 6s linear forwards;
+    }
+
+    @keyframes countdown {
+      from { width: 0%; }
+      to { width: 100%; }
+    }
+
+    .glow {
+      position: absolute;
+      width: 40vw;
+      height: 40vw;
+      background: radial-gradient(circle, rgba(232, 160, 32, 0.05) 0%, transparent 70%);
+      z-index: -1;
+    }
+  </style>
 </head>
 <body>
+
+  <div class="glow"></div>
+
+  <div class="container">
     <h1 class="error-code">404</h1>
-    <h2>Not Found</h2>
-    <p>The page you are looking for doesn't exist or has been moved.</p>
-    <a href="index.html" class="btn">Back to Home</a>
+    <p>
+      The path you followed is lost or under construction.<br>
+      You will be guided back to the main Kébang shortly.
+    </p>
+    
+    <a href="index.html" class="btn">Return to Home</a>
+
+    <div class="timer-bar">
+      <div class="timer-progress"></div>
+    </div>
+    <p style="font-size: 0.7rem; margin-top: 10px; opacity: 0.4; font-family: var(--ff-mono);">
+      AUTO-REDIRECTING...
+    </p>
+  </div>
+
 </body>
 </html>
