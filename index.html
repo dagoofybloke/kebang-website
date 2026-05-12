@@ -40,6 +40,136 @@
 }
 
 html{scroll-behavior:smooth}
+  /* ANIMATIONS */
+@keyframes fadeUp {
+  from{
+    opacity:0;
+    transform:translateY(60px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes fadeLeft {
+  from{
+    opacity:0;
+    transform:translateX(-60px);
+  }
+  to{
+    opacity:1;
+    transform:translateX(0);
+  }
+}
+
+@keyframes fadeRight {
+  from{
+    opacity:0;
+    transform:translateX(60px);
+  }
+  to{
+    opacity:1;
+    transform:translateX(0);
+  }
+}
+
+@keyframes glowPulse {
+  0%{
+    text-shadow:0 0 0 rgba(232,160,32,0);
+  }
+  50%{
+    text-shadow:0 0 25px rgba(232,160,32,.6);
+  }
+  100%{
+    text-shadow:0 0 0 rgba(232,160,32,0);
+  }
+}
+
+/* REVEAL EFFECTS */
+.reveal{
+  opacity:0;
+  transform:translateY(60px);
+  transition:all 1s ease;
+}
+
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.reveal-left{
+  opacity:0;
+  transform:translateX(-60px);
+  transition:all 1s ease;
+}
+
+.reveal-left.active{
+  opacity:1;
+  transform:translateX(0);
+}
+
+.reveal-right{
+  opacity:0;
+  transform:translateX(60px);
+  transition:all 1s ease;
+}
+
+.reveal-right.active{
+  opacity:1;
+  transform:translateX(0);
+}
+
+/* HERO */
+.hero-content{
+  animation:fadeUp 1.4s ease forwards;
+}
+
+.hero-name{
+  animation:glowPulse 4s infinite;
+}
+
+/* CARD EFFECTS */
+.p-card,
+.wing-card,
+.connect-card,
+.contact-card{
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease,
+    background .35s ease;
+}
+
+.p-card:hover,
+.wing-card:hover,
+.connect-card:hover,
+.contact-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 20px 40px rgba(0,0,0,.35);
+}
+
+/* BUTTON EFFECTS */
+.btn-primary,
+.btn-ghost,
+.btn-discord{
+  transition:
+    transform .25s ease,
+    letter-spacing .25s ease,
+    background .25s ease;
+}
+
+.btn-primary:hover,
+.btn-ghost:hover,
+.btn-discord:hover{
+  transform:translateY(-3px);
+  letter-spacing:.16em;
+}
+
+/* NAV EFFECT */
+nav.scrolled{
+  background:rgba(10,3,1,.98);
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
 body{
   background:var(--bg);color:var(--text);
   font-family:var(--ff-body);font-size:18px;
@@ -306,7 +436,7 @@ footer{background:var(--bg);padding:4rem 3.5rem 2.5rem;border-top:1px solid var(
 
 <!-- HERO -->
 <section class="hero" style="padding:0">
-  <div class="hero-content">
+  <div class="hero-content reveal">
     <p class="hero-kbang-label">Est. 9 May 2026</p>
     <h1 class="hero-name">
       Takam Mising<br><span class="accent">Sí:sang</span><br>Kébang
@@ -373,7 +503,7 @@ footer{background:var(--bg);padding:4rem 3.5rem 2.5rem;border-top:1px solid var(
 
   <div class="preamble-cards">
 
-    <div class="p-card">
+    <div class="p-card reveal">
       <div class="p-card-num">01</div>
       <div class="p-card-tag">Unity</div>
       <h3 class="p-card-title">One Home for All Mising Youth</h3>
@@ -383,7 +513,7 @@ footer{background:var(--bg);padding:4rem 3.5rem 2.5rem;border-top:1px solid var(
       </p>
     </div>
 
-    <div class="p-card">
+    <div class="p-card reveal">
       <div class="p-card-num">02</div>
       <div class="p-card-tag">Cultural Revival</div>
       <h3 class="p-card-title">Revive What We Are Losing</h3>
@@ -396,7 +526,7 @@ footer{background:var(--bg);padding:4rem 3.5rem 2.5rem;border-top:1px solid var(
       <div class="p-callout">Being Mising is not a disadvantage. It is our strength.</div>
     </div>
 
-    <div class="p-card">
+    <div class="p-card reveal">
       <div class="p-card-num">03</div>
       <div class="p-card-tag">Structure</div>
       <h3 class="p-card-title">Three Wings, One Spirit</h3>
@@ -441,21 +571,21 @@ footer{background:var(--bg);padding:4rem 3.5rem 2.5rem;border-top:1px solid var(
   <h2 class="sec-title">Three <span class="hl">Wings</span></h2>
   <p class="sec-sub">TMSK operates through three specialised wings, each with a distinct focus and a shared commitment to the Mising people.</p>
   <div class="wings-grid">
-    <a href="/politicalwing" class="wing-card">
+    <a href="/politicalwing" class="wing-card reveal">
       <div class="wing-card-num">01</div>
       <div class="wing-card-tag">Wing I</div>
       <div class="wing-card-name">Political Wing</div>
       <p class="wing-card-desc">Advocating for the political rights, sovereignty, and socialist values of the Mising people. Building a united voice for justice and self-determination.</p>
       <span class="wing-card-link">Explore Wing →</span>
     </a>
-    <a href="/culturalwing" class="wing-card">
+    <a href="/culturalwing" class="wing-card reveal">
       <div class="wing-card-num">02</div>
       <div class="wing-card-tag">Wing II</div>
       <div class="wing-card-name">Cultural &amp; Content Creation Wing</div>
       <p class="wing-card-desc">Preserving the legacy of Abotani, digitising Mising folktales, and uniting content creators who bring Mising culture to life across digital platforms.</p>
       <span class="wing-card-link">Explore Wing →</span>
     </a>
-    <a href="/researchwing" class="wing-card">
+    <a href="/researchwing" class="wing-card reveal">
       <div class="wing-card-num">03</div>
       <div class="wing-card-tag">Wing III</div>
       <div class="wing-card-name">Research &amp; Documentation Wing</div>
@@ -527,7 +657,7 @@ footer{background:var(--bg);padding:4rem 3.5rem 2.5rem;border-top:1px solid var(
       </div>
     </div>
     <div class="contact-cards">
-      <a href="https://www.instagram.com/takam_mising_sisang_kebang/" target="_blank" rel="noopener" class="contact-card">
+      <a href="https://www.instagram.com/takam_mising_sisang_kebang/" target="_blank" rel="noopener" class="contact-card reveal">
         <div class="contact-card-role">Administration</div>
         <div class="contact-card-handle">
           <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -536,7 +666,7 @@ footer{background:var(--bg);padding:4rem 3.5rem 2.5rem;border-top:1px solid var(
         <div class="contact-card-note">General membership, admin, and technical inquiries.</div>
         <span class="contact-card-cta">DM on Instagram →</span>
       </a>
-      <a href="https://www.instagram.com/aro_tani24/" target="_blank" rel="noopener" class="contact-card">
+      <a href="https://www.instagram.com/aro_tani24/" target="_blank" rel="noopener" class="contact-card reveal">
         <div class="contact-card-role">General Secretary — Political Wing</div>
         <div class="contact-card-handle">
           <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -609,16 +739,74 @@ footer{background:var(--bg);padding:4rem 3.5rem 2.5rem;border-top:1px solid var(
 
 <script>
 (function(){
+
   var html=document.documentElement;
   var btn=document.getElementById('themeToggle');
-  var saved=localStorage.getItem('tmsk-theme')||'dark';
-  html.setAttribute('data-theme',saved);
-  btn.addEventListener('click',function(){
-    var next=html.getAttribute('data-theme')==='dark'?'light':'dark';
-    html.setAttribute('data-theme',next);
-    localStorage.setItem('tmsk-theme',next);
+
+  var saved=localStorage.getItem('tmsk-theme') || 'dark';
+
+  html.setAttribute('data-theme', saved);
+
+  btn.addEventListener('click', function(){
+
+    var next =
+      html.getAttribute('data-theme') === 'dark'
+      ? 'light'
+      : 'dark';
+
+    html.setAttribute('data-theme', next);
+
+    localStorage.setItem('tmsk-theme', next);
+
   });
+
 })();
+
+/* SCROLL REVEAL */
+
+const reveals = document.querySelectorAll(
+  '.reveal,.reveal-left,.reveal-right'
+);
+
+function revealOnScroll(){
+
+  const triggerBottom = window.innerHeight * 0.88;
+
+  reveals.forEach(el => {
+
+    const top = el.getBoundingClientRect().top;
+
+    if(top < triggerBottom){
+
+      el.classList.add('active');
+
+    }
+
+  });
+
+}
+
+window.addEventListener('scroll', revealOnScroll);
+
+revealOnScroll();
+
+/* NAVBAR EFFECT */
+
+const nav = document.querySelector('nav');
+
+window.addEventListener('scroll', () => {
+
+  if(window.scrollY > 40){
+
+    nav.classList.add('scrolled');
+
+  } else {
+
+    nav.classList.remove('scrolled');
+
+  }
+
+});
 </script>
 </body>
 </html>
