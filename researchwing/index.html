@@ -32,12 +32,10 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--ff-body);font-weight:400;line-height:1.7;overflow-x:hidden;transition:background 0.3s,color 0.3s}
 
-/* EGE STRIPES */
 .ege{height:16px;background:linear-gradient(to bottom,#8c1a0e 0,#8c1a0e 2px,#0f0402 2px,#0f0402 4px,#6a1008 4px,#6a1008 6px,#0f0402 6px,#0f0402 7px,#c87010 7px,#c87010 8px,#0f0402 8px,#0f0402 9px,#8c1a0e 9px,#8c1a0e 12px,#0f0402 12px,#0f0402 13px,#c87010 13px,#c87010 14px,#0f0402 14px,#0f0402 15px,#8c1a0e 15px,#8c1a0e 16px)}
 .ege-lg{height:26px;background:linear-gradient(to bottom,#8c1a0e 0,#8c1a0e 3px,#0f0402 3px,#0f0402 5px,#b82a18 5px,#b82a18 8px,#0f0402 8px,#0f0402 9px,#c87010 9px,#c87010 10px,#e8a020 10px,#e8a020 11px,#c87010 11px,#c87010 12px,#0f0402 12px,#0f0402 13px,#8c1a0e 13px,#8c1a0e 17px,#0f0402 17px,#0f0402 19px,#c87010 19px,#c87010 20px,#0f0402 20px,#0f0402 21px,#b82a18 21px,#b82a18 24px,#0f0402 24px,#0f0402 25px,#8c1a0e 25px,#8c1a0e 26px)}
 .meyap{background-color:var(--bg2);background-image:url("data:image/svg+xml,%3Csvg width='44' height='44' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='22,3 41,22 22,41 3,22' fill='none' stroke='rgba(140,26,14,0.12)' stroke-width='1'/%3E%3Ccircle cx='22' cy='22' r='1.5' fill='rgba(140,26,14,0.08)'/%3E%3C/svg%3E");background-size:44px 44px}
 
-/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--nav-bg);backdrop-filter:blur(14px);border-bottom:1px solid var(--border2);transition:background 0.3s}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:0.75rem 2.5rem;gap:1rem}
 .nav-brand{text-decoration:none;display:flex;flex-direction:column}
@@ -88,7 +86,32 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--nav-bg);bac
 .wing-social-link:hover{background:rgba(200,112,16,0.08);border-color:var(--amber)}
 .wing-social-link svg{width:14px;height:14px;fill:currentColor;flex-shrink:0}
 
-/* SECTIONS */
+/* LAUNCH BANNER */
+.launch-banner{
+  background:var(--sun);
+  padding:1rem 3rem;
+  display:flex;align-items:center;gap:1.5rem;
+  flex-wrap:wrap
+}
+.launch-banner-pill{
+  background:var(--crimson);
+  font-family:var(--ff-mono);font-size:0.58rem;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:#fff;padding:0.3rem 0.8rem;
+  flex-shrink:0;white-space:nowrap
+}
+.launch-banner-text{
+  font-family:var(--ff-head);font-weight:600;
+  font-size:0.82rem;letter-spacing:0.08em;
+  text-transform:uppercase;color:var(--bg);
+  flex:1
+}
+.launch-banner-sub{
+  font-family:var(--ff-mono);font-size:0.6rem;
+  letter-spacing:0.1em;color:rgba(15,4,2,0.65);
+  white-space:nowrap
+}
+
 section{padding:5.5rem 3rem;transition:background 0.3s}
 .sec-eyebrow{font-family:var(--ff-mono);font-size:0.64rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber);margin-bottom:0.8rem;display:flex;align-items:center;gap:10px}
 .sec-eyebrow::after{content:'';flex:1;height:1px;background:var(--border)}
@@ -127,25 +150,12 @@ section{padding:5.5rem 3rem;transition:background 0.3s}
   letter-spacing:0.18em;text-transform:uppercase;
   color:var(--amber);margin-bottom:0.4rem;margin-top:1rem
 }
-.founder-name{
-  font-family:var(--ff-head);font-weight:700;
-  font-size:1.1rem;text-transform:uppercase;
-  letter-spacing:0.06em;color:var(--text);margin-bottom:0.2rem
-}
-.founder-handle{
-  font-family:var(--ff-mono);font-size:0.6rem;
-  letter-spacing:0.1em;color:var(--muted);margin-bottom:0.6rem
-}
+.founder-name{font-family:var(--ff-head);font-weight:700;font-size:1.1rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--text);margin-bottom:0.2rem}
+.founder-handle{font-family:var(--ff-mono);font-size:0.6rem;letter-spacing:0.1em;color:var(--muted);margin-bottom:0.6rem}
 .founder-handle a{color:var(--amber);text-decoration:none}
 .founder-handle a:hover{text-decoration:underline}
 .founder-links{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.5rem}
-.founder-link{
-  font-family:var(--ff-mono);font-size:0.58rem;
-  letter-spacing:0.1em;text-transform:uppercase;
-  color:var(--text-body);text-decoration:none;
-  border:1px solid var(--border);padding:0.3rem 0.7rem;
-  transition:all 0.2s
-}
+.founder-link{font-family:var(--ff-mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-body);text-decoration:none;border:1px solid var(--border);padding:0.3rem 0.7rem;transition:all 0.2s}
 .founder-link:hover{border-color:var(--amber);color:var(--amber)}
 
 /* WHAT WE DO */
@@ -153,16 +163,85 @@ section{padding:5.5rem 3rem;transition:background 0.3s}
 .mission-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border2);margin-top:2rem}
 .mission-card{background:var(--bg3);border:1px solid var(--border2);padding:2rem 1.8rem;transition:background 0.2s}
 .mission-card:hover{background:var(--bg4)}
-.mission-icon{
-  width:36px;height:36px;
-  background:rgba(140,26,14,0.12);
-  border:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;
-  margin-bottom:1rem
-}
+.mission-icon{width:36px;height:36px;background:rgba(140,26,14,0.12);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:1rem}
 .mission-icon svg{width:16px;height:16px;fill:var(--amber)}
 .mission-title{font-family:var(--ff-head);font-weight:600;font-size:0.92rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-sec);margin-bottom:0.5rem}
 .mission-text{font-size:0.85rem;color:var(--text-body);line-height:1.8;font-style:italic}
+
+/* ── WHO WE NEED ── */
+.recruit-block{background:var(--bg);padding:5rem 3rem;border-bottom:1px solid var(--border2)}
+.recruit-intro{
+  max-width:680px;margin-bottom:3rem
+}
+.recruit-intro p{
+  font-size:1rem;color:var(--text-body);
+  line-height:1.95;margin-bottom:1.1rem
+}
+.recruit-intro p strong{color:var(--text)}
+.recruit-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:2px;background:var(--border2)
+}
+.recruit-card{
+  background:var(--bg2);
+  border:1px solid var(--border2);
+  padding:2.2rem 2rem;
+  transition:background 0.2s;
+  display:flex;gap:1.4rem;align-items:flex-start
+}
+.recruit-card:hover{background:var(--bg3)}
+.recruit-num{
+  font-family:var(--ff-hero);
+  font-size:3rem;
+  color:rgba(140,26,14,0.18);
+  line-height:1;
+  flex-shrink:0;
+  min-width:2.2rem;
+  text-align:center;
+  margin-top:-0.1rem
+}
+[data-theme="light"] .recruit-num{color:rgba(140,26,14,0.14)}
+.recruit-body{}
+.recruit-tag{
+  font-family:var(--ff-mono);font-size:0.56rem;
+  letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--amber);margin-bottom:0.45rem
+}
+.recruit-title{
+  font-family:var(--ff-head);font-weight:700;
+  font-size:1rem;text-transform:uppercase;
+  letter-spacing:0.06em;color:var(--text);
+  margin-bottom:0.6rem;line-height:1.2
+}
+.recruit-text{
+  font-size:0.86rem;color:var(--text-body);
+  line-height:1.82;font-style:italic
+}
+.recruit-cta-block{
+  margin-top:3rem;
+  border:1px solid var(--border);
+  padding:2rem 2.2rem;
+  background:rgba(140,26,14,0.04);
+  display:flex;align-items:center;justify-content:space-between;
+  gap:2rem;flex-wrap:wrap
+}
+.recruit-cta-text{
+  font-family:var(--ff-head);font-size:1rem;
+  font-weight:600;text-transform:uppercase;
+  letter-spacing:0.06em;color:var(--text)
+}
+.recruit-cta-sub{
+  font-size:0.84rem;color:var(--text-body);
+  font-style:italic;margin-top:0.3rem;line-height:1.7
+}
+.recruit-cta-link{
+  background:var(--crimson);color:#fff;
+  padding:0.75rem 1.6rem;font-family:var(--ff-head);
+  font-weight:600;font-size:0.76rem;letter-spacing:0.12em;
+  text-transform:uppercase;text-decoration:none;
+  transition:background 0.2s;white-space:nowrap;flex-shrink:0
+}
+.recruit-cta-link:hover{background:var(--fire)}
 
 /* WIKI EDITORS */
 .wiki-container{background:var(--bg2);padding:4rem 3rem;border-top:1px solid var(--border2);border-bottom:1px solid var(--border2)}
@@ -221,15 +300,15 @@ footer{background:var(--bg2);border-top:1px solid var(--border2);padding:4rem 3r
 .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:1.5rem;flex-wrap:wrap;gap:0.5rem}
 .foot-bottom p{font-family:var(--ff-mono);font-size:0.66rem;color:var(--muted)}
 
-/* RESPONSIVE */
 @media(max-width:960px){
   .nav-links{display:none}
   .nav-inner{padding:0.75rem 1.5rem}
-  .sub-hero,.founder-block,.mission-block,.wiki-container,section,.discord-cta,footer{padding-left:1.5rem;padding-right:1.5rem}
-  .connect-grid,.foot-top,.mission-grid{grid-template-columns:1fr}
+  .sub-hero,.launch-banner,.founder-block,.mission-block,.recruit-block,.wiki-container,section,.discord-cta,footer{padding-left:1.5rem;padding-right:1.5rem}
+  .connect-grid,.foot-top,.mission-grid,.recruit-grid{grid-template-columns:1fr}
   .sub-hero-socials{flex-direction:column;align-items:flex-start}
   .articles-grid{grid-template-columns:1fr 1fr}
   .founder-card{flex-direction:column;align-items:flex-start;gap:0.5rem}
+  .recruit-cta-block{flex-direction:column;align-items:flex-start}
 }
 @media(max-width:560px){
   .articles-grid{grid-template-columns:1fr}
@@ -248,7 +327,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border2);padding:4rem 3r
     <ul class="nav-links">
       <li><a href="/">Home</a></li>
       <li><a href="/politicalwing">Political Wing</a></li>
-      <li><a href="/culturalwing">Cultural Wing</a></li>
+      <li><a href="/culturalwing">Cultural &amp; Content Creation Wing</a></li>
       <li><a href="/researchwing" class="active">Research &amp; Documentation Wing</a></li>
     </ul>
     <div class="nav-right">
@@ -277,6 +356,9 @@ footer{background:var(--bg2);border-top:1px solid var(--border2);padding:4rem 3r
     </div>
   </div>
 </div>
+
+<!-- LAUNCH BANNER -->
+
 
 <div class="ege-lg"></div>
 
@@ -310,7 +392,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border2);padding:4rem 3r
   <div class="mission-grid">
     <div class="mission-card">
       <div class="mission-icon">
-        <!-- Book / research icon -->
         <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14zm2.5-2.5H18v1H6.5a.5.5 0 0 1 0-1z"/></svg>
       </div>
       <div class="mission-title">Cultural Research</div>
@@ -318,16 +399,14 @@ footer{background:var(--bg2);border-top:1px solid var(--border2);padding:4rem 3r
     </div>
     <div class="mission-card">
       <div class="mission-icon">
-        <!-- Archive / document icon -->
         <svg viewBox="0 0 24 24"><path d="M3 3h18v4H3V3zm0 6h18v12H3V9zm4 2v2h10v-2H7zm0 4v2h7v-2H7z"/></svg>
       </div>
       <div class="mission-title">Digital Archiving</div>
-      <p class="mission-text">Digitising and archiving Mising knowledge — folktales, historical records, biographical accounts, and cultural practices — so they survive the passage of time on the open internet.</p>
+      <p class="mission-text">Digitising and archiving Mising knowledge — folktales, historical records, biographical accounts, and cultural practices — including books currently locked away in university libraries, made free for all.</p>
     </div>
     <div class="mission-card">
       <div class="mission-icon">
-        <!-- Wikipedia / globe icon -->
-        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm7.93 9h-2.95a14.7 14.7 0 0 0-1.19-4.64A8.01 8.01 0 0 1 19.93 11zM12 20c-.34 0-1.39-1.27-2.08-4H14.08C13.39 18.73 12.34 20 12 20zm-2.35-6a13.6 13.6 0 0 1 0-4h4.7a13.6 13.6 0 0 1 0 4h-4.7zm-5.58-3a8.01 8.01 0 0 1 4.14-4.64A14.7 14.7 0 0 0 7.02 11H4.07zm3 2H4.07a8.01 8.01 0 0 0 4.14 4.64A14.7 14.7 0 0 1 7.02 13zm1.71 4.64A8.01 8.01 0 0 0 12 20c-.34 0 .34 0 0 0zm2.06-9.64c.69-2.73 1.74-4 2.21-4s1.52 1.27 2.21 4h-4.42zM16.98 13a14.7 14.7 0 0 1-1.19 4.64A8.01 8.01 0 0 0 19.93 13h-2.95z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm7.93 9h-2.95a14.7 14.7 0 0 0-1.19-4.64A8.01 8.01 0 0 1 19.93 11zM12 20c-.34 0-1.39-1.27-2.08-4H14.08C13.39 18.73 12.34 20 12 20zm-2.35-6a13.6 13.6 0 0 1 0-4h4.7a13.6 13.6 0 0 1 0 4h-4.7zm-5.58-3a8.01 8.01 0 0 1 4.14-4.64A14.7 14.7 0 0 0 7.02 11H4.07zm3 2H4.07a8.01 8.01 0 0 0 4.14 4.64A14.7 14.7 0 0 1 7.02 13zm2.06 4.64A8.01 8.01 0 0 0 12 20c-.34 0 .34 0 0 0zm2.21-9.64c.69-2.73 1.74-4 2.21-4s1.52 1.27 2.21 4h-4.42zM16.98 13a14.7 14.7 0 0 1-1.19 4.64A8.01 8.01 0 0 0 19.93 13h-2.95z"/></svg>
       </div>
       <div class="mission-title">Wikipedia Editing</div>
       <p class="mission-text">Creating and improving articles about the Mising people on English Wikipedia — ensuring the world's largest encyclopedia accurately represents our culture, geography, and history.</p>
@@ -337,10 +416,71 @@ footer{background:var(--bg2);border-top:1px solid var(--border2);padding:4rem 3r
 
 <div class="ege"></div>
 
+<!-- ══ WHO WE NEED ══ -->
+
+
+    <div class="recruit-card">
+      <div class="recruit-num">I</div>
+      <div class="recruit-body">
+        <div class="recruit-tag">Profile</div>
+        <div class="recruit-title">Researchers &amp; Academics</div>
+        <p class="recruit-text">Researchers — especially those whose work focuses on Mising culture, language, history, or related fields. University fellows, academics, or graduate students who can bring rigour and depth to our documentation efforts are particularly valuable to this wing.</p>
+      </div>
+    </div>
+
+    <div class="recruit-card">
+      <div class="recruit-num">II</div>
+      <div class="recruit-body">
+        <div class="recruit-tag">Profile</div>
+        <div class="recruit-title">Deep Internet Researchers</div>
+        <p class="recruit-text">People who are willing and able to conduct sustained, focused research on specific topics about Mising culture using online sources — tracing historical references, cross-checking facts, and compiling well-sourced summaries that can be turned into documented records or Wikipedia articles.</p>
+      </div>
+    </div>
+
+    <div class="recruit-card">
+      <div class="recruit-num">III</div>
+      <div class="recruit-body">
+        <div class="recruit-tag">Profile</div>
+        <div class="recruit-title">Library &amp; Digitisation Volunteers</div>
+        <p class="recruit-text">University fellows or individuals with access to academic or institutional libraries who can help digitise books, journals, and records about the Mising people that currently exist only in physical form. The goal is to bring this knowledge onto open digital libraries so the general public can access it freely, without barriers.</p>
+      </div>
+    </div>
+
+    <div class="recruit-card">
+      <div class="recruit-num">IV</div>
+      <div class="recruit-body">
+        <div class="recruit-tag">Profile</div>
+        <div class="recruit-title">Wikipedia Editors</div>
+        <p class="recruit-text">Experienced or aspiring Wikipedia editors who can create new articles, expand existing stubs, and improve the accuracy and quality of Mising-related content on English Wikipedia — making sure the world's most widely read encyclopedia properly reflects Mising culture, people, and history.</p>
+      </div>
+    </div>
+
+    <div class="recruit-card" style="grid-column:1/-1">
+      <div class="recruit-num">V</div>
+      <div class="recruit-body">
+        <div class="recruit-tag">Profile</div>
+        <div class="recruit-title">Knowledge Digitisation Contributors</div>
+        <p class="recruit-text">Anyone who can contribute to getting Mising knowledge onto the open web in any form — whether that means transcribing oral traditions, uploading out-of-print texts to Internet Archive, creating structured databases of Mising villages and geography, or any other form of digital knowledge preservation. If you care about Mising identity surviving and thriving online, this wing welcomes you.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="recruit-cta-block">
+    <div>
+      <div class="recruit-cta-text">Interested in joining Wing III?</div>
+      <p class="recruit-cta-sub">DM the wing founder on Instagram — introduce yourself, describe your background, and tell us how you'd like to contribute.</p>
+    </div>
+    <a href="https://www.instagram.com/hehehe.pegu/" target="_blank" rel="noopener" class="recruit-cta-link">Apply via Instagram →</a>
+  </div>
+</div>
+
+<div class="ege"></div>
+
 <!-- WIKIPEDIA EDITORS & ARTICLES -->
 <div class="wiki-container">
 
-  <div class="sec-eyebrow" style="margin-bottom:1.2rem">Wikipedia Editors</div>
+  <div class="sec-eyebrow" style="margin-bottom:1.2rem">Current Wikipedia Editors</div>
   <p style="font-size:0.88rem;color:var(--text-body);font-style:italic;margin-bottom:1.5rem;max-width:560px;line-height:1.8">Our active Wikipedia contributors — building and expanding the Mising presence on English Wikipedia.</p>
   <div class="wiki-members">
     <div class="wiki-member">
@@ -422,7 +562,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border2);padding:4rem 3r
       <span class="connect-arrow">↗</span>
       <div class="connect-platform">Instagram · Wing Founder</div>
       <h4>@hehehe.pegu</h4>
-      <p>Contact Dagoofybloke — founder of the Research &amp; Documentation Wing — for collaborations, research inquiries, or Wikipedia contributions</p>
+      <p>Contact Dagoofybloke — founder of the Research &amp; Documentation Wing — for collaborations, research inquiries, Wikipedia contributions, or to apply for membership</p>
     </a>
     <a href="https://discord.gg/NkAuYxAGQN" target="_blank" rel="noopener" class="connect-card">
       <span class="connect-arrow">↗</span>
@@ -472,13 +612,14 @@ footer{background:var(--bg2);border-top:1px solid var(--border2);padding:4rem 3r
       <h5>Our Wings</h5>
       <ul>
         <li><a href="/politicalwing">Political Wing</a></li>
-        <li><a href="/culturalwing">Cultural Wing</a></li>
+        <li><a href="/culturalwing">Cultural &amp; Content Creation Wing</a></li>
         <li><a href="/researchwing">Research &amp; Documentation Wing</a></li>
       </ul>
     </div>
   </div>
   <div class="foot-bottom">
     <p>© 2026 Takam Mising Sí:sang Kébang · Founded 9 May 2026</p>
+    <p style="font-style:italic">Mising Réngam írroi</p>
   </div>
 </footer>
 
@@ -497,3 +638,4 @@ footer{background:var(--bg2);border-top:1px solid var(--border2);padding:4rem 3r
 </script>
 </body>
 </html>
+
