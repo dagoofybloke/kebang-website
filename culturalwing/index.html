@@ -100,7 +100,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--nav-bg);bac
 .wing-social-link{display:flex;align-items:center;gap:0.6rem;text-decoration:none;border:1px solid var(--border);padding:0.7rem 1.2rem;font-family:var(--ff-mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--amber);transition:all 0.2s;white-space:nowrap}
 .wing-social-link:hover{background:rgba(200,112,16,0.08);border-color:var(--amber)}
 .wing-social-link svg{width:14px;height:14px;fill:currentColor;flex-shrink:0}
-
+@keyframes titleRise{
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
 /* SECTIONS */
 section{padding:5.5rem 3rem;transition:background 0.3s}
 .sec-eyebrow{font-family:var(--ff-mono);font-size:0.64rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber);margin-bottom:0.8rem;display:flex;align-items:center;gap:10px}
