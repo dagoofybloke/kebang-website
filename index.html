@@ -74,12 +74,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--nav-bg);bac
 display:flex;
 align-items:center;
 justify-content:space-between;
+
+width:100%;
+max-width:1400px;
+
+margin:0 auto;
 padding:.9rem 2rem;
+
 gap:1rem;
-max-width:1600px;
-margin:auto;
 flex-wrap:nowrap;
-min-width:0;
 }
 .nav-brand{text-decoration:none;display:flex;flex-direction:column}
 .nav-brand-tmsk{font-family:var(--ff-head);font-weight:700;font-size:1.2rem;color:var(--crimson);letter-spacing:.1em}
@@ -273,17 +276,29 @@ footer{background:var(--bg);padding:4rem 3.5rem 2.5rem;border-top:1px solid var(
 @media(max-width:960px){
 
   nav{
-    top:0;
-    left:0;
-    right:0;
-    width:100%;
-  }
+position:fixed;
+top:0;
+left:0;
+right:0;
+width:100%;
 
-  .nav-inner{
-    padding:.9rem 1rem;
+z-index:200;
+
+background:var(--nav-bg);
+backdrop-filter:blur(14px);
+border-bottom:1px solid var(--border2);
+
+transition:background .3s;
+}
+
+.nav-inner{
+    width:100%;
+    padding:.9rem 1.2rem;
+    margin:0 auto;
+
     min-height:72px;
     align-items:center;
-  }
+}
 
   .nav-brand{
     flex-shrink:1;
