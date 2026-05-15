@@ -81,8 +81,22 @@ margin:auto;
 flex-wrap:nowrap;
 min-width:0;
 }
-.nav-brand{text-decoration:none;display:flex;flex-direction:column}
-.nav-brand-tmsk{font-family:var(--ff-head);font-weight:700;font-size:1.2rem;color:var(--crimson);letter-spacing:.1em}
+
+/* ── NAV BRAND FIX ──────────────────────────────────────────────────────────
+   min-width:0 + flex-shrink:1 let the brand compress instead of overflowing.
+   overflow:hidden on the brand + text-overflow:ellipsis on the subtitle
+   ensure the subtitle clips gracefully at any zoom level rather than hiding
+   behind nav-right or pushing links off screen.
+   ──────────────────────────────────────────────────────────────────────── */
+.nav-brand{
+  text-decoration:none;
+  display:flex;
+  flex-direction:column;
+  min-width:0;        /* allow flex to shrink below content size */
+  flex-shrink:1;
+  overflow:hidden;    /* clip anything that would overflow the brand block */
+}
+.nav-brand-tmsk{font-family:var(--ff-head);font-weight:700;font-size:1.2rem;color:var(--crimson);letter-spacing:.1em;white-space:nowrap}
 .nav-brand-full{
 font-family:var(--ff-mono);
 font-size:.52rem;
@@ -90,14 +104,18 @@ letter-spacing:.08em;
 color:var(--muted);
 text-transform:uppercase;
 white-space:nowrap;
+overflow:hidden;          /* clip the full name string */
+text-overflow:ellipsis;   /* show … instead of invisibly overflowing */
+min-width:0;
 }
-.nav-right{display:flex;align-items:center;gap:1rem}
+.nav-right{display:flex;align-items:center;gap:1rem;flex-shrink:0}
 .nav-links{
 display:flex;
 gap:1.2rem;
 list-style:none;
 flex-wrap:nowrap;
 min-width:0;
+flex-shrink:0;
 }
 .nav-links a{
 font-family:var(--ff-head);
@@ -647,4 +665,3 @@ window.addEventListener('scroll',()=>{
 </script>
 </body>
 </html>
-  
