@@ -1,3 +1,4 @@
+import Reveal from '../components/Reveal.jsx'
 import './Objectives.css'
 
 const OBJECTIVES = [
@@ -63,19 +64,26 @@ export default function Objectives(){
   return (
     <>
       <header className="page-head wrap">
-        <span className="eyebrow">What we stand for</span>
-        <h1>Objectives</h1>
+        <Reveal as="span" className="eyebrow">What we stand for</Reveal>
+        <Reveal as="h1" delay={80}>
+          Seven objectives.<br />One direction.
+        </Reveal>
+        <Reveal as="p" delay={160} className="page-head-lede">
+          Each objective below is a standing commitment — not a slogan.
+          Together they define what TMSK works towards, and what we hold
+          ourselves accountable to.
+        </Reveal>
       </header>
 
       <section className="wrap obj-list">
-        {OBJECTIVES.map(o => (
-          <article className="obj-item" key={o.n}>
-            <span className="obj-num">{o.n}</span>
-            <div>
+        {OBJECTIVES.map((o, i) => (
+          <Reveal as="article" delay={Math.min(i * 60, 240)} className="obj-item" key={o.n}>
+            <span className="ghost-num obj-num">{o.n}</span>
+            <div className="obj-body">
               <h3>{o.title}</h3>
               <p>{o.body}</p>
             </div>
-          </article>
+          </Reveal>
         ))}
       </section>
     </>

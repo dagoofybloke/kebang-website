@@ -24,7 +24,7 @@ export default function EventPopup(){
     <div className="event-popup-overlay" onClick={dismiss}>
       <div className="event-popup" role="dialog" aria-label="Event registration" onClick={e => e.stopPropagation()}>
         <button className="event-popup-close" aria-label="Close" onClick={dismiss}>&times;</button>
-        <span className="event-popup-tag mono-tag">Registration open</span>
+        <span className="event-popup-tag">Registration open</span>
         <p className="event-popup-title">TMSK Art Online Competition</p>
         <p className="event-popup-sub">Registration closes 31 Aug 2026 &middot; Entry fee ₹75</p>
         <a

@@ -1,0 +1,156 @@
+:root{
+  /* ---- Colour system ---- */
+  --red:#C8102E;
+  --red-deep:#9E0C24;
+  --black:#111111;
+  --white:#FFFFFF;
+  --grey:#F5F5F5;
+  --grey-line:#E4E4E4;
+
+  --ink:var(--black);
+  --ink-soft:rgba(17,17,17,0.66);
+  --ink-faint:rgba(17,17,17,0.44);
+  --line:rgba(17,17,17,0.12);
+  --line-strong:rgba(17,17,17,0.28);
+
+  /* ---- Type ---- */
+  --f-display:'Clash Display','Inter',sans-serif;
+  --f-body:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+
+  --max:1280px;
+
+  /* ---- Motion ---- */
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+html, body, #root{height:100%;}
+body{
+  margin:0;
+  background:var(--white);
+  color:var(--ink);
+  font-family:var(--f-body);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+.app-shell{
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+.app-shell main{
+  flex:1 0 auto;
+}
+h1,h2,h3,h4{margin:0; font-family:var(--f-display); font-weight:600; letter-spacing:-0.02em; color:var(--black);}
+p{margin:0;}
+a{color:inherit; text-decoration:none;}
+img{max-width:100%; display:block;}
+button{font-family:inherit;}
+ul{margin:0; padding:0; list-style:none;}
+
+::selection{background:var(--red); color:var(--white);}
+:focus-visible{outline:2.5px solid var(--red); outline-offset:3px;}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.01ms !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+}
+
+.wrap{max-width:var(--max); margin:0 auto; padding:0 40px;}
+@media (max-width:720px){ .wrap{padding:0 24px;} }
+
+/* ---------- Reusable primitives ---------- */
+
+.eyebrow{
+  font-family:var(--f-body);
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--red);
+  margin-bottom:16px;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+}
+.eyebrow::before{
+  content:'';
+  width:22px; height:2px;
+  background:var(--red);
+  flex-shrink:0;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  font-family:var(--f-body);
+  font-weight:700;
+  font-size:15px;
+  padding:16px 32px;
+  border-radius:2px;
+  border:1.5px solid var(--black);
+  background:var(--black);
+  color:var(--white);
+  cursor:pointer;
+  transition:transform .35s var(--ease), background .25s ease, color .25s ease, border-color .25s ease;
+  white-space:nowrap;
+  position:relative;
+  overflow:hidden;
+}
+.btn:hover{background:var(--red); border-color:var(--red); transform:translateY(-2px);}
+.btn:active{transform:translateY(0);}
+.btn:disabled{opacity:0.5; cursor:default; transform:none;}
+.btn.ghost{
+  background:transparent;
+  color:var(--black);
+  border-color:var(--line-strong);
+}
+.btn.ghost:hover{background:var(--black); color:var(--white); border-color:var(--black);}
+.btn.on-dark{background:var(--white); color:var(--black); border-color:var(--white);}
+.btn.on-dark:hover{background:var(--red); color:var(--white); border-color:var(--red);}
+.btn.ghost.on-dark{background:transparent; color:var(--white); border-color:rgba(255,255,255,0.35);}
+.btn.ghost.on-dark:hover{background:var(--white); color:var(--black); border-color:var(--white);}
+
+/* flag-stripe rule: a slim tri-tone bar echoing the TMSK flag's own bands */
+.stripe-rule{
+  display:flex;
+  height:5px;
+  width:100%;
+}
+.stripe-rule span{flex:1;}
+.stripe-rule span:nth-child(1){background:var(--black); flex:0 0 34%;}
+.stripe-rule span:nth-child(2){background:var(--white); flex:0 0 4%;}
+.stripe-rule span:nth-child(3){background:var(--black); flex:0 0 6%;}
+.stripe-rule span:nth-child(4){background:var(--white); flex:0 0 4%;}
+.stripe-rule span:nth-child(5){background:var(--red);}
+
+.ghost-num{
+  font-family:var(--f-display);
+  font-weight:700;
+  color:transparent;
+  -webkit-text-stroke:1.5px rgba(17,17,17,0.16);
+  line-height:1;
+}
+
+.page-head{padding:172px 0 64px;}
+.page-head h1{
+  font-size:clamp(44px,7vw,86px);
+  line-height:0.96;
+}
+
+/* ---------- Scroll reveal ---------- */
+.reveal{
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity .8s var(--ease), transform .8s var(--ease);
+  will-change:opacity, transform;
+}
+.reveal.is-visible{
+  opacity:1;
+  transform:translateY(0);
+}
