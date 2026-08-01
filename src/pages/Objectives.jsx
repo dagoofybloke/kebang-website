@@ -66,12 +66,15 @@ export default function Objectives(){
       <header className="page-head wrap">
         <Reveal as="span" className="eyebrow">What we stand for</Reveal>
         <Reveal as="h1" delay={80}>
-          7 Golden Points.<br />of TMSK
+          7 Golden Points<br />of TMSK
         </Reveal>
         <Reveal as="p" delay={160} className="page-head-lede">
           Each objective below is a standing commitment — not a slogan.
           Together they define what TMSK works towards, and what we hold
-          ourselves accountable to.
+          ourselves accountablegit status
+git add .
+git commit -m "Move Vite project to repository root"
+git push origin main to.
         </Reveal>
       </header>
 
