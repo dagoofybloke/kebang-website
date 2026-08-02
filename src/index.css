@@ -21,47 +21,11 @@
 
   /* ---- Motion ---- */
   --ease:cubic-bezier(0.16,1,0.3,1);
-
-  /* ---- Fluid spacing scale ----
-     Every step scales smoothly between a comfortable phone (360px)
-     minimum and the original desktop value as its ceiling, so
-     nothing changes on a standard desktop but nothing crowds a
-     320px phone either. */
-  --space-3xs: clamp(0.25rem, 0.2rem + 0.2vw, 0.375rem);
-  --space-2xs: clamp(0.5rem, 0.42rem + 0.3vw, 0.75rem);
-  --space-xs:  clamp(0.75rem, 0.6rem + 0.6vw, 1.125rem);
-  --space-sm:  clamp(1rem, 0.8rem + 0.8vw, 1.5rem);
-  --space-md:  clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem);
-  --space-lg:  clamp(2rem, 1.3rem + 2.8vw, 3.5rem);
-  --space-xl:  clamp(2.5rem, 1.4rem + 4.4vw, 4.5rem);
-  --space-2xl: clamp(3rem, 1.2rem + 7vw, 7.5rem);
-  --space-3xl: clamp(3.5rem, 1rem + 9.5vw, 8.75rem);
-
-  /* Fluid container gutter: never pinches on phones, matches the
-     original 40px desktop gutter at rest. */
-  --container-pad: clamp(1.25rem, 4vw, 2.5rem);
-
-  /* Minimum comfortable touch target, per WCAG 2.5.5 / iOS HIG */
-  --tap-min: 44px;
-
-  /* ---- Breakpoint reference (media queries can't read custom
-     properties, so these are documented here and used verbatim
-     throughout the stylesheets):
-       --bp-xs:  320px   phones (smallest)
-       --bp-sm:  480px   large phones
-       --bp-md:  576px   small tablets / landscape phones
-       --bp-lg:  768px   tablets
-       --bp-xl:  992px   small laptops
-       --bp-2xl: 1200px  desktops
-       --bp-3xl: 1440px  large desktops
-       --bp-4xl: 1920px  ultra-wide / large monitors
-  ---- */
 }
 
 *{box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 html, body, #root{height:100%;}
-html, body{overflow-x:clip; max-width:100%;}
 body{
   margin:0;
   background:var(--white);
@@ -71,61 +35,43 @@ body{
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
-  text-rendering:optimizeLegibility;
 }
 .app-shell{
   display:flex;
   flex-direction:column;
-  min-height:100svh;
-  overflow-x:clip;
-  width:100%;
+  min-height:100vh;
+  overflow-x:hidden;
 }
 .app-shell main{
   flex:1 0 auto;
-  min-width:0;
 }
-h1,h2,h3,h4{margin:0; font-family:var(--f-display); font-weight:600; letter-spacing:-0.02em; color:var(--black); overflow-wrap:break-word;}
-p{margin:0; overflow-wrap:break-word;}
+h1,h2,h3,h4{margin:0; font-family:var(--f-display); font-weight:600; letter-spacing:-0.02em; color:var(--black);}
+p{margin:0;}
 a{color:inherit; text-decoration:none;}
-img,svg,video{max-width:100%; height:auto; display:block;}
+img{max-width:100%; display:block;}
 button{font-family:inherit;}
 ul{margin:0; padding:0; list-style:none;}
 
 ::selection{background:var(--red); color:var(--white);}
-:focus-visible{outline:2.5px solid var(--red); outline-offset:3px; border-radius:2px;}
+:focus-visible{outline:2.5px solid var(--red); outline-offset:3px;}
 
 @media (prefers-reduced-motion: reduce){
   *{animation-duration:0.01ms !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
 }
 
-/* ---------- Skip link (keyboard / screen-reader access) ---------- */
-.skip-link{
-  position:fixed;
-  top:-100px;
-  left:12px;
-  z-index:999;
-  background:var(--black);
-  color:var(--white);
-  font-weight:700;
-  font-size:14px;
-  padding:14px 20px;
-  border-radius:4px;
-  transition:top .2s ease;
-}
-.skip-link:focus-visible{ top:12px; }
-
-.wrap{max-width:var(--max); margin:0 auto; padding-inline:var(--container-pad); width:100%;}
+.wrap{max-width:var(--max); margin:0 auto; padding:0 40px;}
+@media (max-width:720px){ .wrap{padding:0 24px;} }
 
 /* ---------- Reusable primitives ---------- */
 
 .eyebrow{
   font-family:var(--f-body);
-  font-size:clamp(11.5px, 0.9vw + 0.3rem, 13px);
+  font-size:13px;
   font-weight:700;
   letter-spacing:0.14em;
   text-transform:uppercase;
   color:var(--red);
-  margin-bottom:var(--space-xs);
+  margin-bottom:16px;
   display:inline-flex;
   align-items:center;
   gap:10px;
@@ -144,9 +90,8 @@ ul{margin:0; padding:0; list-style:none;}
   gap:10px;
   font-family:var(--f-body);
   font-weight:700;
-  font-size:clamp(14px, 0.3vw + 0.85rem, 15px);
-  padding:clamp(13px, 1vw + 8px, 16px) clamp(22px, 2vw + 14px, 32px);
-  min-height:var(--tap-min);
+  font-size:15px;
+  padding:16px 32px;
   border-radius:2px;
   border:1.5px solid var(--black);
   background:var(--black);
@@ -156,7 +101,6 @@ ul{margin:0; padding:0; list-style:none;}
   white-space:nowrap;
   position:relative;
   overflow:hidden;
-  max-width:100%;
 }
 .btn:hover{background:var(--red); border-color:var(--red); transform:translateY(-2px);}
 .btn:active{transform:translateY(0);}
@@ -171,10 +115,6 @@ ul{margin:0; padding:0; list-style:none;}
 .btn.on-dark:hover{background:var(--red); color:var(--white); border-color:var(--red);}
 .btn.ghost.on-dark{background:transparent; color:var(--white); border-color:rgba(255,255,255,0.35);}
 .btn.ghost.on-dark:hover{background:var(--white); color:var(--black); border-color:var(--white);}
-
-@media (max-width:480px){
-  .btn{ width:100%; }
-}
 
 /* flag-stripe rule: a slim tri-tone bar echoing the TMSK flag's own bands */
 .stripe-rule{
@@ -197,10 +137,10 @@ ul{margin:0; padding:0; list-style:none;}
   line-height:1;
 }
 
-.page-head{padding:clamp(120px, 22vw, 172px) 0 var(--space-xl);}
+.page-head{padding:172px 0 64px;}
 .page-head h1{
-  font-size:clamp(36px,7vw,86px);
-  line-height:0.98;
+  font-size:clamp(44px,7vw,86px);
+  line-height:0.96;
 }
 
 /* ---------- Scroll reveal ---------- */
@@ -214,6 +154,3 @@ ul{margin:0; padding:0; list-style:none;}
   opacity:1;
   transform:translateY(0);
 }
-
-/* ---------- Responsive media & tables safety net ---------- */
-table{ display:block; max-width:100%; overflow-x:auto; }

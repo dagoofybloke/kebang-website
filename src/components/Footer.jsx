@@ -9,7 +9,7 @@ export default function Footer(){
   return (
     <footer className="site-footer">
       <div className="wrap footer-cta">
-        <h2>Join the movement.<br /><span>Not for any political party, but for our people.</span></h2>
+        <h2>Join the movement.<br /><span>Not for a party. For our people.</span></h2>
         <a href={JOIN_URL} target="_blank" rel="noopener noreferrer" className="btn on-dark">
           Join TMSK
         </a>
@@ -17,7 +17,7 @@ export default function Footer(){
 
       <div className="wrap footer-inner">
         <div className="footer-brand">
-          <img src="/logo.png" alt="TMSK emblem" className="brand-mark" width="46" height="46" loading="lazy" decoding="async" />
+          <img src="/logo.png" alt="TMSK emblem" className="brand-mark" />
           <div>
             <p className="footer-name">Takam Mising Sí:sang Kébang</p>
             <p className="footer-tag">TMSK</p>

@@ -30,7 +30,7 @@ export default function Home(){
             </Reveal>
 
             <Reveal delay={160} className="hero-quotes">
-              <p>&ldquo;We are here for our people, not for any political party.&rdquo;</p>
+              <p>&ldquo;We are here for our people, not for any party or government.&rdquo;</p>
               <p>&ldquo;We are here to preserve our culture, identity, and history.&rdquo;</p>
             </Reveal>
 
@@ -44,7 +44,7 @@ export default function Home(){
 
           <Reveal delay={200} className="hero-flag">
             <div className="hero-flag-frame">
-              <img src="/assets/flag.jpg" alt="Flag of Takam Mising Sí:sang Kébang" width="800" height="480" decoding="async" />
+              <img src="/assets/flag.jpg" alt="Flag of Takam Mising Sí:sang Kébang" />
               <span className="hero-flag-badge">
                 <span>EST.</span>
                 <strong>2026</strong>
@@ -103,8 +103,8 @@ export default function Home(){
 
         <Reveal delay={120} className="about-statement">
           <p>
-            <span className="statement-black">We speak for no government and no political party</span>
-            <span className="statement-red"> — only for our people.</span>
+            <span className="statement-black">We speak for no government and no party</span>
+            <span className="statement-red"> — only for the tribe.</span>
           </p>
         </Reveal>
       </section>
@@ -147,7 +147,7 @@ export default function Home(){
             <span className="event-preview-tag">Visual Art Competition</span>
           </div>
           <div className="event-preview-body">
-            <h3>TMSK Online Art Competition</h3>
+            <h3>TMSK Art Online Competition</h3>
             <p>
               An online visual art competition open to all. AI-generated art
               will be rejected — submissions must be genuinely made.
