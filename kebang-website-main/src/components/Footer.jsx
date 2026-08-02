@@ -17,7 +17,7 @@ export default function Footer(){
 
       <div className="wrap footer-inner">
         <div className="footer-brand">
-          <img src="/logo.png" alt="TMSK emblem" className="brand-mark" />
+          <img src="/logo.png" alt="TMSK emblem" className="brand-mark" width="46" height="46" loading="lazy" decoding="async" />
           <div>
             <p className="footer-name">Takam Mising Sí:sang Kébang</p>
             <p className="footer-tag">TMSK</p>

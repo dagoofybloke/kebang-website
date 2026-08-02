@@ -44,7 +44,7 @@ export default function Home(){
 
           <Reveal delay={200} className="hero-flag">
             <div className="hero-flag-frame">
-              <img src="/assets/flag.jpg" alt="Flag of Takam Mising Sí:sang Kébang" />
+              <img src="/assets/flag.jpg" alt="Flag of Takam Mising Sí:sang Kébang" width="800" height="480" decoding="async" />
               <span className="hero-flag-badge">
                 <span>EST.</span>
                 <strong>2026</strong>
