@@ -157,33 +157,42 @@ ul{margin:0; padding:0; list-style:none;}
 
 
 /* Better mobile page alignment */
-@media (max-width:720px){
+@media (max-width:860px){
+
   .wrap{
     width:100%;
-    max-width:none;
+    max-width:100%;
     padding-left:20px;
     padding-right:20px;
+    overflow:hidden;
   }
 
   .page-head{
     padding-top:60px;
+    padding-bottom:48px;
   }
 
   .page-head h1{
     font-size:clamp(38px,10vw,52px);
     line-height:1.05;
     letter-spacing:-0.03em;
+    overflow-wrap:break-word;
+    word-break:break-word;
   }
 
   .page-head-lede{
     font-size:16px;
+    line-height:1.6;
   }
 
   .hero-title{
     font-size:clamp(42px,12vw,64px);
+    line-height:1.05;
+    overflow-wrap:break-word;
   }
 
   .hero-quotes p{
     font-size:15px;
   }
+
 }
