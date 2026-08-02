@@ -28,7 +28,7 @@ export default function Header(){
 
   return (
     <header className={`site-header ${scrolled ? 'is-scrolled' : ''} ${open ? 'menu-open' : ''}`}>
-      <div className="header-inner wrap">
+      <div className="header-inner">
         <NavLink to="/" className="brand" onClick={() => setOpen(false)}>
           <img src="/logo.png" alt="TMSK emblem" className="brand-mark" />
           <span className="brand-text">
