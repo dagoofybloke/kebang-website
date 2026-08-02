@@ -154,3 +154,36 @@ ul{margin:0; padding:0; list-style:none;}
   opacity:1;
   transform:translateY(0);
 }
+
+
+/* Better mobile page alignment */
+@media (max-width:720px){
+  .wrap{
+    width:100%;
+    max-width:none;
+    padding-left:20px;
+    padding-right:20px;
+  }
+
+  .page-head{
+    padding-top:60px;
+  }
+
+  .page-head h1{
+    font-size:clamp(38px,10vw,52px);
+    line-height:1.05;
+    letter-spacing:-0.03em;
+  }
+
+  .page-head-lede{
+    font-size:16px;
+  }
+
+  .hero-title{
+    font-size:clamp(42px,12vw,64px);
+  }
+
+  .hero-quotes p{
+    font-size:15px;
+  }
+}

@@ -30,7 +30,7 @@ export default function Home(){
             </Reveal>
 
             <Reveal delay={160} className="hero-quotes">
-              <p>&ldquo;We are here for our people, not for any party or government.&rdquo;</p>
+              <p>&ldquo;We are here for our people, not for any political party&rdquo;</p>
               <p>&ldquo;We are here to preserve our culture, identity, and history.&rdquo;</p>
             </Reveal>
 

@@ -66,7 +66,7 @@ export default function Objectives(){
       <header className="page-head wrap">
         <Reveal as="span" className="eyebrow">What we stand for</Reveal>
         <Reveal as="h1" delay={80}>
-          Seven objectives.<br />One direction.
+          7 Golden Points<br />of TMSK
         </Reveal>
         <Reveal as="p" delay={160} className="page-head-lede">
           Each objective below is a standing commitment — not a slogan.
