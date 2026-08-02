@@ -103,8 +103,8 @@ export default function Home(){
 
         <Reveal delay={120} className="about-statement">
           <p>
-            <span className="statement-black">We speak for no government and no party</span>
-            <span className="statement-red"> — only for the tribe.</span>
+            <span className="statement-black">We speak for no government and no political party</span>
+            <span className="statement-red"> — we speak only for our people.</span>
           </p>
         </Reveal>
       </section>
