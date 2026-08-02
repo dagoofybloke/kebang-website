@@ -431,4 +431,6 @@
 
   width:max-content;
 
-}
+}git add .
+git commit -m "Fix header desktop alignment and mobile menu CSS"
+git push
