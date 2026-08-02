@@ -131,10 +131,15 @@
 
 @media (max-width:860px){
   .event-card{ grid-template-columns:1fr; }
-  .event-card-visual{ min-height:120px; flex-direction:row; align-items:center; }
+  .event-card-visual{
+    min-height:auto;
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+    padding:var(--space-sm) var(--space-md);
+  }
+  .event-card-num{ font-size:clamp(36px, 9vw, 56px); }
   .event-card-body{ padding:var(--space-md) var(--space-sm); }
-}
-
-@media (max-width:400px){
-  .event-card-visual{ flex-wrap:wrap; gap:12px; }
 }

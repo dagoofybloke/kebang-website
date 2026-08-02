@@ -71,10 +71,7 @@ export default function Objectives(){
         <Reveal as="p" delay={160} className="page-head-lede">
           Each objective below is a standing commitment — not a slogan.
           Together they define what TMSK works towards, and what we hold
-          ourselves accountablegit status
-git add .
-git commit -m "Move Vite project to repository root"
-git push origin main to.
+          ourselves accountable to.
         </Reveal>
       </header>
 

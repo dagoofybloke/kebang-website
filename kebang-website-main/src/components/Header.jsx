@@ -94,7 +94,7 @@ export default function Header(){
           aria-controls="mobile-menu"
           onClick={() => setOpen(o => !o)}
         >
-          <span aria-hidden="true"></span><span aria-hidden="true"></span>
+          <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
         </button>
       </div>
 
