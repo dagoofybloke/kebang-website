@@ -23,16 +23,41 @@ export default function Footer(){
         </div>
 
         <nav className="footer-nav">
-          <span className="footer-col-label"></span>
+          <span className="footer-col-label">Navigate</span>
           <NavLink to="/" end>Home</NavLink>
           <NavLink to="/objectives">Objectives</NavLink>
           <NavLink to="/events">Events</NavLink>
         </nav>
 
         <div className="footer-contact">
-          <span className="footer-col-label"></span>
-          <a href="mailto:tmskyouthorg@gmail.com" className="footer-link">tmskyouthorg@gmail.com</a>
-          <a href="https://www.instagram.com/tmskyouthorg/" target="_blank" rel="noopener noreferrer" className="footer-link">@tmskyouthorg</a>
+          <span className="footer-col-label">Get in touch</span>
+
+          <a href="mailto:tmskyouthorg@gmail.com" className="footer-link">
+            <span className="footer-link-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                <rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/>
+                <path d="M3 6.5l9 6.5 9-6.5"/>
+              </svg>
+            </span>
+            <span className="footer-link-text">
+              <span className="footer-link-label">Email</span>
+              <span className="footer-link-value">tmskyouthorg@gmail.com</span>
+            </span>
+          </a>
+
+          <a href="https://www.instagram.com/tmskyouthorg/" target="_blank" rel="noopener noreferrer" className="footer-link">
+            <span className="footer-link-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                <rect x="3" y="3" width="18" height="18" rx="5"/>
+                <circle cx="12" cy="12" r="4.2"/>
+                <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/>
+              </svg>
+            </span>
+            <span className="footer-link-text">
+              <span className="footer-link-label">Instagram</span>
+              <span className="footer-link-value">@tmskyouthorg</span>
+            </span>
+          </a>
         </div>
       </div>
 
