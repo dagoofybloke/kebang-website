@@ -162,25 +162,7 @@ export default function Home(){
         </Reveal>
       </section>
 
-      {/* ---------------- CONTACT BAND ---------------- */}
-      <section className="contact-band">
-        <div className="wrap contact-band-inner">
-          <Reveal>
-            <span className="eyebrow">Get in touch</span>
-            <h2>Reach the movement</h2>
-          </Reveal>
-          <Reveal delay={100} className="contact-links">
-            <a href="mailto:tmskyouthorg@gmail.com" className="contact-link">
-              <span className="contact-link-label">Email</span>
-              <span className="contact-link-value">tmskyouthorg@gmail.com</span>
-            </a>
-            <a href="https://www.instagram.com/tmskyouthorg/" target="_blank" rel="noopener noreferrer" className="contact-link">
-              <span className="contact-link-label">Instagram</span>
-              <span className="contact-link-value">@tmskyouthorg</span>
-            </a>
-          </Reveal>
-        </div>
-      </section>
+     
     </>
   )
 }
