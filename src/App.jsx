@@ -2,7 +2,6 @@ import { Routes, Route } from 'react-router-dom'
 import ScrollToTop from './components/ScrollToTop.jsx'
 import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
-import EventPopup from './components/EventPopup.jsx'
 import Home from './pages/Home.jsx'
 import Objectives from './pages/Objectives.jsx'
 import Events from './pages/Events.jsx'
@@ -22,7 +21,6 @@ export default function App(){
         </Routes>
       </main>
       <Footer />
-      <EventPopup />
     </div>
   )
 }
