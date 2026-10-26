@@ -65,9 +65,6 @@ export default function Events(){
               <p className="event-note">{ev.note}</p>
 
               <div className="event-actions">
-                <a href={ev.registerUrl} target="_blank" rel="noopener noreferrer" className="btn">
-                  Register Now
-                </a>
                 <span className="event-credit">&mdash; {ev.credit}</span>
               </div>
             </div>
