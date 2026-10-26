@@ -1,0 +1,14 @@
+{
+  "name": "Takam Mising Sí:sang Kébang",
+  "short_name": "TMSK",
+  "description": "Official website of Takam Mising Sí:sang Kébang (TMSK).",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#c4200f",
+  "icons": [
+    { "src": "/favicon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/favicon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}
