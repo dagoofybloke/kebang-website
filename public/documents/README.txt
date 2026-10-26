@@ -2,7 +2,7 @@ Put each file in the folder for its section:
 
   election/        Election Documents
   administrative/  Administration-related Documents
-  funds/           Funds Documents
+  funds/           Use of Funds
   projects/        Projects
   events/          Events
   organisational/  Organisational Documents

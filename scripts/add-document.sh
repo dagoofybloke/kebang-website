@@ -9,7 +9,7 @@ fi
 echo "Which section is this document for?"
 echo "  1) Election Documents"
 echo "  2) Administration-related Documents"
-echo "  3) Funds Documents"
+echo "  3) Use of Funds"
 echo "  4) Projects"
 echo "  5) Events"
 echo "  6) Organisational Documents"

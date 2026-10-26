@@ -21,7 +21,7 @@ export const documentSections = [
   },
   {
     id: 'funds',
-    title: 'Funds Documents',
+    title: 'Use of Funds',
     description: 'Financial statements, fund records and related reports.',
     documents: [],
   },
