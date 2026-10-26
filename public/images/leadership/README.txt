@@ -10,4 +10,5 @@ Put leader photos in the matching term folder:
   term-2/general-secretary.jpg
   term-2/treasurer.jpg
 
-File names must match src/data/leadership.js. Square photos work best.
+File names must match src/data/leadership.js (they are case-sensitive).
+Square photos work best.

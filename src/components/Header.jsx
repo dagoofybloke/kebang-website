@@ -7,6 +7,7 @@ const NAV_ITEMS = [
   { to: '/objectives', label: 'Objectives' },
   { to: '/events', label: 'Events' },
   { to: '/leadership', label: 'Leadership' },
+  { to: '/documents', label: 'Documents' },
 ]
 
 const JOIN_URL = 'https://docs.google.com/forms/u/1/d/e/1FAIpQLSe3uWpxPY-DMIcs8fLODpYrJ1CSRZRk3hPPhDPm20932-tPvg/viewform'
