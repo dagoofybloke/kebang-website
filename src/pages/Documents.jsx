@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { documentSections } from '../data/documents'
 import './Documents.css'
 
@@ -41,6 +41,21 @@ export default function Documents() {
   const [activeId, setActiveId] = useState(documentSections[0].id)
   const active = documentSections.find((s) => s.id === activeId)
 
+  const panelRef = useRef(null)
+  const isFirstRender = useRef(true)
+
+  // On phones, scroll down to the documents after a section is tapped
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
+    }
+    if (window.innerWidth <= 820 && panelRef.current) {
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      panelRef.current.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' })
+    }
+  }, [activeId])
+
   return (
     <div className="documents-page">
       <header className="documents-hero">
@@ -73,7 +88,12 @@ export default function Documents() {
           </nav>
         </aside>
 
-        <section className="docs-panel" key={active.id} aria-labelledby={`${active.id}-heading`}>
+        <section
+          className="docs-panel"
+          key={active.id}
+          ref={panelRef}
+          aria-labelledby={`${active.id}-heading`}
+        >
           <h2 id={`${active.id}-heading`} className="doc-section-title">
             {active.title}
           </h2>
