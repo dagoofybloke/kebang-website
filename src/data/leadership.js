@@ -9,8 +9,7 @@ export const leadershipTerms = [
       { role: 'President', name: 'Sumyo Doley', image: 'sumyo-doley.jpg' },
       { role: 'Vice President', name: 'Kung Pao', image: 'kung-pao.jpg' },
       { role: '1st General Secretary', name: 'Abhinab Pegu', image: 'abhinab-pegu.jpg' },
-      { role: '2nd General Secretary', name: 'Name to be added', image: '2nd-general-secretary.jpg' },
-      { role: 'Treasurer', name: 'Maetom Patir', image: 'maetom-patir.jpg', note: 'Replaced Oiyir' },
+      { role: 'Organisational Coordinator and Treasurer', name: 'Maetom Patir', image: 'maetom-patir.jpg' },
     ],
   },
   {

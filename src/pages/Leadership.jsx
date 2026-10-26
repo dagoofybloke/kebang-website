@@ -12,8 +12,9 @@ function getInitials(name) {
 }
 
 function MemberCard({ member, termId }) {
-  const [imageFailed, setImageFailed] = useState(false);
   const src = `/images/leadership/${termId}/${member.image}`;
+  const [failedSrc, setFailedSrc] = useState(null);
+  const imageFailed = failedSrc === src;
 
   return (
     <article className="leader-card">
@@ -25,7 +26,7 @@ function MemberCard({ member, termId }) {
             src={src}
             alt={member.name}
             loading="lazy"
-            onError={() => setImageFailed(true)}
+            onError={() => setFailedSrc(src)}
           />
         )}
       </div>
@@ -66,7 +67,11 @@ export default function Leadership() {
         </h2>
         <div className="leader-grid">
           {activeTerm.members.map((member) => (
-            <MemberCard key={member.role} member={member} termId={activeTerm.id} />
+            <MemberCard
+              key={`${activeTerm.id}-${member.role}`}
+              member={member}
+              termId={activeTerm.id}
+            />
           ))}
         </div>
       </section>
