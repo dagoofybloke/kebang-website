@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "bulletin": "node scripts/new-bulletin.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",

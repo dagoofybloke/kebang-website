@@ -15,8 +15,11 @@
 //    summary   REQUIRED. One or two lines shown in the feed.
 //    body      OPTIONAL. The full text, shown when someone taps "Read more".
 //              Leave a blank line between paragraphs. Do not use the ` character.
-//    file      OPTIONAL. A file you put in public/bulletin/  (example: 'notice.pdf')
-//    image     OPTIONAL. A picture you put in public/bulletin/  (example: 'poster.jpg')
+//    file      OPTIONAL. A file in public/bulletin/ (example: 'notice.pdf'). Shown as a file
+//              card with Open and Download (PDF also gets a Preview button).
+//    files     OPTIONAL. Several files:  files: ['a.pdf', 'b.docx'],
+//    image     OPTIONAL. A picture in public/bulletin/ (example: 'poster.jpg'). Shown on the page.
+//    images    OPTIONAL. Several pictures:  images: ['a.jpg', 'b.jpg'],
 //    pinned    OPTIONAL. Write  pinned: true,  to keep it at the top of the page.
 //
 //  TIP: if your text contains an apostrophe ( ' ), wrap that text in

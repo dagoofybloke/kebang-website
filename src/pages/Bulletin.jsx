@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { bulletins, bulletinCategories } from '../data/bulletins'
 import './Bulletin.css'
+import { BulletinImages, BulletinFiles } from '../components/BulletinMedia.jsx'
+import useLikeCounts from '../hooks/useLikeCounts.js'
 
 const MONTHS = [
   'January', 'February', 'March', 'April', 'May', 'June',
@@ -122,6 +124,7 @@ function BulletinCard({
   item,
   index,
   liked,
+  likeCount,
   comments,
   savedName,
   highlighted,
@@ -140,8 +143,6 @@ function BulletinCard({
   const d = dateParts(item.date)
   const slug = catSlug(item.category)
   const paragraphs = toParagraphs(item.body)
-  const fileHref = item.file ? `/bulletin/${encodeURIComponent(item.file)}` : ''
-  const imageSrc = item.image ? encodeURI(`/bulletin/${item.image}`) : ''
 
   useEffect(() => {
     if (!shareOpen) return undefined
@@ -232,17 +233,7 @@ function BulletinCard({
         <h3 className="b-title">{item.title}</h3>
         {item.summary && <p className="b-summary">{item.summary}</p>}
 
-        {imageSrc && (
-          <img
-            className="b-image"
-            src={imageSrc}
-            alt={item.title}
-            loading="lazy"
-            onError={(e) => {
-              e.currentTarget.style.display = 'none'
-            }}
-          />
-        )}
+        <BulletinImages item={item} />
 
         {expanded && paragraphs.length > 0 && (
           <div className="b-body">
@@ -252,7 +243,7 @@ function BulletinCard({
           </div>
         )}
 
-        {(paragraphs.length > 0 || fileHref) && (
+        {paragraphs.length > 0 && (
           <div className="b-links">
             {paragraphs.length > 0 && (
               <button
@@ -264,14 +255,10 @@ function BulletinCard({
                 {expanded ? 'Show less' : 'Read more'}
               </button>
             )}
-            {fileHref && (
-              <a className="b-attach" href={fileHref} target="_blank" rel="noopener noreferrer">
-                <ClipIcon />
-                <span>View attachment</span>
-              </a>
-            )}
           </div>
         )}
+
+        <BulletinFiles item={item} />
 
         <div className="b-actions">
           <button
@@ -281,7 +268,10 @@ function BulletinCard({
             aria-pressed={liked}
           >
             <HeartIcon filled={liked} />
-            <span>{liked ? 'Liked' : 'Like'}</span>
+            <span>
+              {liked ? 'Liked' : 'Like'}
+              {typeof likeCount === 'number' ? ` (${likeCount})` : ''}
+            </span>
           </button>
 
           <button
@@ -394,6 +384,7 @@ export default function Bulletin() {
   const [savedName, setSavedName] = useState(() => readStore(NAME_KEY, ''))
   const [highlightId, setHighlightId] = useState(null)
   const feedRef = useRef(null)
+  const { counts, sendLike } = useLikeCounts()
 
   // Open a specific bulletin when the link ends with #its-id
   useEffect(() => {
@@ -429,6 +420,7 @@ export default function Bulletin() {
   }
 
   function toggleLike(id) {
+    sendLike(id, !likes[id])
     setLikes((prev) => {
       const next = { ...prev }
       if (next[id]) delete next[id]
@@ -555,6 +547,7 @@ export default function Bulletin() {
                       item={item}
                       index={i}
                       liked={!!likes[item.id]}
+                      likeCount={counts ? counts[item.id] || 0 : null}
                       comments={comments[item.id] || []}
                       savedName={savedName}
                       highlighted={highlightId === item.id}
