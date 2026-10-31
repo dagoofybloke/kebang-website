@@ -1,0 +1,26 @@
+# HOW TO POST A BULLETIN
+# 1. Copy this file (Ctrl+C, Ctrl+V in the explorer) and rename the copy,
+#    for example:  2026-11-15-annual-meeting.txt   (it must end in .txt)
+# 2. Fill in the lines below and write your text. Save with Ctrl+S.
+# Lines that start with # are ignored. Keep the blank line before your text.
+#
+# Category must be one of: Notice, Project, Event, Election, Announcement, Insights
+# Display:  text   = normal post
+#           image  = shows the picture instead of text, with a "View" button
+# Image:    a picture file you put in public/bulletin/   (example: poster.jpg)
+# File:     a PDF or other file you put in public/bulletin/   (example: notice.pdf)
+# Pinned:   yes = stays at the top
+# Button:   label for the picture button (default: View achievement)
+Title: Your title here
+Date: 2026-11-15
+Category: Notice
+Display: text
+Image:
+File:
+Pinned: no
+Button:
+
+Write your first paragraph here. It is the short text shown in the feed.
+
+Write more paragraphs here. They appear when someone taps "Read more".
+Leave a blank line between paragraphs.

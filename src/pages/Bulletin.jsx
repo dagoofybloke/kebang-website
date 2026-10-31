@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
-import { bulletins, bulletinCategories } from '../data/bulletins'
+import { createPortal } from 'react-dom'
+import { loadBulletins } from '../data/loadBulletins'
+import { bulletinCategories } from '../data/bulletinCategories'
+import { LIKES_ENABLED, fetchLikeCounts, changeLike } from '../lib/likes'
 import './Bulletin.css'
-import { BulletinImages, BulletinFiles } from '../components/BulletinMedia.jsx'
-import useLikeCounts from '../hooks/useLikeCounts.js'
 
 const MONTHS = [
   'January', 'February', 'March', 'April', 'May', 'June',
@@ -13,6 +14,37 @@ const MONTHS_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'S
 const LIKES_KEY = 'tmsk-bulletin-likes'
 const COMMENTS_KEY = 'tmsk-bulletin-comments'
 const NAME_KEY = 'tmsk-bulletin-name'
+const DEFAULT_COLOR = '#8b1e1e'
+
+const CATEGORIES = bulletinCategories.map((c) =>
+  typeof c === 'string'
+    ? { name: c, color: DEFAULT_COLOR }
+    : { name: c.name, color: c.color || DEFAULT_COLOR },
+)
+
+function hexToRgba(hex, alpha) {
+  let h = String(hex || '').trim().replace('#', '')
+  if (h.length === 3) h = h.split('').map((ch) => ch + ch).join('')
+  if (!/^[0-9a-fA-F]{6}$/.test(h)) return `rgba(139, 30, 30, ${alpha})`
+  const n = parseInt(h, 16)
+  return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${alpha})`
+}
+
+function findCategory(name) {
+  const wanted = String(name || '').trim().toLowerCase()
+  return CATEGORIES.find((c) => c.name.toLowerCase() === wanted)
+}
+
+function catStyle(name) {
+  const found = findCategory(name)
+  const color = found ? found.color : DEFAULT_COLOR
+  return { '--cat': color, '--cat-bg': hexToRgba(color, 0.12) }
+}
+
+const BULLETINS = loadBulletins().map((b) => {
+  const found = findCategory(b.category)
+  return { ...b, category: found ? found.name : b.category }
+})
 
 function readStore(key, fallback) {
   try {
@@ -44,18 +76,6 @@ function dateParts(value) {
     monthKey: `${y}-${String(m).padStart(2, '0')}`,
     monthLabel: `${MONTHS[m - 1]} ${y}`,
   }
-}
-
-function toParagraphs(text) {
-  if (!text) return []
-  return String(text)
-    .split(/\n\s*\n/)
-    .map((p) => p.replace(/\s*\n\s*/g, ' ').trim())
-    .filter(Boolean)
-}
-
-function catSlug(cat) {
-  return String(cat || '').toLowerCase().replace(/[^a-z]/g, '')
 }
 
 function formatCommentDate(ts) {
@@ -120,6 +140,52 @@ function ClipIcon() {
   )
 }
 
+function EyeIcon() {
+  return (
+    <svg className="b-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+      <g fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+        <circle cx="12" cy="12" r="3" />
+      </g>
+    </svg>
+  )
+}
+
+function Lightbox({ src, title, onClose }) {
+  const closeRef = useRef(onClose)
+  closeRef.current = onClose
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === 'Escape') closeRef.current()
+    }
+    document.addEventListener('keydown', onKey)
+    const previous = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = previous
+    }
+  }, [])
+
+  return (
+    <div className="b-lightbox" role="dialog" aria-modal="true" aria-label={title} onClick={onClose}>
+      <div className="b-lightbox-inner" onClick={(e) => e.stopPropagation()}>
+        <button type="button" className="b-lightbox-close" onClick={onClose} aria-label="Close">
+          &times;
+        </button>
+        <img src={src} alt={title} />
+        <div className="b-lightbox-bar">
+          <strong>{title}</strong>
+          <a href={src} target="_blank" rel="noopener noreferrer">
+            Open full size
+          </a>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function BulletinCard({
   item,
   index,
@@ -136,13 +202,21 @@ function BulletinCard({
   const [showComments, setShowComments] = useState(false)
   const [shareOpen, setShareOpen] = useState(false)
   const [copied, setCopied] = useState(false)
+  const [lightbox, setLightbox] = useState(false)
+  const [imageFailed, setImageFailed] = useState(false)
   const [name, setName] = useState(savedName || '')
   const [text, setText] = useState('')
   const shareRef = useRef(null)
 
   const d = dateParts(item.date)
-  const slug = catSlug(item.category)
-  const paragraphs = toParagraphs(item.body)
+  const summary = item.paragraphs[0] || ''
+  const more = item.paragraphs.slice(1)
+  const isImagePost = item.display === 'image'
+  const fileHref = item.file ? `/bulletin/${encodeURIComponent(item.file)}` : ''
+  const imageSrc = item.image ? encodeURI(`/bulletin/${item.image}`) : ''
+  const showImage = Boolean(imageSrc) && !imageFailed
+  const viewLabel = item.button || 'View achievement'
+  const shareUrl = typeof window !== 'undefined' ? `${window.location.origin}/bulletin#${item.id}` : ''
 
   useEffect(() => {
     if (!shareOpen) return undefined
@@ -162,15 +236,10 @@ function BulletinCard({
     }
   }, [shareOpen])
 
-  function getShareUrl() {
-    return `${window.location.origin}/bulletin#${item.id}`
-  }
-
   async function handleShare() {
-    const url = getShareUrl()
     if (typeof navigator !== 'undefined' && navigator.share) {
       try {
-        await navigator.share({ title: item.title, text: item.summary || item.title, url })
+        await navigator.share({ title: item.title, text: summary || item.title, url: shareUrl })
       } catch {
         /* share was cancelled */
       }
@@ -180,12 +249,11 @@ function BulletinCard({
   }
 
   async function copyLink() {
-    const url = getShareUrl()
     try {
-      await navigator.clipboard.writeText(url)
+      await navigator.clipboard.writeText(shareUrl)
     } catch {
       const area = document.createElement('textarea')
-      area.value = url
+      area.value = shareUrl
       area.style.position = 'fixed'
       area.style.opacity = '0'
       document.body.appendChild(area)
@@ -209,14 +277,30 @@ function BulletinCard({
     setText('')
   }
 
-  const shareText = encodeURIComponent(`${item.title} ${typeof window !== 'undefined' ? `${window.location.origin}/bulletin#${item.id}` : ''}`)
-  const shareLink = encodeURIComponent(typeof window !== 'undefined' ? `${window.location.origin}/bulletin#${item.id}` : '')
+  const imageButton = showImage ? (
+    <button
+      type="button"
+      className={isImagePost ? 'b-hero-image' : 'b-hero-image is-inline'}
+      onClick={() => setLightbox(true)}
+      aria-label={`Enlarge image: ${item.title}`}
+    >
+      <img
+        src={imageSrc}
+        alt={item.title}
+        loading="lazy"
+        onError={() => {
+          console.warn(`Bulletin image not found: ${imageSrc}`)
+          setImageFailed(true)
+        }}
+      />
+    </button>
+  ) : null
 
   return (
     <article
       id={`b-${item.id}`}
-      className={`b-card cat-${slug}${highlighted ? ' is-highlighted' : ''}`}
-      style={{ '--i': index }}
+      className={highlighted ? 'b-card is-highlighted' : 'b-card'}
+      style={{ ...catStyle(item.category), '--i': index }}
     >
       <div className="b-date" aria-label={d.long}>
         <span className="b-date-day">{d.day}</span>
@@ -231,21 +315,28 @@ function BulletinCard({
         </div>
 
         <h3 className="b-title">{item.title}</h3>
-        {item.summary && <p className="b-summary">{item.summary}</p>}
 
-        <BulletinImages item={item} />
+        {isImagePost && imageButton}
+        {summary && <p className="b-summary">{summary}</p>}
+        {!isImagePost && imageButton}
 
-        {expanded && paragraphs.length > 0 && (
+        {expanded && more.length > 0 && (
           <div className="b-body">
-            {paragraphs.map((p, i) => (
+            {more.map((p, i) => (
               <p key={i}>{p}</p>
             ))}
           </div>
         )}
 
-        {paragraphs.length > 0 && (
+        {(more.length > 0 || fileHref || (isImagePost && showImage)) && (
           <div className="b-links">
-            {paragraphs.length > 0 && (
+            {isImagePost && showImage && (
+              <button type="button" className="b-view-btn" onClick={() => setLightbox(true)}>
+                <EyeIcon />
+                <span>{viewLabel}</span>
+              </button>
+            )}
+            {more.length > 0 && (
               <button
                 type="button"
                 className="b-readmore"
@@ -255,10 +346,14 @@ function BulletinCard({
                 {expanded ? 'Show less' : 'Read more'}
               </button>
             )}
+            {fileHref && (
+              <a className="b-attach" href={fileHref} target="_blank" rel="noopener noreferrer">
+                <ClipIcon />
+                <span>View attachment</span>
+              </a>
+            )}
           </div>
         )}
-
-        <BulletinFiles item={item} />
 
         <div className="b-actions">
           <button
@@ -268,10 +363,8 @@ function BulletinCard({
             aria-pressed={liked}
           >
             <HeartIcon filled={liked} />
-            <span>
-              {liked ? 'Liked' : 'Like'}
-              {typeof likeCount === 'number' ? ` (${likeCount})` : ''}
-            </span>
+            <span>{liked ? 'Liked' : 'Like'}</span>
+            {LIKES_ENABLED && likeCount > 0 && <span className="b-like-count">{likeCount}</span>}
           </button>
 
           <button
@@ -299,7 +392,7 @@ function BulletinCard({
               <div className="b-share-menu" role="menu">
                 <a
                   role="menuitem"
-                  href={`https://wa.me/?text=${shareText}`}
+                  href={`https://wa.me/?text=${encodeURIComponent(`${item.title} ${shareUrl}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setShareOpen(false)}
@@ -308,7 +401,7 @@ function BulletinCard({
                 </a>
                 <a
                   role="menuitem"
-                  href={`https://www.facebook.com/sharer/sharer.php?u=${shareLink}`}
+                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setShareOpen(false)}
@@ -369,10 +462,15 @@ function BulletinCard({
                 Post comment
               </button>
             </form>
-            <p className="b-local-note">Likes and comments are saved on this device only.</p>
+            <p className="b-local-note">Comments are saved on this device only.</p>
           </div>
         )}
       </div>
+
+      {lightbox && showImage && createPortal(
+        <Lightbox src={imageSrc} title={item.title} onClose={() => setLightbox(false)} />,
+        document.body,
+      )}
     </article>
   )
 }
@@ -380,16 +478,33 @@ function BulletinCard({
 export default function Bulletin() {
   const [active, setActive] = useState('All')
   const [likes, setLikes] = useState(() => readStore(LIKES_KEY, {}))
+  const [likeCounts, setLikeCounts] = useState({})
   const [comments, setComments] = useState(() => readStore(COMMENTS_KEY, {}))
   const [savedName, setSavedName] = useState(() => readStore(NAME_KEY, ''))
   const [highlightId, setHighlightId] = useState(null)
   const feedRef = useRef(null)
-  const { counts, sendLike } = useLikeCounts()
+  const pendingLikes = useRef(new Set())
+
+  // Load the shared like counts
+  useEffect(() => {
+    if (!LIKES_ENABLED) return undefined
+    let cancelled = false
+    fetchLikeCounts()
+      .then((counts) => {
+        if (!cancelled) setLikeCounts((prev) => ({ ...counts, ...prev }))
+      })
+      .catch(() => {
+        /* counts stay hidden if the service is unreachable */
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   // Open a specific bulletin when the link ends with #its-id
   useEffect(() => {
     const id = decodeURIComponent(window.location.hash.replace('#', ''))
-    if (!id || !bulletins.some((b) => b.id === id)) return undefined
+    if (!id || !BULLETINS.some((b) => b.id === id)) return undefined
     setHighlightId(id)
     const t1 = setTimeout(() => {
       const el = document.getElementById(`b-${id}`)
@@ -419,15 +534,35 @@ export default function Bulletin() {
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
-  function toggleLike(id) {
-    sendLike(id, !likes[id])
+  function applyLike(id, isLiked, delta) {
     setLikes((prev) => {
       const next = { ...prev }
-      if (next[id]) delete next[id]
-      else next[id] = true
+      if (isLiked) next[id] = true
+      else delete next[id]
       writeStore(LIKES_KEY, next)
       return next
     })
+    setLikeCounts((prev) => ({ ...prev, [id]: Math.max((prev[id] || 0) + delta, 0) }))
+  }
+
+  async function toggleLike(id) {
+    if (pendingLikes.current.has(id)) return
+    const wasLiked = !!likes[id]
+    const delta = wasLiked ? -1 : 1
+    applyLike(id, !wasLiked, delta)
+    if (!LIKES_ENABLED) return
+
+    pendingLikes.current.add(id)
+    try {
+      const total = await changeLike(id, delta)
+      if (typeof total === 'number') {
+        setLikeCounts((prev) => ({ ...prev, [id]: total }))
+      }
+    } catch {
+      applyLike(id, wasLiked, -delta)
+    } finally {
+      pendingLikes.current.delete(id)
+    }
   }
 
   function addComment(id, name, text) {
@@ -456,7 +591,7 @@ export default function Bulletin() {
     })
   }
 
-  const sorted = [...bulletins].sort((a, b) => {
+  const sorted = [...BULLETINS].sort((a, b) => {
     if (!!b.pinned !== !!a.pinned) return b.pinned ? 1 : -1
     return String(b.date).localeCompare(String(a.date))
   })
@@ -486,15 +621,16 @@ export default function Bulletin() {
         <aside className="bulletin-sidebar">
           <p className="bulletin-side-label">Categories</p>
           <ul className="bulletin-menu">
-            {['All', ...bulletinCategories].map((cat, index) => {
+            {['All', ...CATEGORIES.map((c) => c.name)].map((cat, index) => {
               const count =
-                cat === 'All' ? bulletins.length : bulletins.filter((b) => b.category === cat).length
+                cat === 'All' ? BULLETINS.length : BULLETINS.filter((b) => b.category === cat).length
               const isActive = cat === active
               return (
                 <li key={cat} className="bulletin-menu-item" style={{ '--i': index }}>
                   <button
                     type="button"
-                    className={`bulletin-menu-btn cat-${catSlug(cat)}${isActive ? ' active' : ''}`}
+                    className={isActive ? 'bulletin-menu-btn active' : 'bulletin-menu-btn'}
+                    style={catStyle(cat)}
                     onClick={() => selectCategory(cat)}
                     aria-pressed={isActive}
                   >
@@ -547,7 +683,7 @@ export default function Bulletin() {
                       item={item}
                       index={i}
                       liked={!!likes[item.id]}
-                      likeCount={counts ? counts[item.id] || 0 : null}
+                      likeCount={likeCounts[item.id] || 0}
                       comments={comments[item.id] || []}
                       savedName={savedName}
                       highlighted={highlightId === item.id}
