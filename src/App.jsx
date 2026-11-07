@@ -8,9 +8,13 @@ import Events from './pages/Events.jsx'
 import Leadership from './pages/Leadership.jsx'
 import Bulletin from './pages/Bulletin.jsx'
 import NotFound from './pages/NotFound.jsx'
+import Donate from './pages/Donate.jsx'
+import DonationPanel from './components/DonationPanel.jsx'
+import { DonationProvider } from './components/DonationContext.jsx'
 
 export default function App(){
   return (
+    <DonationProvider>
     <div className="app-shell">
       <ScrollToTop />
       <Header />
@@ -21,10 +25,13 @@ export default function App(){
           <Route path="/events" element={<Events />} />
           <Route path="/leadership" element={<Leadership />} />
           <Route path="/bulletin" element={<Bulletin />} />
+          <Route path="/donate" element={<Donate />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />
+      <DonationPanel />
     </div>
+    </DonationProvider>
   )
 }
