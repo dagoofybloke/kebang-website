@@ -6,7 +6,6 @@ import Home from './pages/Home.jsx'
 import Objectives from './pages/Objectives.jsx'
 import Events from './pages/Events.jsx'
 import Leadership from './pages/Leadership.jsx'
-import Bulletin from './pages/Bulletin.jsx'
 import NotFound from './pages/NotFound.jsx'
 import Donate from './pages/Donate.jsx'
 import DonationBanner from './components/DonationBanner.jsx'
@@ -22,7 +21,6 @@ export default function App(){
           <Route path="/objectives" element={<Objectives />} />
           <Route path="/events" element={<Events />} />
           <Route path="/leadership" element={<Leadership />} />
-          <Route path="/bulletin" element={<Bulletin />} />
           <Route path="/donate" element={<Donate />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

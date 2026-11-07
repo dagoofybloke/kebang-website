@@ -7,7 +7,6 @@ const NAV_ITEMS = [
   { to: '/objectives', label: 'Objectives' },
   { to: '/events', label: 'Events' },
   { to: '/leadership', label: 'Leadership' },
-  { to: '/bulletin', label: 'Bulletin' },
   { to: '/donate', label: 'Donate' },
 ]
 
