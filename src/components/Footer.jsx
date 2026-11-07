@@ -1,4 +1,5 @@
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
+import Reveal from './Reveal.jsx'
 import './Footer.css'
 
 const JOIN_URL = 'https://docs.google.com/forms/u/1/d/e/1FAIpQLSe3uWpxPY-DMIcs8fLODpYrJ1CSRZRk3hPPhDPm20932-tPvg/viewform'
@@ -9,24 +10,32 @@ export default function Footer(){
   return (
     <footer className="site-footer">
       <div className="wrap footer-cta">
-        
-        
+        <Reveal as="span" className="eyebrow on-dark">Stand with your people</Reveal>
+        <Reveal as="h2" delay={80}>
+          Preserve our culture.<br /><em>Together.</em>
+        </Reveal>
+        <Reveal delay={160} className="footer-cta-actions">
+          <a href={JOIN_URL} target="_blank" rel="noopener noreferrer" className="btn on-dark">Join TMSK</a>
+          <Link to="/donate" className="btn ghost on-dark">Donate</Link>
+        </Reveal>
       </div>
 
       <div className="wrap footer-inner">
         <div className="footer-brand">
-          <img src="/logo.png" alt="TMSK emblem" className="brand-mark" />
+          <img src="/logo.png" alt="TMSK emblem" className="footer-mark" />
           <div>
             <p className="footer-name">Takam Mising Sí:sang Kébang</p>
             <p className="footer-tag">TMSK</p>
           </div>
         </div>
 
-        <nav className="footer-nav">
+        <nav className="footer-nav" aria-label="Footer">
           <span className="footer-col-label">Navigate</span>
           <NavLink to="/" end>Home</NavLink>
           <NavLink to="/objectives">Objectives</NavLink>
           <NavLink to="/events">Events</NavLink>
+          <NavLink to="/leadership">Leadership</NavLink>
+          <NavLink to="/donate">Donate</NavLink>
         </nav>
 
         <div className="footer-contact">
@@ -34,8 +43,8 @@ export default function Footer(){
 
           <a href="mailto:tmskyouthorg@gmail.com" className="footer-link">
             <span className="footer-link-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                <rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4">
+                <rect x="2.5" y="4.5" width="19" height="15" rx="1"/>
                 <path d="M3 6.5l9 6.5 9-6.5"/>
               </svg>
             </span>
@@ -47,7 +56,7 @@ export default function Footer(){
 
           <a href="https://www.instagram.com/tmskyouthorg/" target="_blank" rel="noopener noreferrer" className="footer-link">
             <span className="footer-link-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4">
                 <rect x="3" y="3" width="18" height="18" rx="5"/>
                 <circle cx="12" cy="12" r="4.2"/>
                 <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/>

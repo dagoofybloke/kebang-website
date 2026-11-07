@@ -1,175 +1,50 @@
-.donate-page {
-  max-width: 860px;
-  margin: 0 auto;
-  padding: 48px 20px 80px;
+.donate-body{padding-bottom:150px;}
+
+.donate-card{
+  padding:64px 48px 44px;
+  background:var(--white);
+  border:1px solid var(--line);
+  border-top:3px solid var(--red);
+  text-align:center;
+}
+.donate-heart{display:inline-block; margin-bottom:18px; color:var(--red);}
+.donate-card h2{margin:0 0 16px; font-size:clamp(34px,4vw,54px);}
+.donate-card > p{
+  max-width:620px;
+  margin:0 auto 32px;
+  line-height:1.85;
+  color:var(--ink-soft);
+}
+.donate-card > .donate-secure{
+  margin:24px 0 0;
+  font-size:11px;
+  letter-spacing:0.24em;
+  text-transform:uppercase;
+  color:var(--ink-faint);
 }
 
-.donate-hero {
-  text-align: center;
-  margin-bottom: 36px;
+.donate-block{margin-top:100px;}
+
+.donate-steps{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:0 40px;
+  margin-top:8px;
 }
+.donate-steps li{padding:32px 0; border-top:1px solid var(--line-strong);}
+.donate-step-num{display:block; margin-bottom:16px; font-size:64px;}
+.donate-steps h3{margin-bottom:10px; font-size:30px;}
+.donate-steps p{line-height:1.8; color:var(--ink-soft);}
 
-.donate-hero h1 {
-  margin: 0 0 8px;
-  font-size: clamp(1.8rem, 6vw, 3rem);
-  animation: donate-fade-up 0.5s ease both;
-}
+.donate-faq{display:grid; margin-top:8px;}
+.donate-faq-item{padding:32px 0; border-top:1px solid var(--line-strong);}
+.donate-faq-item:last-child{border-bottom:1px solid var(--line-strong);}
+.donate-faq-item h3{margin-bottom:10px; font-size:30px;}
+.donate-faq-item p{max-width:660px; line-height:1.8; color:var(--ink-soft);}
 
-.donate-hero p {
-  margin: 0 auto;
-  max-width: 520px;
-  color: #666;
-  animation: donate-fade-up 0.5s ease 0.1s both;
-}
-
-.donate-card {
-  padding: 34px 28px 28px;
-  border-radius: 22px;
-  background: #fff;
-  border-top: 6px solid #8b1e1e;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  animation: donate-fade-up 0.55s ease 0.15s both;
-}
-
-.donate-heart {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 68px;
-  height: 68px;
-  margin-bottom: 10px;
-  border-radius: 50%;
-  background: #f6e7e7;
-  color: #8b1e1e;
-  animation: donate-beat 2.4s ease-in-out infinite;
-}
-
-.donate-card h2 {
-  margin: 0 0 10px;
-  font-size: 1.6rem;
-}
-
-.donate-card > p {
-  margin: 0 auto 22px;
-  max-width: 560px;
-  color: #555;
-  line-height: 1.65;
-}
-
-.donate-card .donate-secure {
-  margin: 16px 0 0;
-  font-size: 0.85rem;
-  color: #999;
-}
-
-.donate-block {
-  margin-top: 44px;
-}
-
-.donate-block h2 {
-  margin: 0 0 18px;
-  font-size: 1.4rem;
-  text-align: center;
-}
-
-.donate-steps {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 14px;
-}
-
-.donate-steps li {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  padding: 16px 18px;
-  border-radius: 16px;
-  background: #fff;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
-  animation: donate-fade-up 0.5s ease both;
-  animation-delay: calc(var(--i) * 90ms + 250ms);
-}
-
-.donate-step-num {
-  flex-shrink: 0;
-  width: 38px;
-  height: 38px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: #8b1e1e;
-  color: #fff;
-  font-weight: 700;
-}
-
-.donate-steps h3 {
-  margin: 0 0 4px;
-  font-size: 1.05rem;
-}
-
-.donate-steps p {
-  margin: 0;
-  color: #666;
-  line-height: 1.55;
-}
-
-.donate-faq {
-  display: grid;
-  gap: 14px;
-}
-
-.donate-faq-item {
-  padding: 16px 18px;
-  border-left: 4px solid #8b1e1e;
-  border-radius: 12px;
-  background: #faf6f6;
-}
-
-.donate-faq-item h3 {
-  margin: 0 0 6px;
-  font-size: 1.02rem;
-}
-
-.donate-faq-item p {
-  margin: 0;
-  color: #666;
-  line-height: 1.55;
-}
-
-@keyframes donate-fade-up {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes donate-beat {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.08); }
-}
-
-@media (max-width: 560px) {
-  .donate-page {
-    padding: 32px 14px 60px;
-  }
-
-  .donate-card {
-    padding: 26px 18px 22px;
-  }
-
-  .donate-steps li {
-    padding: 14px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .donate-hero h1,
-  .donate-hero p,
-  .donate-card,
-  .donate-heart,
-  .donate-steps li {
-    animation: none;
-  }
+@media (max-width:860px){
+  .donate-body{padding-bottom:96px;}
+  .donate-card{padding:44px 22px 30px;}
+  .donate-block{margin-top:72px;}
+  .donate-steps{grid-template-columns:1fr;}
 }

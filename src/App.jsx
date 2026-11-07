@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import ScrollToTop from './components/ScrollToTop.jsx'
 import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
@@ -11,19 +11,23 @@ import Donate from './pages/Donate.jsx'
 import DonationBanner from './components/DonationBanner.jsx'
 
 export default function App(){
+  const location = useLocation()
+
   return (
     <div className="app-shell">
       <ScrollToTop />
       <Header />
       <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/objectives" element={<Objectives />} />
-          <Route path="/events" element={<Events />} />
-          <Route path="/leadership" element={<Leadership />} />
-          <Route path="/donate" element={<Donate />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <div className="page-fade" key={location.pathname}>
+          <Routes location={location}>
+            <Route path="/" element={<Home />} />
+            <Route path="/objectives" element={<Objectives />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/leadership" element={<Leadership />} />
+            <Route path="/donate" element={<Donate />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </div>
       </main>
       <Footer />
       <DonationBanner />

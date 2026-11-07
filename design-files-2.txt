@@ -1,0 +1,366 @@
+=== src/components/Reveal.jsx ===
+import useInView from '../hooks/useInView.js'
+
+/**
+ * Wraps children in a fade/rise-on-scroll animation.
+ * Usage: <Reveal delay={100}><h2>Title</h2></Reveal>
+ */
+export default function Reveal({ children, as: Tag = 'div', delay = 0, className = '', ...rest }){
+  const [ref, inView] = useInView()
+
+  return (
+    <Tag
+      ref={ref}
+      className={`reveal ${inView ? 'is-visible' : ''} ${className}`}
+      style={{ transitionDelay: inView ? `${delay}ms` : '0ms' }}
+      {...rest}
+    >
+      {children}
+    </Tag>
+  )
+}
+
+=== src/components/ScrollToTop.jsx ===
+import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
+
+export default function ScrollToTop(){
+  const { pathname } = useLocation()
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+  return null
+}
+
+=== src/pages/Objectives.jsx ===
+import Reveal from '../components/Reveal.jsx'
+import './Objectives.css'
+
+const OBJECTIVES = [
+  {
+    n: '01',
+    title: 'De-Mipakification of Mising Culture',
+    body: `We will work towards removing non-Mising elements that have entered our
+    culture over time and encourage new ideas that align with our authentic
+    Mising identity, traditions, and values.`,
+  },
+  {
+    n: '02',
+    title: "Voice for Mising People's Development",
+    body: `We will become a strong voice for the development, progress, and
+    well-being of the Mising people, addressing issues that affect our
+    community and working towards sustainable growth.`,
+  },
+  {
+    n: '03',
+    title: 'Documentation and Research of Mising Heritage',
+    body: `We will work towards documenting and preserving Mising heritage
+    through digitalisation. This includes preserving our books, oral
+    traditions, folktales, genealogy, history, cultural practices, and other
+    important aspects of Mising identity. We will also support the
+    development of digital platforms and resources dedicated to the Mising
+    tribe.`,
+  },
+  {
+    n: '04',
+    title: 'Encouragement of Mising Agom',
+    body: `Many Misings who migrate to cities gradually lose connection with
+    their mother tongue. This is not the fault of individuals but a result of
+    the environment and systems they live in. We will work to strengthen the
+    use and preservation of Mising Agom among younger generations. If given
+    the opportunity to represent our people, we will also raise our voice for
+    the inclusion of Mising language in the 8th Schedule of the Indian
+    Constitution.`,
+  },
+  {
+    n: '05',
+    title: 'Preservation of Authentic Donyi-Poloism',
+    body: `We will work towards preserving the original essence of
+    Donyi-Poloism by identifying and removing external religious influences
+    and modifications that do not belong to its traditional Tani roots.`,
+  },
+  {
+    n: '06',
+    title: 'Cultural Exchange with Other Tani Groups',
+    body: `We will encourage cultural exchange and stronger connections
+    between Misings and other Tani communities to preserve shared ancestry,
+    traditions, and knowledge.`,
+  },
+  {
+    n: '07',
+    title: 'Raising Unanswered Questions for the Mising People',
+    body: `We will bring forward unanswered questions, concerns, and issues of
+    the Mising people and seek accountability and solutions from the
+    concerned authorities.`,
+  },
+]
+
+export default function Objectives(){
+  return (
+    <>
+      <header className="page-head wrap">
+        <Reveal as="span" className="eyebrow">What we stand for</Reveal>
+        <Reveal as="h1" delay={80}>
+          7 Golden Points<br />of TMSK
+        </Reveal>
+        <Reveal as="p" delay={160} className="page-head-lede">
+          Each objective below is a standing commitment — not a slogan.
+          Together they define what TMSK works towards, and what we hold
+          ourselves accountable to.
+        </Reveal>
+      </header>
+
+      <section className="wrap obj-list">
+        {OBJECTIVES.map((o, i) => (
+          <Reveal as="article" delay={Math.min(i * 60, 240)} className="obj-item" key={o.n}>
+            <span className="ghost-num obj-num">{o.n}</span>
+            <div className="obj-body">
+              <h3>{o.title}</h3>
+              <p>{o.body}</p>
+            </div>
+          </Reveal>
+        ))}
+      </section>
+    </>
+  )
+}
+
+=== src/pages/Leadership.jsx ===
+import { useState } from 'react';
+import { leadershipTerms } from '../data/leadership';
+import './Leadership.css';
+
+function getInitials(name) {
+  return name
+    .split(' ')
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0].toUpperCase())
+    .join('');
+}
+
+function MemberCard({ member, termId }) {
+  const src = `/images/leadership/${termId}/${member.image}`;
+  const [failedSrc, setFailedSrc] = useState(null);
+  const imageFailed = failedSrc === src;
+
+  return (
+    <article className="leader-card">
+      <div className="leader-photo">
+        {imageFailed ? (
+          <span className="leader-initials">{getInitials(member.name)}</span>
+        ) : (
+          <img
+            src={src}
+            alt={member.name}
+            loading="lazy"
+            onError={() => setFailedSrc(src)}
+          />
+        )}
+      </div>
+      <h3 className="leader-name">{member.name}</h3>
+      <p className="leader-role">{member.role}</p>
+      {member.note && <p className="leader-note">{member.note}</p>}
+    </article>
+  );
+}
+
+export default function Leadership() {
+  const [activeId, setActiveId] = useState(leadershipTerms[0].id);
+  const activeTerm = leadershipTerms.find((t) => t.id === activeId);
+
+  return (
+    <div className="leadership-page">
+      <header className="leadership-hero">
+        <h1>Leadership</h1>
+        <p>The office bearers who have guided TMSK through each term.</p>
+      </header>
+
+      <nav className="term-tabs" aria-label="Leadership terms">
+        {leadershipTerms.map((term) => (
+          <button
+            key={term.id}
+            type="button"
+            className={term.id === activeId ? 'term-tab active' : 'term-tab'}
+            onClick={() => setActiveId(term.id)}
+          >
+            {term.title}
+          </button>
+        ))}
+      </nav>
+
+      <section className="term-section" aria-labelledby={`${activeTerm.id}-title`}>
+        <h2 id={`${activeTerm.id}-title`} className="term-title">
+          {activeTerm.title}
+        </h2>
+        <div className="leader-grid">
+          {activeTerm.members.map((member) => (
+            <MemberCard
+              key={`${activeTerm.id}-${member.role}`}
+              member={member}
+              termId={activeTerm.id}
+            />
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
+
+=== src/pages/NotFound.jsx ===
+import { Link } from 'react-router-dom'
+import './NotFound.css'
+
+export default function NotFound(){
+  return (
+    <section className="wrap not-found">
+      <span className="not-found-code">404</span>
+      <h1>Page not found</h1>
+      <p>The page you're looking for doesn't exist, or has moved.</p>
+      <Link to="/" className="btn">Back to Home</Link>
+    </section>
+  )
+}
+
+=== src/components/EventPopup.jsx ===
+import { useEffect, useState } from 'react'
+import './EventPopup.css'
+
+const SEEN_KEY = 'tmsk_event_popup_seen'
+const REGISTER_URL = 'https://docs.google.com/forms/d/1mbJFR53KfgaMFuwOZ7NbxB3_t9-_45dYc51Xy_QvIE8/edit'
+
+export default function EventPopup(){
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    if (sessionStorage.getItem(SEEN_KEY)) return
+    const timer = setTimeout(() => setVisible(true), 900)
+    return () => clearTimeout(timer)
+  }, [])
+
+  const dismiss = () => {
+    setVisible(false)
+    sessionStorage.setItem(SEEN_KEY, '1')
+  }
+
+  if (!visible) return null
+
+  return (
+    <div className="event-popup-overlay" onClick={dismiss}>
+      <div className="event-popup" role="dialog" aria-label="Event registration" onClick={e => e.stopPropagation()}>
+        <button className="event-popup-close" aria-label="Close" onClick={dismiss}>&times;</button>
+        <span className="event-popup-tag">Registration open</span>
+        <p className="event-popup-title">TMSK Art Online Competition</p>
+        <p className="event-popup-sub">Registration closes 31 Aug 2026 &middot; Entry fee ₹75</p>
+        <a
+          href={REGISTER_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn event-popup-btn"
+          onClick={dismiss}
+        >
+          Register Now
+        </a>
+      </div>
+    </div>
+  )
+}
+=== vite.config.js ===
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+})
+
+=== vercel.json ===
+{
+  "rewrites": [
+    {
+      "source": "/((?!api/).*)",
+      "destination": "/index.html"
+    }
+  ]
+}
+
+=== src/data/leadership.js ===
+// Images go in: public/images/leadership/<term-id>/<image file>
+// If an image is missing, the page shows the person's initials instead.
+
+export const leadershipTerms = [
+  {
+    id: 'term-1',
+    title: '1st Term',
+    members: [
+      { role: 'President', name: 'Sumyo Doley', image: 'sumyo-doley.jpg' },
+      { role: 'Vice President', name: 'Kung Pao', image: 'kung-pao.jpg' },
+      { role: 'General Secretary & Treasurer', name: 'Abhinab Pegu', image: 'abhinab-pegu.jpg' },
+      { role: 'Organisational Coordinator', name: 'Maetom Patir', image: 'maetom-patir.jpg' },
+    ],
+  },
+  {
+    id: 'term-2',
+    title: '2nd Term',
+    members: [
+      { role: 'President', name: 'Name to be added', image: 'president.jpg' },
+      { role: 'Vice President', name: 'Name to be added', image: 'vice-president.jpg' },
+      { role: 'General Secretary', name: 'Name to be added', image: 'general-secretary.jpg' },
+      { role: 'Treasurer', name: 'Name to be added', image: 'treasurer.jpg' },
+    ],
+  },
+];
+
+=== public folder ===
+public:
+apple-touch-icon.png
+assets
+bulletin
+favicon-192.png
+favicon-48.png
+favicon-512.png
+favicon-96.png
+favicon.ico
+googlee250293c3bc349fc.html
+images
+logo.png
+site.webmanifest
+
+public/assets:
+flag.jpg
+
+public/bulletin:
+README.txt
+bylaws.pdf
+mac.pdf
+opin-kinsulai.pdf
+
+public/images:
+leadership
+
+public/images/leadership:
+README.txt
+term-1
+term-2
+
+public/images/leadership/term-1:
+abhinab-pegu.jpg
+sumyo-doley.jpg
+
+public/images/leadership/term-2:
+=== git ===
+ M index.html
+ M src/components/DonationBanner.css
+ M src/components/Footer.jsx
+ M src/components/RazorpayButton.css
+ M src/index.css
+ M src/pages/Donate.css
+ M src/pages/Donate.jsx
+?? design-files-2.txt
+?? design-files.txt
+?? design-fix.sh
+d3c8e19 Remove bulletin page
+29a52c4 Donate page
+4f20e92 Add Donate page
+0c0e5de Like counts
+58302df Bulletin images, files and like counts
+878eda0 Replace Documents with Bulletin page

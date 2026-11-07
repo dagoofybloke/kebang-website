@@ -1,0 +1,323 @@
+/* ==================== HERO: flag in the centre, legacy all around ==================== */
+
+/* ---- centred hero layout: title, FLAG, quotes, buttons ----
+   ("display: contents" lets the title, quotes and buttons line up
+   around the flag; the .hero prefix makes these win over Home.css) */
+.hero .hero-inner{
+  grid-template-columns:1fr;
+  justify-items:center;
+  gap:0;
+  text-align:center;
+}
+.hero .hero-inner .hero-copy{display:contents;}
+.hero .hero-inner .eyebrow{order:1;}
+.hero .hero-inner .hero-title{order:2; margin:0 0 34px; font-size:clamp(44px, 6.2vw, 92px);}
+.hero .hero-inner .lg-root{order:3; width:100%; margin:0 0 56px;}
+.hero .hero-inner .hero-quotes{order:4; max-width:640px; margin:0 auto 40px; align-items:center;}
+.hero .hero-inner .hero-actions{order:5; justify-content:center;}
+.hero .hero-quotes p{padding:0; border-left:0; text-align:center;}
+.hero .hero-quotes p::before{
+  content:'';
+  display:block;
+  width:36px; height:1px;
+  margin:0 auto 12px;
+  background:var(--red);
+}
+
+/* ---- the flag (main piece) ---- */
+.hero, .lg-root{--lg-ease:cubic-bezier(0.16,1,0.3,1);}
+.lg-root{
+  position:relative;
+  display:flex;
+  justify-content:center;
+}
+.lg-flagstage{position:relative; width:min(100%, 580px);}
+
+.lg-flagcard{
+  position:relative;
+  translate:calc(var(--px, 0) * 10px) calc(var(--py, 0) * 6px);
+  transition:translate .6s var(--lg-ease);
+  animation:lgUnfurl 1.5s var(--lg-ease) .3s both;
+}
+/* war-drum glow that beats behind the flag */
+.lg-flagcard::before{
+  content:'';
+  position:absolute;
+  inset:-16% -10%;
+  z-index:-1;
+  background:radial-gradient(closest-side, rgba(200,16,46,0.30), transparent);
+  animation:lgDrum 2.4s ease-out infinite;
+}
+.lg-flag{
+  position:relative;
+  padding:12px;
+  background:var(--white);
+  border:1px solid var(--line);
+  box-shadow:0 50px 90px -30px rgba(20,17,14,0.5);
+  outline:1px solid rgba(184,147,90,0.55);
+  outline-offset:9px;
+  animation:lgFloat 7s ease-in-out infinite;
+}
+.lg-flagpic{position:relative; overflow:hidden;}
+.lg-flagpic img{display:block; width:100%; aspect-ratio:5 / 3; object-fit:cover;}
+.lg-flagpic .lg-shine{--sd:2.5s;}
+.lg-badge{
+  position:absolute;
+  right:-18px; top:-20px;
+  width:clamp(60px, 14vw, 84px);
+  aspect-ratio:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:var(--red);
+  color:var(--white);
+  line-height:1;
+  box-shadow:0 0 0 6px var(--ivory);
+}
+.lg-badge span{font-size:9px; font-weight:500; letter-spacing:0.24em; text-transform:uppercase; opacity:0.85; margin-bottom:4px;}
+.lg-badge strong{font-family:var(--f-display); font-size:26px; font-weight:600; letter-spacing:0;}
+
+/* golden sun rays turning slowly behind the flag, reaching wide across the hero */
+.lg-sun{
+  position:absolute;
+  left:50%; top:50%;
+  width:220%;
+  aspect-ratio:1;
+  translate:-50% -50%;
+  z-index:-1;
+  pointer-events:none;
+  animation:lgGlow 6s ease-in-out infinite;
+}
+.lg-sun::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  background:repeating-conic-gradient(from 0deg, rgba(184,147,90,0.36) 0deg 3deg, transparent 3deg 12deg);
+  -webkit-mask-image:radial-gradient(circle closest-side, transparent 14%, #000 26%, transparent 78%);
+  mask-image:radial-gradient(circle closest-side, transparent 14%, #000 26%, transparent 78%);
+  animation:lgSpin 160s linear infinite;
+}
+
+/* ---- everything decorative: spread over the WHOLE hero, behind the content ---- */
+.lg-decor{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+  pointer-events:none;
+}
+.lg-layer{
+  position:absolute;
+  translate:calc(var(--px, 0) * var(--mx, 0px)) calc(var(--py, 0) * var(--my, 0px));
+  transition:translate .6s var(--lg-ease);
+}
+
+/* faded war banners hanging from the top edge */
+.lg-banner-slot{
+  top:14px;
+  z-index:1;
+  width:var(--bw);
+  animation:lgDrop 1.7s var(--lg-ease) var(--bd, .2s) both;
+}
+.lg-b-lw{left:1.5vw;  --bw:clamp(104px, 14vw, 210px); --o:0.40; --bd:.2s;  --mx:-8px; --my:-4px;}
+.lg-b-ls{left:15.8vw; --bw:clamp(64px, 8vw, 122px);   --o:0.26; --bd:.55s; --mx:-14px; --my:-6px; top:44px;}
+.lg-b-rs{right:1.5vw; --bw:clamp(104px, 14vw, 210px); --o:0.40; --bd:.4s;  --mx:8px;  --my:-4px;}
+.lg-b-rw{right:15.8vw; --bw:clamp(64px, 8vw, 122px);  --o:0.26; --bd:.7s;  --mx:14px; --my:-6px; top:44px;}
+
+.lg-banner{
+  position:relative;
+  width:100%;
+  transform-origin:50% 0;
+  filter:drop-shadow(0 18px 20px rgba(20,17,14,0.22));
+  animation:lgSway var(--sway, 8s) ease-in-out infinite;
+}
+.lg-banner--swords{--r:4deg;  --sway:7.5s; --notch:95%; --sd:3.2s;}
+.lg-banner--warrior{--r:-1.2deg; --sway:10s; --notch:97%; --sd:1.4s;}
+.lg-b-ls .lg-banner{animation-delay:-2.5s;}
+.lg-b-rs .lg-banner{animation-delay:-4s;}
+.lg-b-rw .lg-banner{animation-delay:-6s;}
+
+.lg-banner::before{
+  content:'';
+  position:absolute;
+  left:-7%; right:-7%; top:-8px;
+  height:8px;
+  z-index:2;
+  border-radius:4px;
+  background:linear-gradient(#ead09a, #8a6a35 60%, #5b4222);
+  box-shadow:0 2px 6px rgba(20,17,14,0.3);
+}
+.lg-cloth{
+  position:relative;
+  overflow:hidden;
+  aspect-ratio:941 / 1672;
+  clip-path:polygon(0 0, 100% 0, 100% 100%, 50% var(--notch, 95%), 0 100%);
+  background:#7a0a1c;
+}
+.lg-cloth img{
+  display:block;
+  width:100%; height:100%;
+  object-fit:cover;
+  animation:lgKen 26s ease-in-out infinite alternate;
+}
+.lg-shine{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(105deg, transparent 38%, rgba(255,226,160,0.30) 46%, rgba(255,255,255,0.5) 50%, rgba(255,226,160,0.24) 54%, transparent 62%);
+  transform:translateX(-130%);
+  animation:lgShine 8s ease-in-out infinite;
+  animation-delay:var(--sd, 2s);
+}
+
+/* embers rising from the whole bottom edge */
+.lg-embers{position:absolute; inset:0; z-index:1; pointer-events:none;}
+.lg-ember{
+  position:absolute;
+  left:var(--x);
+  bottom:2%;
+  width:var(--s); height:var(--s);
+  border-radius:50%;
+  background:radial-gradient(circle, #ffd88a, #C8102E 72%);
+  box-shadow:0 0 8px 2px rgba(229,72,91,0.5);
+  opacity:0;
+  animation:lgEmber var(--d) linear infinite;
+  animation-delay:var(--dl);
+}
+
+/* ---- the two portraits: they march back and forth, one in each corner ----
+   outer box = walks across and turns around; inner box = the footsteps */
+.lg-walker{
+  position:absolute;
+  bottom:8px;
+  z-index:2;
+  width:var(--ww);
+  --span:17vw;
+  translate:calc(var(--px, 0) * var(--mx, 0px)) calc(var(--py, 0) * var(--my, 0px));
+}
+.lg-walker::after{
+  content:'';
+  position:absolute;
+  left:8%; right:8%; bottom:-5px;
+  height:11px;
+  border-radius:50%;
+  background:radial-gradient(closest-side, rgba(20,17,14,0.4), transparent);
+}
+.lg-walker--a{
+  left:2vw;
+  --ww:clamp(72px, 9vw, 140px);
+  --mx:18px; --my:4px;
+  animation:lgFade 1.4s ease 1.2s both, lgPatrolA 36s ease-in-out 1.2s infinite;
+}
+.lg-walker--b{
+  right:2vw;
+  --ww:clamp(80px, 10vw, 156px);
+  --mx:-16px; --my:4px;
+  animation:lgFade 1.4s ease 1.5s both, lgPatrolB 42s ease-in-out 1.5s infinite;
+}
+.lg-step{
+  transform-origin:50% 100%;
+  animation:lgStep .64s ease-in-out infinite;
+}
+.lg-walker--b .lg-step{animation-duration:.82s;}
+.lg-step img{
+  display:block;
+  width:100%;
+  height:auto;
+  filter:
+    grayscale(0.5) sepia(0.35) contrast(1.06)
+    drop-shadow(0 0 1.5px rgba(184,147,90,0.95))
+    drop-shadow(0 14px 14px rgba(20,17,14,0.4));
+}
+
+/* ---- motion ---- */
+@keyframes lgSpin{to{transform:rotate(360deg);}}
+@keyframes lgGlow{0%,100%{opacity:0.7;} 50%{opacity:1;}}
+@keyframes lgDrum{
+  0%{transform:scale(0.92); opacity:0.85;}
+  16%{transform:scale(1.06); opacity:1;}
+  100%{transform:scale(0.92); opacity:0.55;}
+}
+@keyframes lgUnfurl{
+  from{opacity:0; transform:translateY(46px) scale(0.93);}
+  to{opacity:1; transform:none;}
+}
+@keyframes lgFloat{
+  0%,100%{transform:translateY(0) rotate(-0.8deg);}
+  50%{transform:translateY(-10px) rotate(0.8deg);}
+}
+@keyframes lgSway{
+  0%,100%{transform:rotate(calc(var(--r, 0deg) - 1.8deg)) skewX(-0.8deg);}
+  50%{transform:rotate(calc(var(--r, 0deg) + 1.8deg)) skewX(0.8deg);}
+}
+@keyframes lgDrop{
+  from{opacity:0; transform:translateY(-56px);}
+  to{opacity:var(--o, 1); transform:none;}
+}
+@keyframes lgFade{from{opacity:0;} to{opacity:1;}}
+@keyframes lgKen{
+  from{transform:scale(1) translateY(0);}
+  to{transform:scale(1.09) translateY(-1.5%);}
+}
+@keyframes lgShine{
+  0%,55%{transform:translateX(-130%);}
+  85%,100%{transform:translateX(130%);}
+}
+@keyframes lgEmber{
+  0%{opacity:0; transform:translate3d(0, 0, 0) scale(1);}
+  10%{opacity:0.9;}
+  100%{opacity:0; transform:translate3d(var(--dx), -78vh, 0) scale(0.3);}
+}
+/* footsteps: a little hop with a sway, like marching in place */
+@keyframes lgStep{
+  0%,100%{transform:translateY(0) rotate(-2.4deg);}
+  25%{transform:translateY(-8px) rotate(0deg);}
+  50%{transform:translateY(0) rotate(2.4deg);}
+  75%{transform:translateY(-8px) rotate(0deg);}
+}
+/* walk out, stand and stamp for a moment, turn around, walk back */
+@keyframes lgPatrolA{
+  0%,6%{transform:translateX(0) scaleX(1);}
+  44%,50%{transform:translateX(var(--span)) scaleX(1);}
+  52%{transform:translateX(var(--span)) scaleX(-1);}
+  94%{transform:translateX(0) scaleX(-1);}
+  96%,100%{transform:translateX(0) scaleX(1);}
+}
+@keyframes lgPatrolB{
+  0%,8%{transform:translateX(0) scaleX(1);}
+  44%,52%{transform:translateX(calc(var(--span) * -1)) scaleX(1);}
+  54%{transform:translateX(calc(var(--span) * -1)) scaleX(-1);}
+  94%{transform:translateX(0) scaleX(-1);}
+  96%,100%{transform:translateX(0) scaleX(1);}
+}
+
+/* ---- smaller screens ---- */
+@media (max-width:1100px){
+  .lg-b-ls, .lg-b-rw{display:none;}
+}
+@media (max-width:980px){
+  .lg-root{margin-bottom:44px;}
+}
+@media (max-width:700px){
+  .lg-b-lw, .lg-b-rs{--bw:22vw; --o:0.2;}
+  .lg-walker{--span:22vw;}
+}
+@media (max-width:560px){
+  .app-shell .hero{padding-bottom:128px;}
+  .hero .hero-inner .hero-title{font-size:clamp(40px, 11.5vw, 60px);}
+  .lg-flag{padding:8px; outline-offset:6px;}
+  .lg-badge{right:-10px; top:-14px;}
+  .lg-walker--a{--ww:56px;}
+  .lg-walker--b{--ww:62px;}
+  .lg-ember:nth-child(n+13){display:none;}
+}
+@media (prefers-reduced-motion: reduce){
+  .lg-sun, .lg-sun::before, .lg-flagcard::before, .lg-flag, .lg-banner,
+  .lg-cloth img, .lg-shine, .lg-step{animation:none !important;}
+  .lg-walker{animation:none !important; opacity:1;}
+  .lg-layer, .lg-flagcard{translate:none; transition:none;}
+  .lg-embers{display:none;}
+}
