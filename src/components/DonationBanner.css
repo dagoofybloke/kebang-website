@@ -1,0 +1,132 @@
+.donation-banner {
+  position: fixed;
+  top: var(--banner-top, 12px);
+  left: 50%;
+  z-index: 900;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: min(560px, calc(100vw - 20px));
+  padding: 12px 12px 12px 14px;
+  background: #fff;
+  border-left: 5px solid #8b1e1e;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transform: translate(-50%, -160%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease,
+    visibility 0s linear 0.45s;
+}
+
+.donation-banner.is-visible {
+  transform: translate(-50%, 0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease, visibility 0s;
+}
+
+.donation-banner-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f6e7e7;
+  color: #8b1e1e;
+}
+
+.donation-banner-text {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  color: #666;
+}
+
+.donation-banner-text strong {
+  font-size: 0.98rem;
+  color: #222;
+}
+
+.donation-banner-cta {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 8px 20px;
+  border-radius: 999px;
+  background: #8b1e1e;
+  color: #fff;
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.donation-banner-cta:hover {
+  background: #6f1717;
+}
+
+.donation-banner-cta:active {
+  transform: scale(0.96);
+}
+
+.donation-banner-close {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #8b1e1e;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.donation-banner-close:hover {
+  background: #f6e7e7;
+}
+
+.donation-banner-cta:focus-visible,
+.donation-banner-close:focus-visible {
+  outline: 3px solid #e3a3a3;
+  outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  .donation-banner {
+    gap: 8px;
+    padding: 10px 8px 10px 10px;
+  }
+
+  .donation-banner-icon {
+    display: none;
+  }
+
+  .donation-banner-text span {
+    display: none;
+  }
+
+  .donation-banner-text strong {
+    font-size: 0.95rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .donation-banner,
+  .donation-banner.is-visible {
+    transition: none;
+  }
+}

@@ -1,0 +1,70 @@
+.rzp-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.rzp-holder {
+  display: flex;
+  justify-content: center;
+  min-height: 52px;
+  width: 100%;
+}
+
+.rzp-holder form {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+.rzp-status {
+  margin: 0;
+  color: #888;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.rzp-help {
+  width: 100%;
+  max-width: 460px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #fdf0db;
+  color: #7a4a00;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.rzp-help p {
+  margin: 0 0 10px;
+}
+
+.rzp-help-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.rzp-retry,
+.rzp-fallback {
+  min-height: 40px;
+  padding: 8px 20px;
+  border: 2px solid #8b1e1e;
+  border-radius: 999px;
+  background: transparent;
+  color: #8b1e1e;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
+.rzp-retry:hover,
+.rzp-fallback:hover {
+  background: #f6e7e7;
+}

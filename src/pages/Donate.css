@@ -50,43 +50,15 @@
   font-size: 1.6rem;
 }
 
-.donate-card p {
+.donate-card > p {
   margin: 0 auto 22px;
   max-width: 560px;
   color: #555;
   line-height: 1.65;
 }
 
-.donate-cta {
-  min-height: 52px;
-  padding: 14px 44px;
-  border: none;
-  border-radius: 999px;
-  background: #8b1e1e;
-  color: #fff;
-  font-size: 1.05rem;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 6px 18px rgba(139, 30, 30, 0.35);
-  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-}
-
-.donate-cta:hover {
-  background: #6f1717;
-  box-shadow: 0 8px 22px rgba(139, 30, 30, 0.45);
-}
-
-.donate-cta:active {
-  transform: scale(0.97);
-}
-
-.donate-cta:focus-visible {
-  outline: 3px solid #e3a3a3;
-  outline-offset: 3px;
-}
-
 .donate-card .donate-secure {
-  margin: 14px 0 0;
+  margin: 16px 0 0;
   font-size: 0.85rem;
   color: #999;
 }
@@ -187,11 +159,6 @@
     padding: 26px 18px 22px;
   }
 
-  .donate-cta {
-    width: 100%;
-    padding: 14px 20px;
-  }
-
   .donate-steps li {
     padding: 14px;
   }
@@ -204,9 +171,5 @@
   .donate-heart,
   .donate-steps li {
     animation: none;
-  }
-
-  .donate-cta {
-    transition: none;
   }
 }

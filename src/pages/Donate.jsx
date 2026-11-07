@@ -1,5 +1,4 @@
-import { useEffect } from 'react'
-import { useDonation } from '../components/DonationContext.jsx'
+import RazorpayButton from '../components/RazorpayButton.jsx'
 import './Donate.css'
 
 // You can change the wording on this page here.
@@ -8,9 +7,9 @@ const INTRO =
   'Takam Mising Sí:sang Kébang (TMSK) works for the Mising community, including projects to preserve its historical and cultural identity. Your contribution helps us carry this work forward.'
 
 const STEPS = [
-  { title: 'Tap Donate now', text: 'A small donation panel opens at the top of the page. You can keep browsing while it is open.' },
-  { title: 'Use the payment button', text: 'Tap the payment button inside the panel to continue to Razorpay.' },
-  { title: 'Complete your payment', text: 'Finish in the secure Razorpay window. Razorpay shows a confirmation when it is done.' },
+  { title: 'Tap the payment button', text: 'Use the payment button in the card above.' },
+  { title: 'Choose your amount and details', text: 'Razorpay opens a secure window where you enter the amount and your details.' },
+  { title: 'Complete your payment', text: 'Razorpay shows a confirmation when the payment is done.' },
 ]
 
 const FAQ = [
@@ -20,22 +19,11 @@ const FAQ = [
   },
   {
     q: 'Can I cancel?',
-    a: 'Yes. Use the Cancel button in the donation panel, or close the Razorpay window before you pay.',
+    a: 'Yes. Close the Razorpay window before you pay and nothing is charged.',
   },
 ]
 
 export default function Donate() {
-  const { open, openDonation, closeDonation } = useDonation()
-
-  // Show the donation panel shortly after this page opens, and hide it when leaving
-  useEffect(() => {
-    const timer = setTimeout(openDonation, 700)
-    return () => {
-      clearTimeout(timer)
-      closeDonation()
-    }
-  }, [openDonation, closeDonation])
-
   return (
     <div className="donate-page">
       <header className="donate-hero">
@@ -54,9 +42,7 @@ export default function Donate() {
         </div>
         <h2>Make a donation</h2>
         <p>{INTRO}</p>
-        <button type="button" className="donate-cta" onClick={openDonation} aria-expanded={open}>
-          Donate now
-        </button>
+        <RazorpayButton />
         <p className="donate-secure">Secure payment by Razorpay</p>
       </section>
 

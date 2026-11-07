@@ -9,12 +9,10 @@ import Leadership from './pages/Leadership.jsx'
 import Bulletin from './pages/Bulletin.jsx'
 import NotFound from './pages/NotFound.jsx'
 import Donate from './pages/Donate.jsx'
-import DonationPanel from './components/DonationPanel.jsx'
-import { DonationProvider } from './components/DonationContext.jsx'
+import DonationBanner from './components/DonationBanner.jsx'
 
 export default function App(){
   return (
-    <DonationProvider>
     <div className="app-shell">
       <ScrollToTop />
       <Header />
@@ -30,8 +28,7 @@ export default function App(){
         </Routes>
       </main>
       <Footer />
-      <DonationPanel />
+      <DonationBanner />
     </div>
-    </DonationProvider>
   )
 }
