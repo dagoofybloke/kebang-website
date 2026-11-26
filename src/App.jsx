@@ -9,6 +9,7 @@ import Leadership from './pages/Leadership.jsx'
 import NotFound from './pages/NotFound.jsx'
 import Donate from './pages/Donate.jsx'
 import DonationBanner from './components/DonationBanner.jsx'
+import Projects from "./pages/Projects";
 
 export default function App(){
   const location = useLocation()
@@ -23,6 +24,7 @@ export default function App(){
             <Route path="/" element={<Home />} />
             <Route path="/objectives" element={<Objectives />} />
             <Route path="/events" element={<Events />} />
+            <Route path="/projects" element={<Projects />} />
             <Route path="/leadership" element={<Leadership />} />
             <Route path="/donate" element={<Donate />} />
             <Route path="*" element={<NotFound />} />
