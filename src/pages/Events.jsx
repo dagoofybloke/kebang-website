@@ -8,21 +8,19 @@ const EVENTS = [
     n: '01',
     tag: 'Visual Art Competition',
     title: 'TMSK Art Online Competition',
-    blurb: `An online visual art competition open to all. The topic will be shared with registered participants on 1st September 2026. AI-generated art will be rejected.`,
+    blurb: `An online visual art competition open to all. This event ended on 13th September 2026. AI-generated art was rejected.`,
     details: [
-      { label: 'Registration closes', value: '31 August 2026' },
+      { label: 'Event ended', value: '13 September 2026' },
       { label: 'Submission window', value: '4 – 13 September 2026' },
-      { label: 'Entry fee', value: '₹75/-' },
-      { label: 'Contact', value: '+91 70858 80388' },
+      { label: 'Registration closed', value: '31 August 2026' },
+      { label: 'Entry fee was', value: '₹75/-' },
     ],
     prizes: [
       { place: '1st', amount: '₹1000/-' },
       { place: '2nd', amount: '₹500/-' },
       { place: '3rd', amount: '₹300/-' },
     ],
-    note: `Prize money is subject to increase depending on the total number of participants. Winners get free participation in the Creators Pop-up Program in Pasighat.`,
     registerUrl: 'https://docs.google.com/forms/d/1mbJFR53KfgaMFuwOZ7NbxB3_t9-_45dYc51Xy_QvIE8/edit',
-    credit: 'Sumyo Doley, President of TMSK',
   },
 ]
 
@@ -71,16 +69,13 @@ export default function Events(){
                 ))}
               </div>
 
-              <p className="event-note">{ev.note}</p>
-
-              <div className="event-actions">
-                {status.key === 'open' && (
+              {status.key === 'open' && (
+                <div className="event-actions">
                   <a href={ev.registerUrl} target="_blank" rel="noopener noreferrer" className="btn">
                     Register now
                   </a>
-                )}
-                <span className="event-credit">&mdash; {ev.credit}</span>
-              </div>
+                </div>
+              )}
             </div>
           </Reveal>
         ))}

@@ -186,12 +186,11 @@ export default function Home(){
           <div className="event-preview-body">
             <h3>TMSK Art Online Competition</h3>
             <p>
-              An online visual art competition open to all. AI-generated art
-              will be rejected &mdash; submissions must be genuinely made.
+              An online visual art competition open to all. It ended on 13th September 2026. AI-generated art was rejected.
             </p>
             <div className="event-preview-meta">
-              <div><span>{status.closesLabel}</span><strong>31 Aug 2026</strong></div>
-              <div><span>Entry fee</span><strong>₹75</strong></div>
+              <div><span>Event ended</span><strong>13 Sep 2026</strong></div>
+              <div><span>Entry fee was</span><strong>₹75</strong></div>
               <div><span>Top prize</span><strong>₹1,000</strong></div>
             </div>
             <Link to="/events" className="btn">View Event Details</Link>

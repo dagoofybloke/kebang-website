@@ -177,3 +177,11 @@
   .app-shell .hero .lg-walker--b{--ww:68px;}
   .event-preview-meta strong{font-size:17px;}
 }
+
+/* ---- portraits: no walking on any screen (laptop + phone) ---- */
+.app-shell .hero .lg-walker{
+  animation:lgFade 1.4s ease 1s both;
+  transform:none;
+  translate:none;
+}
+.app-shell .hero .lg-step{animation:none; transform:none;}
