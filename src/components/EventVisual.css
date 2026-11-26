@@ -1,0 +1,39 @@
+/* event cover picture (used on Home and on the Events page) */
+.event-preview-visual.has-cover,
+.event-card-visual.has-cover{background:var(--charcoal);}
+
+/* the decorative rings are only for the plain dark panel */
+.event-preview-visual.has-cover::before,
+.event-preview-visual.has-cover::after,
+.event-card-visual.has-cover::before,
+.event-card-visual.has-cover::after{display:none;}
+
+.event-cover-img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  z-index:0;
+}
+/* soft shade so the tag and the status stay readable on any picture */
+.event-cover-shade{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:linear-gradient(180deg, rgba(20,17,14,0.62) 0%, rgba(20,17,14,0) 38%, rgba(20,17,14,0) 62%, rgba(20,17,14,0.58) 100%);
+}
+.has-cover > *:not(.event-cover-img):not(.event-cover-shade){position:relative; z-index:2;}
+
+/* the big outlined "01" would sit on top of the picture */
+.event-card-visual.has-cover .event-card-num{display:none;}
+
+/* ---- phones and tablets: a neat picture-shaped cover ---- */
+@media (max-width:900px){
+  .event-preview-visual.has-cover{min-height:0; aspect-ratio:4 / 3; padding:20px;}
+}
+@media (max-width:980px){
+  .event-card-visual.has-cover{min-height:0; aspect-ratio:4 / 3; padding:22px 20px;}
+}

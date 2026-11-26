@@ -321,3 +321,56 @@
   .lg-layer, .lg-flagcard{translate:none; transition:none;}
   .lg-embers{display:none;}
 }
+
+/* >>> mobile-fix-v2 hero */
+@media (max-width:700px){
+
+  /* ---- less crowded: tighter, calmer spacing ---- */
+  .app-shell .hero{padding:34px 0 200px;}
+  .hero .hero-inner .hero-title{margin:0 0 22px; line-height:1;}
+  .hero .hero-inner .lg-root{margin:0 0 34px;}
+  .hero .hero-inner .hero-quotes{max-width:100%; margin:0 auto 28px; gap:16px; padding:0 2px;}
+  .hero .hero-quotes p{font-size:19px; line-height:1.45;}
+  .hero .hero-quotes p::before{margin-bottom:10px;}
+  .hero .hero-inner .hero-actions{width:100%; gap:12px;}
+  .lg-flagstage{width:min(100%, 430px);}
+
+  /* quieter background so the text stays easy to read */
+  .lg-b-lw, .lg-b-rs{--bw:18vw; --o:0.14;}
+  .lg-ember:nth-child(n+9){display:none;}
+
+  /* ---- "-- A MISING YOUTH-LED MOVEMENT": centred, one line, dash lined up ---- */
+  .hero .hero-inner .eyebrow{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    max-width:100%;
+    margin:0 0 18px;
+    font-size:clamp(9.5px, 2.9vw, 12px);
+    letter-spacing:0.16em;
+    line-height:1;
+    text-align:center;
+    white-space:nowrap;
+  }
+  .hero .hero-inner .eyebrow::before{
+    width:clamp(18px, 6vw, 30px);
+    flex:none;
+    margin:0;
+  }
+
+  /* ---- the two portraits: standing still, and bigger ---- */
+  .lg-walker{--span:0px;}
+  .lg-walker--a{
+    --ww:92px;
+    left:4vw;
+    animation:lgFade 1.4s ease 1.2s both;
+  }
+  .lg-walker--b{
+    --ww:100px;
+    right:4vw;
+    animation:lgFade 1.4s ease 1.5s both;
+  }
+  .lg-step{animation:none; transform:none;}
+}
+/* <<< mobile-fix-v2 hero */

@@ -412,3 +412,21 @@
   .event-preview-body{padding:36px 24px;}
   .event-preview-meta{grid-template-columns:1fr 1fr;}
 }
+
+/* >>> mobile-fix-v2 events */
+@media (max-width:700px){
+  .events-preview{padding-top:64px; padding-bottom:72px;}
+  .events-preview .section-head{margin-bottom:32px;}
+  .event-preview-visual{min-height:170px; padding:20px;}
+  .event-preview-tag{font-size:10px; letter-spacing:0.2em; line-height:1.5;}
+  .event-preview-visual .status-pill{font-size:10px; letter-spacing:0.18em;}
+  .event-preview-body{padding:26px 20px 28px; gap:18px;}
+  .event-preview-body h3{font-size:30px;}
+  .event-preview-body p{font-size:16px; line-height:1.7;}
+  .event-preview-meta{grid-template-columns:1fr 1fr; gap:16px 12px; padding:18px 0;}
+  .event-preview-meta div:first-child{grid-column:1 / -1;}
+  .event-preview-meta span{font-size:10px; letter-spacing:0.14em;}
+  .event-preview-meta strong{font-size:23px;}
+  .event-preview-body .btn{align-self:stretch; width:100%;}
+}
+/* <<< mobile-fix-v2 events */

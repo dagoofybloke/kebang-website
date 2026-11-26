@@ -1,4 +1,5 @@
 import Reveal from '../components/Reveal.jsx'
+import EventVisual from '../components/EventVisual.jsx'
 import { getEventStatus } from '../data/eventStatus.js'
 import './Events.css'
 
@@ -38,7 +39,7 @@ export default function Events(){
       <section className="wrap events-list">
         {EVENTS.map((ev, i) => (
           <Reveal as="article" delay={i * 100} className="event-card" key={ev.n}>
-            <div className="event-card-visual">
+            <EventVisual className="event-card-visual">
               <div className="event-card-top">
                 <span className="event-card-tag">{ev.tag}</span>
                 <span className="status-pill" data-status={status.key}>
@@ -46,7 +47,7 @@ export default function Events(){
                 </span>
               </div>
               <span className="ghost-num event-card-num">{ev.n}</span>
-            </div>
+            </EventVisual>
 
             <div className="event-card-body">
               <h2>{ev.title}</h2>

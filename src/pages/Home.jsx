@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal.jsx'
 import HeroLegacy from '../components/HeroLegacy.jsx'
+import EventVisual from '../components/EventVisual.jsx'
 import { getEventStatus } from '../data/eventStatus.js'
 import './Home.css'
 
@@ -176,12 +177,12 @@ export default function Home(){
         </div>
 
         <Reveal delay={140} className="event-preview-card">
-          <div className="event-preview-visual">
+          <EventVisual className="event-preview-visual">
             <span className="event-preview-tag">Visual Art Competition</span>
             <span className="status-pill" data-status={status.key}>
               <i></i>{status.label}
             </span>
-          </div>
+          </EventVisual>
           <div className="event-preview-body">
             <h3>TMSK Art Online Competition</h3>
             <p>
