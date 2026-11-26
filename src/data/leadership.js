@@ -10,9 +10,9 @@ export const leadershipTerms = [
       { local: 'Kébang Abu Oi', role: 'Vice President', name: 'Kung Pao', image: 'kung-pao.jpg' },
       { local: 'Kébang Nébíng', role: 'General Secretary & Treasurer', name: 'Abhinab Pegu', image: 'abhinab-pegu.jpg' },
       { role: 'Organisational Coordinator', name: 'Maetom Patir', image: 'maetom-patir.jpg' },
-      { local: 'Kinbe Rutum', role: 'Chief Designer', name: 'Name to be added', image: 'chief-designer.jpg' },
-      { local: 'Kébang Lutad Nébíng', role: 'Media Secretary', name: 'Name to be added', image: 'media-secretary.jpg' },
-      { local: 'Luirné Abu', role: 'Chief Advisor', name: 'Name to be added', image: 'chief-advisor.jpg' },
+      { local: 'Kinbe Rutum', role: 'Chief Designer', name: 'Jagya Payun', image: 'chief-designer.jpg' },
+      { local: 'Kébang Lutad Nébíng', role: 'Media Secretary', name: 'Oiyir Patir', image: 'media-secretary.jpg' },
+      { local: 'Luirné Abu', role: 'Chief Advisor', name: 'Mibom Patir', image: 'chief-advisor.jpg' },
     ],
   },
   {
