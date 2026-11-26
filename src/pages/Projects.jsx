@@ -43,6 +43,12 @@ function Gallery({ photos, alt }) {
   );
 }
 
+function jumpTo(e, id) {
+  e.preventDefault();
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
 export default function Projects() {
   const ytList = doying.youtube.map(ytEmbed).filter(Boolean);
   return (
@@ -54,7 +60,18 @@ export default function Projects() {
         </div>
       </header>
 
-      <section className="pj-section">
+      <nav className="pj-bar" aria-label="Project sections">
+        <div className="pj-bar-inner">
+          <a href="#ongoing" className="pj-bar-link" onClick={(e) => jumpTo(e, "ongoing")}>
+            <span className="pj-dot pj-dot-active" aria-hidden="true"></span> Ongoing Projects
+          </a>
+          <a href="#past" className="pj-bar-link" onClick={(e) => jumpTo(e, "past")}>
+            <span className="pj-dot pj-dot-past" aria-hidden="true"></span> Past Projects
+          </a>
+        </div>
+      </nav>
+
+      <section className="pj-section" id="ongoing">
         <div className="pj-wrap">
           <SectionHead kind="active" title={ui.ongoingTitle} note={ui.ongoingNote} />
 
@@ -141,7 +158,7 @@ export default function Projects() {
         </div>
       </section>
 
-      <section className="pj-section pj-section-alt">
+      <section className="pj-section pj-section-alt" id="past">
         <div className="pj-wrap">
           <SectionHead kind="past" title={ui.pastTitle} note={ui.pastNote} />
 
