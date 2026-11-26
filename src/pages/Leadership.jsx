@@ -31,7 +31,10 @@ function MemberCard({ member, termId, index }) {
           />
         )}
       </div>
-      <p className="leader-role">{member.role}</p>
+      <div className="leader-title">
+        <p className="leader-role">{member.local || member.role}</p>
+        {member.local && <p className="leader-role-en">{member.role}</p>}
+      </div>
       <h3 className="leader-name">{member.name}</h3>
       {member.note && <p className="leader-note">{member.note}</p>}
     </article>

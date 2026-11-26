@@ -12,3 +12,8 @@ Put leader photos in the matching term folder:
 
 File names must match src/data/leadership.js (they are case-sensitive).
 Square photos work best.
+
+New posts (put in each term folder, term-1/ and term-2/):
+  chief-designer.jpg
+  media-secretary.jpg
+  chief-advisor.jpg
