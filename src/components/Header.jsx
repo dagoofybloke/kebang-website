@@ -6,6 +6,7 @@ const LEFT_ITEMS = [
   { to: '/', label: 'Home' },
   { to: '/objectives', label: 'Objectives' },
   { to: '/events', label: 'Events' },
+  { to: '/projects', label: 'Projects' },
 ]
 const RIGHT_ITEMS = [
   { to: '/leadership', label: 'Leadership' },
