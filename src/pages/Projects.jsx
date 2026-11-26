@@ -1,16 +1,20 @@
+import { useState, useRef } from "react";
 import { odong, doying, artComp, ui } from "../data/projects.js";
 import "./Projects.css";
+
+// pj-tabs-v2
+const OPTS_NOTE = "Photos and videos are read from the folders in src/assets/projects/";
 
 const toList = (m) => Object.keys(m).sort().map((k) => m[k]);
 
 const odongPhotos = toList(
-  import.meta.glob("../assets/projects/odong-kinsulai/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}", { eager: true, query: '?url', import: 'default' })
+  import.meta.glob("../assets/projects/odong-kinsulai/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}", { eager: true, query: "?url", import: "default" })
 );
 const doyingPhotos = toList(
-  import.meta.glob("../assets/projects/doying/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}", { eager: true, query: '?url', import: 'default' })
+  import.meta.glob("../assets/projects/doying/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}", { eager: true, query: "?url", import: "default" })
 );
 const doyingVideos = toList(
-  import.meta.glob("../assets/projects/doying/*.{mp4,webm,mov,MP4,WEBM,MOV}", { eager: true, query: '?url', import: 'default' })
+  import.meta.glob("../assets/projects/doying/*.{mp4,webm,mov,MP4,WEBM,MOV}", { eager: true, query: "?url", import: "default" })
 );
 
 function ytEmbed(url) {
@@ -18,17 +22,23 @@ function ytEmbed(url) {
   return m ? "https://www.youtube.com/embed/" + m[1] : null;
 }
 
-function SectionHead({ kind, title, note }) {
-  return (
-    <div className="pj-section-head">
-      <span className={"pj-dot pj-dot-" + kind} aria-hidden="true"></span>
-      <div>
-        <h2>{title}</h2>
-        <p>{note}</p>
-      </div>
-    </div>
-  );
-}
+const TABS = {
+  ongoing: {
+    label: ui.ongoingTitle,
+    note: ui.ongoingNote,
+    dot: "active",
+    items: [
+      { id: "odong", label: "Odong Kinsulai", sub: "Started 26 Oct 2026" },
+      { id: "doying", label: "Project Do:ying", sub: "Started 22 Nov 2026" },
+    ],
+  },
+  past: {
+    label: ui.pastTitle,
+    note: ui.pastNote,
+    dot: "past",
+    items: [{ id: "art", label: "Mising Art Competition", sub: "19 Jul \u2013 13 Sep 2026" }],
+  },
+};
 
 function Gallery({ photos, alt }) {
   if (!photos.length) return <p className="pj-empty">{ui.emptyPhotos}</p>;
@@ -43,14 +53,140 @@ function Gallery({ photos, alt }) {
   );
 }
 
-function jumpTo(e, id) {
-  e.preventDefault();
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+function OdongPanel() {
+  return (
+    <article className="pj-card">
+      <div className="pj-card-top">
+        <h3>Project {odong.name}</h3>
+        <span className="pj-badge"><span className="pj-dot pj-dot-active"></span> Active</span>
+      </div>
+      <p className="pj-tagline">{odong.tagline}</p>
+      <p className="pj-meta">Started on {odong.started} &middot; Formerly {odong.oldName} &middot; Renamed on {odong.renamed}</p>
+
+      <ol className="pj-timeline">
+        {odong.timeline.map((t) => (
+          <li key={t.date}><strong>{t.date}</strong><span>{t.text}</span></li>
+        ))}
+      </ol>
+
+      {odong.intro.map((p, i) => <p key={i}>{p}</p>)}
+
+      <h4>{odong.sequenceTitle}</h4>
+      <div className="pj-sequence">
+        {odong.sequence.map((n, i) => (
+          <span key={n} className="pj-seq-item">
+            <span className="pj-seq-name">{n}</span>
+            {i < odong.sequence.length - 1 && <span className="pj-seq-arrow">&rarr;</span>}
+          </span>
+        ))}
+      </div>
+      <p className="pj-note">{odong.sequenceNote}</p>
+
+      <a className="pj-btn" href={odong.noticeUrl} target="_blank" rel="noreferrer">{odong.noticeLabel}</a>
+
+      <h4>{odong.galleryTitle}</h4>
+      <Gallery photos={odongPhotos} alt="Odong Kinsulai progress photo" />
+    </article>
+  );
 }
 
-export default function Projects() {
+function DoyingPanel() {
   const ytList = doying.youtube.map(ytEmbed).filter(Boolean);
+  return (
+    <article className="pj-card">
+      <div className="pj-card-top">
+        <h3>{doying.name}</h3>
+        <span className="pj-badge"><span className="pj-dot pj-dot-active"></span> Active</span>
+      </div>
+      <p className="pj-meta">Started on {doying.started} &middot; Runs alongside Odong Kinsulai</p>
+
+      <div className="pj-bilingual">
+        <div className="pj-lang">
+          <span className="pj-lang-label">English</span>
+          {doying.english.map((p, i) => <p key={i}>{p}</p>)}
+        </div>
+        <div className="pj-lang">
+          <span className="pj-lang-label">Mising</span>
+          {doying.mising.length
+            ? doying.mising.map((p, i) => <p key={i}>{p}</p>)
+            : <p className="pj-empty">{ui.miSoon}</p>}
+        </div>
+      </div>
+
+      <div className="pj-btn-row">
+        <a className="pj-btn" href={doying.noticeUrl} target="_blank" rel="noreferrer">{doying.noticeLabel}</a>
+        {doying.formUrl && (
+          <a className="pj-btn pj-btn-gold" href={doying.formUrl} target="_blank" rel="noreferrer">{doying.formLabel}</a>
+        )}
+      </div>
+
+      <h4>{doying.photosTitle}</h4>
+      <Gallery photos={doyingPhotos} alt="Project Do:ying photo" />
+
+      <h4>{doying.videosTitle}</h4>
+      {!doyingVideos.length && !ytList.length && <p className="pj-empty">Videos will appear here soon.</p>}
+      <div className="pj-videos">
+        {ytList.map((src) => (
+          <div className="pj-video" key={src}>
+            <iframe src={src} title="Project Do:ying video" allowFullScreen loading="lazy"></iframe>
+          </div>
+        ))}
+        {doyingVideos.map((src) => (
+          <div className="pj-video" key={src}>
+            <video src={src} controls preload="metadata"></video>
+          </div>
+        ))}
+      </div>
+    </article>
+  );
+}
+
+function ArtPanel() {
+  return (
+    <article className="pj-card">
+      <div className="pj-card-top">
+        <h3>{artComp.name}</h3>
+        <span className="pj-badge"><span className="pj-dot pj-dot-past"></span> Completed</span>
+      </div>
+      <p className="pj-meta">Started on {artComp.started} &middot; Ended on {artComp.ended}</p>
+
+      <div className="pj-art">
+        <img className="pj-poster" src={artComp.poster} alt={artComp.posterAlt} loading="lazy" />
+        <div>
+          {artComp.paragraphs.map((p, i) => <p key={i}>{p}</p>)}
+          <div className="pj-prizes">
+            {artComp.prizes.map((p) => <span key={p}>{p}</span>)}
+          </div>
+          <p className="pj-note">{artComp.prizeNote}</p>
+        </div>
+      </div>
+
+      <h4>{artComp.encourageTitle}</h4>
+      {artComp.encourage.map((p, i) => <p key={i}>{p}</p>)}
+      <p className="pj-callout">{artComp.callout}</p>
+    </article>
+  );
+}
+
+const PANELS = { odong: OdongPanel, doying: DoyingPanel, art: ArtPanel };
+
+export default function Projects() {
+  const [tab, setTab] = useState("ongoing");
+  const [pick, setPick] = useState({ ongoing: "odong", past: "art" });
+  const contentRef = useRef(null);
+
+  const current = TABS[tab];
+  const activeId = pick[tab];
+  const Panel = PANELS[activeId];
+
+  function choose(id) {
+    setPick((p) => ({ ...p, [tab]: id }));
+    if (typeof window !== "undefined" && window.innerWidth < 800 && contentRef.current) {
+      const top = contentRef.current.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
+  }
+
   return (
     <main className="pj-page">
       <header className="pj-hero">
@@ -61,130 +197,54 @@ export default function Projects() {
       </header>
 
       <nav className="pj-bar" aria-label="Project sections">
-        <div className="pj-bar-inner">
-          <a href="#ongoing" className="pj-bar-link" onClick={(e) => jumpTo(e, "ongoing")}>
-            <span className="pj-dot pj-dot-active" aria-hidden="true"></span> Ongoing Projects
-          </a>
-          <a href="#past" className="pj-bar-link" onClick={(e) => jumpTo(e, "past")}>
-            <span className="pj-dot pj-dot-past" aria-hidden="true"></span> Past Projects
-          </a>
+        <div className="pj-bar-inner" role="tablist">
+          {Object.keys(TABS).map((key) => (
+            <button
+              key={key}
+              type="button"
+              role="tab"
+              aria-selected={tab === key}
+              className={"pj-bar-link" + (tab === key ? " is-active" : "")}
+              onClick={() => setTab(key)}
+            >
+              <span className={"pj-dot pj-dot-" + TABS[key].dot} aria-hidden="true"></span> {TABS[key].label}
+            </button>
+          ))}
         </div>
       </nav>
 
-      <section className="pj-section" id="ongoing">
+      <section className={"pj-section" + (tab === "past" ? " pj-section-alt" : "")}>
         <div className="pj-wrap">
-          <SectionHead kind="active" title={ui.ongoingTitle} note={ui.ongoingNote} />
-
-          {/* ---------- Odong Kinsulai ---------- */}
-          <article className="pj-card">
-            <div className="pj-card-top">
-              <h3>Project {odong.name}</h3>
-              <span className="pj-badge"><span className="pj-dot pj-dot-active"></span> Active</span>
+          <div className="pj-section-head">
+            <span className={"pj-dot pj-dot-" + current.dot} aria-hidden="true"></span>
+            <div>
+              <h2>{current.label}</h2>
+              <p>{current.note}</p>
             </div>
-            <p className="pj-tagline">{odong.tagline}</p>
-            <p className="pj-meta">Started on {odong.started} &middot; Formerly {odong.oldName} &middot; Renamed on {odong.renamed}</p>
+          </div>
 
-            <ol className="pj-timeline">
-              {odong.timeline.map((t) => (
-                <li key={t.date}><strong>{t.date}</strong><span>{t.text}</span></li>
+          <div className="pj-layout">
+            <nav className="pj-side" aria-label={current.label}>
+              {current.items.map((it) => (
+                <button
+                  key={it.id}
+                  type="button"
+                  className={"pj-side-item" + (activeId === it.id ? " is-active" : "")}
+                  onClick={() => choose(it.id)}
+                >
+                  <span className={"pj-dot pj-dot-" + current.dot} aria-hidden="true"></span>
+                  <span className="pj-side-text">
+                    <strong>{it.label}</strong>
+                    <small>{it.sub}</small>
+                  </span>
+                </button>
               ))}
-            </ol>
+            </nav>
 
-            {odong.intro.map((p, i) => <p key={i}>{p}</p>)}
-
-            <h4>{odong.sequenceTitle}</h4>
-            <div className="pj-sequence">
-              {odong.sequence.map((n, i) => (
-                <span key={n} className="pj-seq-item">
-                  <span className="pj-seq-name">{n}</span>
-                  {i < odong.sequence.length - 1 && <span className="pj-seq-arrow">&rarr;</span>}
-                </span>
-              ))}
+            <div className="pj-content" ref={contentRef} key={tab + activeId}>
+              <Panel />
             </div>
-            <p className="pj-note">{odong.sequenceNote}</p>
-
-            <a className="pj-btn" href={odong.noticeUrl} target="_blank" rel="noreferrer">{odong.noticeLabel}</a>
-
-            <h4>{odong.galleryTitle}</h4>
-            <Gallery photos={odongPhotos} alt="Odong Kinsulai progress photo" />
-          </article>
-
-          {/* ---------- Do:ying ---------- */}
-          <article className="pj-card">
-            <div className="pj-card-top">
-              <h3>{doying.name}</h3>
-              <span className="pj-badge"><span className="pj-dot pj-dot-active"></span> Active</span>
-            </div>
-            <p className="pj-meta">Started on {doying.started} &middot; Runs alongside Odong Kinsulai</p>
-
-            <div className="pj-bilingual">
-              <div className="pj-lang">
-                <span className="pj-lang-label">English</span>
-                {doying.english.map((p, i) => <p key={i}>{p}</p>)}
-              </div>
-              <div className="pj-lang">
-                <span className="pj-lang-label">Mising</span>
-                {doying.mising.length
-                  ? doying.mising.map((p, i) => <p key={i}>{p}</p>)
-                  : <p className="pj-empty">{ui.miSoon}</p>}
-              </div>
-            </div>
-
-            <div className="pj-btn-row">
-              <a className="pj-btn" href={doying.noticeUrl} target="_blank" rel="noreferrer">{doying.noticeLabel}</a>
-              {doying.formUrl && (
-                <a className="pj-btn pj-btn-gold" href={doying.formUrl} target="_blank" rel="noreferrer">{doying.formLabel}</a>
-              )}
-            </div>
-
-            <h4>{doying.photosTitle}</h4>
-            <Gallery photos={doyingPhotos} alt="Project Do:ying photo" />
-
-            <h4>{doying.videosTitle}</h4>
-            {!doyingVideos.length && !ytList.length && <p className="pj-empty">Videos will appear here soon.</p>}
-            <div className="pj-videos">
-              {ytList.map((src) => (
-                <div className="pj-video" key={src}>
-                  <iframe src={src} title="Project Do:ying video" allowFullScreen loading="lazy"></iframe>
-                </div>
-              ))}
-              {doyingVideos.map((src) => (
-                <div className="pj-video" key={src}>
-                  <video src={src} controls preload="metadata"></video>
-                </div>
-              ))}
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section className="pj-section pj-section-alt" id="past">
-        <div className="pj-wrap">
-          <SectionHead kind="past" title={ui.pastTitle} note={ui.pastNote} />
-
-          {/* ---------- Art competition ---------- */}
-          <article className="pj-card">
-            <div className="pj-card-top">
-              <h3>{artComp.name}</h3>
-              <span className="pj-badge"><span className="pj-dot pj-dot-past"></span> Completed</span>
-            </div>
-            <p className="pj-meta">Started on {artComp.started} &middot; Ended on {artComp.ended}</p>
-
-            <div className="pj-art">
-              <img className="pj-poster" src={artComp.poster} alt={artComp.posterAlt} loading="lazy" />
-              <div>
-                {artComp.paragraphs.map((p, i) => <p key={i}>{p}</p>)}
-                <div className="pj-prizes">
-                  {artComp.prizes.map((p) => <span key={p}>{p}</span>)}
-                </div>
-                <p className="pj-note">{artComp.prizeNote}</p>
-              </div>
-            </div>
-
-            <h4>{artComp.encourageTitle}</h4>
-            {artComp.encourage.map((p, i) => <p key={i}>{p}</p>)}
-            <p className="pj-callout">{artComp.callout}</p>
-          </article>
+          </div>
         </div>
       </section>
     </main>
