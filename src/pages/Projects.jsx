@@ -10,9 +10,6 @@ const toList = (m) => Object.keys(m).sort().map((k) => m[k]);
 const odongPhotos = toList(
   import.meta.glob("../assets/projects/odong-kinsulai/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}", { eager: true, query: "?url", import: "default" })
 );
-const doyingPhotos = toList(
-  import.meta.glob("../assets/projects/doying/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}", { eager: true, query: "?url", import: "default" })
-);
 const doyingVideos = toList(
   import.meta.glob("../assets/projects/doying/*.{mp4,webm,mov,MP4,WEBM,MOV}", { eager: true, query: "?url", import: "default" })
 );
@@ -139,9 +136,6 @@ function DoyingPanel() {
           <a className="pj-btn pj-btn-gold" href={doying.formUrl} target="_blank" rel="noreferrer">{doying.formLabel}</a>
         )}
       </div>
-
-      <h4>{doying.photosTitle}</h4>
-      <Gallery photos={doyingPhotos} alt="Project Do:ying photo" />
 
       <h4>{doying.videosTitle}</h4>
       <div className="pj-bilingual">
