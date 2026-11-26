@@ -16,9 +16,9 @@ const EVENTS = [
       { label: 'Entry fee was', value: '₹75/-' },
     ],
     prizes: [
-      { place: '1st', amount: '₹1000/-' },
-      { place: '2nd', amount: '₹500/-' },
-      { place: '3rd', amount: '₹300/-' },
+      { place: '1st', amount: '₹1000/-', winner: 'krnsponge' },
+      { place: '2nd', amount: '₹500/-', winner: 'Binanda Mili' },
+      { place: '3rd', amount: '₹300/-', winner: 'Geetika Pegu' },
     ],
     registerUrl: 'https://docs.google.com/forms/d/1mbJFR53KfgaMFuwOZ7NbxB3_t9-_45dYc51Xy_QvIE8/edit',
   },
@@ -65,6 +65,7 @@ export default function Events(){
                   <div className="prize-pill" key={p.place}>
                     <span>{p.place}</span>
                     <strong>{p.amount}</strong>
+                    {p.winner && <span className="prize-winner">{p.winner}</span>}
                   </div>
                 ))}
               </div>
