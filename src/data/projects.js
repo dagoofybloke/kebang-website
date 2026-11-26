@@ -57,6 +57,9 @@ export const doying = {
   formUrl: "https://forms.gle/yEiJmx5jbE6YWwvU6",
   formLabel: "Doying Submission form",
   // YouTube links of storytelling videos, for example: "https://www.youtube.com/watch?v=XXXXXXXXXXX"
+  // YouTube links for the MISING version videos.
+  youtubeMising: [],
+  // The list below is for the ENGLISH version videos.
   youtube: [],
   photosTitle: "Photos",
   videosTitle: "Videos",

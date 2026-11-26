@@ -90,28 +90,48 @@ function OdongPanel() {
   );
 }
 
+// pj-vid-split
+const videosEnglish = toList(
+  import.meta.glob("../assets/projects/doying/*.{mp4,webm,mov,MP4,WEBM,MOV}", { eager: true, query: "?url", import: "default" })
+).concat(
+  toList(import.meta.glob("../assets/projects/doying/english-videos/*.{mp4,webm,mov,MP4,WEBM,MOV}", { eager: true, query: "?url", import: "default" }))
+);
+const videosMising = toList(
+  import.meta.glob("../assets/projects/doying/mising-videos/*.{mp4,webm,mov,MP4,WEBM,MOV}", { eager: true, query: "?url", import: "default" })
+);
+
+function VideoList({ yt, files, empty }) {
+  const embeds = (yt || []).map(ytEmbed).filter(Boolean);
+  return (
+    <div>
+      {!files.length && !embeds.length && <p className="pj-empty">{empty}</p>}
+      <div className="pj-videos">
+        {embeds.map((src) => (
+          <div className="pj-video" key={src}>
+            <iframe src={src} title="Project Do:ying video" allowFullScreen loading="lazy"></iframe>
+          </div>
+        ))}
+        {files.map((src) => (
+          <div className="pj-video" key={src}>
+            <video src={src} controls preload="metadata"></video>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function DoyingPanel() {
-  const ytList = doying.youtube.map(ytEmbed).filter(Boolean);
   return (
     <article className="pj-card">
       <div className="pj-card-top">
         <h3>{doying.name}</h3>
         <span className="pj-badge"><span className="pj-dot pj-dot-active"></span> Active</span>
       </div>
-      <p className="pj-meta">Started on {doying.started} &middot; Runs alongside Odong Kinsulai</p>
+      <p className="pj-meta">Started on {doying.started}</p>
 
-      <div className="pj-bilingual">
-        <div className="pj-lang">
-          <span className="pj-lang-label">English</span>
-          {doying.english.map((p, i) => <p key={i}>{p}</p>)}
-        </div>
-        <div className="pj-lang">
-          <span className="pj-lang-label">Mising</span>
-          {doying.mising.length
-            ? doying.mising.map((p, i) => <p key={i}>{p}</p>)
-            : <p className="pj-empty">{ui.miSoon}</p>}
-        </div>
-      </div>
+      <h4>Description</h4>
+      {doying.english.map((p, i) => <p key={i}>{p}</p>)}
 
       <div className="pj-btn-row">
         <a className="pj-btn" href={doying.noticeUrl} target="_blank" rel="noreferrer">{doying.noticeLabel}</a>
@@ -124,18 +144,15 @@ function DoyingPanel() {
       <Gallery photos={doyingPhotos} alt="Project Do:ying photo" />
 
       <h4>{doying.videosTitle}</h4>
-      {!doyingVideos.length && !ytList.length && <p className="pj-empty">Videos will appear here soon.</p>}
-      <div className="pj-videos">
-        {ytList.map((src) => (
-          <div className="pj-video" key={src}>
-            <iframe src={src} title="Project Do:ying video" allowFullScreen loading="lazy"></iframe>
-          </div>
-        ))}
-        {doyingVideos.map((src) => (
-          <div className="pj-video" key={src}>
-            <video src={src} controls preload="metadata"></video>
-          </div>
-        ))}
+      <div className="pj-bilingual">
+        <div className="pj-lang">
+          <span className="pj-lang-label">English version</span>
+          <VideoList yt={doying.youtube} files={videosEnglish} empty="English videos will appear here soon." />
+        </div>
+        <div className="pj-lang">
+          <span className="pj-lang-label">Mising version</span>
+          <VideoList yt={doying.youtubeMising} files={videosMising} empty="Mising videos will appear here soon." />
+        </div>
       </div>
     </article>
   );
