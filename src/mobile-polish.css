@@ -1,0 +1,179 @@
+/* ==================== TMSK mobile polish (added by mobile-polish.sh) ==================== */
+/* Loaded last (see src/main.jsx). Safe to delete this file + its import to undo. */
+
+/* ---------- Event cover: your illustration (all screen sizes) ---------- */
+.app-shell .event-preview-visual,
+.app-shell .event-card-visual{
+  background-color:var(--charcoal);
+  background-image:
+    linear-gradient(180deg, rgba(20,17,14,0.55) 0%, rgba(20,17,14,0) 34%, rgba(20,17,14,0) 66%, rgba(20,17,14,0.55) 100%),
+    url('/assets/event-cover.webp');
+  background-size:cover;
+  background-position:40% center;
+  background-repeat:no-repeat;
+}
+/* the old decorative circles and big "01" are replaced by the picture */
+.app-shell .event-preview-visual::before,
+.app-shell .event-preview-visual::after,
+.app-shell .event-card-visual::before,
+.app-shell .event-card-visual::after,
+.app-shell .event-card-num{display:none;}
+
+/* tag + status sit on small dark chips so they stay readable on the painting */
+.app-shell .event-preview-tag,
+.app-shell .event-card-tag,
+.app-shell .event-preview-visual .status-pill,
+.app-shell .event-card-visual .status-pill{
+  align-self:flex-start;
+  padding:8px 14px;
+  background:rgba(20,17,14,0.62);
+  -webkit-backdrop-filter:blur(4px);
+  backdrop-filter:blur(4px);
+}
+.app-shell .event-card-top{gap:10px;}
+
+/* ================= PHONES ================= */
+@media (max-width:900px){
+  /* event cover on tablets/phones: a clean picture, not a squashed bar */
+  .app-shell .event-preview-visual,
+  .app-shell .event-card-visual{
+    min-height:0;
+    aspect-ratio:4 / 3;
+    padding:16px;
+    background-position:center 55%;
+  }
+  .app-shell .event-preview-tag,
+  .app-shell .event-card-tag{
+    font-size:10px;
+    letter-spacing:0.18em;
+    padding:7px 11px;
+    line-height:1.4;
+  }
+  .app-shell .event-preview-visual .status-pill,
+  .app-shell .event-card-visual .status-pill{
+    font-size:10px;
+    letter-spacing:0.16em;
+    gap:8px;
+    padding:7px 11px;
+    line-height:1.4;
+  }
+  .app-shell .event-card-top{flex-direction:row; flex-wrap:wrap; align-items:flex-start;}
+}
+
+@media (max-width:700px){
+
+  /* ---- hero: tighter, calmer ---- */
+  .app-shell .hero{
+    min-height:0;
+    padding:36px 0 168px;
+  }
+  /* the "—— A Mising youth-led movement" line: centred, line sits above the text */
+  .app-shell .hero .hero-inner .eyebrow{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:12px;
+    margin-bottom:20px;
+    font-size:11px;
+    letter-spacing:0.2em;
+    padding-left:0.2em;      /* cancels the trailing letter-space so it is truly centred */
+    text-align:center;
+  }
+  .app-shell .hero .hero-inner .eyebrow::before{width:40px;}
+  .app-shell .hero .hero-inner .hero-title{
+    margin:0 0 26px;
+    font-size:clamp(38px, 11vw, 54px);
+    line-height:1;
+  }
+  .app-shell .hero .hero-inner .lg-root{margin:0 0 40px;}
+  .app-shell .hero .lg-flagstage{width:calc(100% - 14px);}
+  .app-shell .hero .hero-inner .hero-quotes{
+    gap:20px;
+    margin:0 auto 32px;
+    padding:0 4px;
+  }
+  .app-shell .hero .hero-quotes p{
+    font-size:18.5px;
+    line-height:1.5;
+  }
+  .app-shell .hero .hero-quotes p::before{margin-bottom:10px;}
+  .app-shell .hero .hero-inner .hero-actions{
+    width:100%;
+    gap:12px;
+  }
+  .app-shell .hero .hero-actions .btn{
+    width:100%;
+    padding:16px 20px;
+    font-size:12px;
+    letter-spacing:0.16em;
+  }
+
+  /* ---- the two portraits: standing still, a bit bigger ---- */
+  .app-shell .hero .lg-walker{
+    bottom:16px;
+    animation:lgFade 1.4s ease 1s both;   /* fade in once, no walking */
+    transform:none;
+  }
+  .app-shell .hero .lg-walker--a{left:16px;  --ww:84px;}
+  .app-shell .hero .lg-walker--b{right:16px; --ww:80px;}
+  .app-shell .hero .lg-step{animation:none; transform:none;}
+
+  /* ---- facts ribbon ---- */
+  .facts-item{padding:18px 0; font-size:19px;}
+  .facts-item i{margin:0 26px;}
+
+  /* ---- about ---- */
+  .about{padding:68px 0 60px;}
+  .about-inner{gap:40px;}
+  .about-intro h2{font-size:clamp(36px, 10.5vw, 46px); margin-bottom:20px;}
+  .about-lede{font-size:17px; line-height:1.7;}
+  .timeline li{padding:0 0 40px 24px;}
+  .timeline li:last-child{padding-bottom:0;}
+  .timeline li::before{box-shadow:0 0 0 5px var(--ivory);}
+  .tl-num{font-size:20px;}
+  .timeline h3{font-size:28px; margin:4px 0 12px;}
+  .timeline p{font-size:16px; line-height:1.75;}
+
+  /* ---- statement ---- */
+  .statement{padding:92px 0 72px;}
+  .statement .eyebrow{margin-bottom:22px;}
+  .statement-text{font-size:clamp(30px, 8.6vw, 42px); line-height:1.14;}
+
+  /* ---- objectives ---- */
+  .objectives-preview{padding:64px 0;}
+  .section-head{margin-bottom:36px;}
+  .section-head h2{font-size:clamp(36px, 10.5vw, 46px);}
+  .obj-preview-row{grid-template-columns:48px 1fr 18px; gap:12px; padding:22px 0;}
+  .obj-preview-row .ghost-num{font-size:34px;}
+  .obj-preview-row h4{font-size:22px; line-height:1.18;}
+  .objectives-cta{margin-top:36px;}
+  .objectives-cta .btn{width:100%;}
+
+  /* ---- events preview card ---- */
+  .events-preview{padding-top:64px; padding-bottom:72px;}
+  .event-preview-body{gap:18px; padding:28px 20px 24px;}
+  .event-preview-body h3{font-size:30px; line-height:1.05;}
+  .event-preview-body p{font-size:16px; line-height:1.7;}
+  .event-preview-meta{grid-template-columns:1.45fr 1fr 1fr; gap:10px; padding:16px 0;}
+  .event-preview-meta span{font-size:9.5px; letter-spacing:0.12em; line-height:1.4;}
+  .event-preview-meta strong{font-size:19px; line-height:1.2; white-space:nowrap;}
+  .event-preview-body .btn{align-self:stretch;}
+
+  /* ---- events page ---- */
+  .page-head{padding:44px 0 28px;}
+  .events-list{padding-bottom:72px;}
+  .event-card-body{gap:22px; padding:28px 20px 26px;}
+  .event-card-body h2{font-size:32px;}
+  .event-blurb{font-size:16px; line-height:1.7;}
+  .event-note{font-size:18px;}
+  .event-actions .btn{width:100%;}
+}
+
+/* very small phones (iPhone SE, older Androids) */
+@media (max-width:350px){
+  .app-shell .hero .hero-inner .eyebrow{font-size:10.5px; letter-spacing:0.16em;}
+  .app-shell .hero .hero-quotes p{font-size:17.5px;}
+  .app-shell .hero .lg-walker--a{--ww:72px;}
+  .app-shell .hero .lg-walker--b{--ww:68px;}
+  .event-preview-meta strong{font-size:17px;}
+}
