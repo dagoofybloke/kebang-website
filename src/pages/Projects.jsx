@@ -1,17 +1,16 @@
 import { odong, doying, artComp, ui } from "../data/projects.js";
 import "./Projects.css";
 
-const OPTS = { eager: true, query: '?url', import: 'default' };
 const toList = (m) => Object.keys(m).sort().map((k) => m[k]);
 
 const odongPhotos = toList(
-  import.meta.glob("../assets/projects/odong-kinsulai/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}", OPTS)
+  import.meta.glob("../assets/projects/odong-kinsulai/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}", { eager: true, query: '?url', import: 'default' })
 );
 const doyingPhotos = toList(
-  import.meta.glob("../assets/projects/doying/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}", OPTS)
+  import.meta.glob("../assets/projects/doying/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}", { eager: true, query: '?url', import: 'default' })
 );
 const doyingVideos = toList(
-  import.meta.glob("../assets/projects/doying/*.{mp4,webm,mov,MP4,WEBM,MOV}", OPTS)
+  import.meta.glob("../assets/projects/doying/*.{mp4,webm,mov,MP4,WEBM,MOV}", { eager: true, query: '?url', import: 'default' })
 );
 
 function ytEmbed(url) {
