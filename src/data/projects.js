@@ -60,7 +60,7 @@ export const doying = {
   // YouTube links for the MISING version videos.
   youtubeMising: [],
   // The list below is for the ENGLISH version videos.
-  youtube: [],
+  youtube: ["https://youtu.be/GJjsGS5DCZU?si=WUKfAPakpB7DzoXb"],
   photosTitle: "Photos",
   videosTitle: "Videos",
 };
