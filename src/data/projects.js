@@ -54,8 +54,8 @@ export const doying = {
   noticeUrl: "/documents/ProjectDoying.pdf",
   noticeLabel: "Read the official notice (PDF)",
   // When the Folktale Submission Form is ready, paste its link between the quotes.
-  formUrl: "",
-  formLabel: "Open the Folktale Submission Form",
+  formUrl: "https://forms.gle/yEiJmx5jbE6YWwvU6",
+  formLabel: "Doying Submission form",
   // YouTube links of storytelling videos, for example: "https://www.youtube.com/watch?v=XXXXXXXXXXX"
   youtube: [],
   photosTitle: "Photos",

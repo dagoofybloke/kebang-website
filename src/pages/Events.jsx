@@ -65,7 +65,7 @@ export default function Events(){
                   <div className="prize-pill" key={p.place}>
                     <span>{p.place}</span>
                     <strong>{p.amount}</strong>
-                    {p.winner && <span className="prize-winner">{p.winner}</span>}
+                    {p.winner && <div className="prize-winner">{p.winner}</div>}
                   </div>
                 ))}
               </div>
