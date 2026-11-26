@@ -7,6 +7,10 @@ const TAGLINE = 'Support the work of TMSK for the Mising community.'
 const INTRO =
   'Takam Mising Sí:sang Kébang (TMSK) works for the Mising community, including projects to preserve its historical and cultural identity. Your contribution helps us carry this work forward.'
 
+// The highlighted notice on the donate card (change the wording here).
+const NOTICE_TITLE = 'Mising Archive is a project of TMSK.'
+const NOTICE_TEXT = 'Hence, the treasury of both Mising Archive and TMSK is saved together.'
+
 const STEPS = [
   { title: 'Tap the payment button', text: 'Use the payment button in the card above.' },
   { title: 'Choose your amount', text: 'Razorpay opens a secure window where you enter the amount and your details.' },
@@ -43,6 +47,10 @@ export default function Donate() {
           </svg>
           <h2>Make a donation</h2>
           <p>{INTRO}</p>
+          <div className="donate-notice" role="note">
+            <strong>{NOTICE_TITLE}</strong>
+            <span>{NOTICE_TEXT}</span>
+          </div>
           <RazorpayButton />
           <p className="donate-secure">Secure payment by Razorpay</p>
         </Reveal>
