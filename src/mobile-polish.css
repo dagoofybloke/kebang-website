@@ -185,3 +185,16 @@
   translate:none;
 }
 .app-shell .hero .lg-step{animation:none; transform:none;}
+
+/* ---- page-head side gap: the .page-head padding shorthand was wiping the left/right
+   padding of .wrap, so headings touched the screen edge on every sub-page ---- */
+.app-shell .page-head.wrap{
+  padding-left:48px;
+  padding-right:48px;
+}
+@media (max-width:860px){
+  .app-shell .page-head.wrap{
+    padding-left:24px;
+    padding-right:24px;
+  }
+}
