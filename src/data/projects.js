@@ -69,7 +69,7 @@ export const artComp = {
   name: "Project Mising Art Competition",
   started: "19 July 2026",
   ended: "13 September 2026",
-  poster: "/images/projects/art-competition-poster.jpeg",
+  poster: "/assets/event-cover.webp",
   posterAlt: "Poster of the TMSK online visual art competition",
   paragraphs: [
     "Project Mising Art Competition began on 19 July 2026. It introduced an online visual art event for the Mising tribe, with the topic based on the Mising tribe of the Northeast.",
