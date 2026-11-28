@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sisangkebang.in/sitemap.xml

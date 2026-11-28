@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import ScrollToTop from './components/ScrollToTop.jsx'
 import Header from './components/Header.jsx'
@@ -13,6 +14,13 @@ import Projects from "./pages/Projects";
 
 export default function App(){
   const location = useLocation()
+
+  useEffect(() => {
+    const link = document.querySelector('link[rel="canonical"]')
+    if (link) {
+      link.setAttribute('href', `https://sisangkebang.in${location.pathname}`)
+    }
+  }, [location.pathname])
 
   return (
     <div className="app-shell">
