@@ -143,21 +143,22 @@
 /* <<< mobile-fix-v2 events page */
 
 /* ===== Prize winner names v2 ===== */
-.prize-pill { flex-wrap: wrap; }
+.prize-pill { min-width: 0; }
 .prize-pill .prize-winner {
-  all: initial;
   display: block;
-  flex: 0 0 100%;
-  grid-column: 1 / -1;
   width: 100%;
   box-sizing: border-box;
   margin-top: 6px;
   font-family: 'Jost', sans-serif;
-  font-size: .95rem;
+  font-size: 0.9rem;
   font-weight: 500;
   line-height: 1.3;
   letter-spacing: 0;
   text-transform: none;
-  text-align: left;
+  text-align: center;
+  overflow-wrap: anywhere;
   color: #6b5e57;
+}
+@media (max-width:560px){
+  .prize-pill .prize-winner { font-size: 0.78rem; }
 }
